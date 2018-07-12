@@ -6,8 +6,7 @@ class CategoriesController < ApplicationController
   end
 
   def index
-    @categories = Category.paginate page: params[:page],
-      per_page: Settings.data.pages
+    @categories = Category.all.page(params[:page]).per_page Settings.data.pages
   end
 
   def edit; end

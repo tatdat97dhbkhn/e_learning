@@ -25,9 +25,9 @@
                 method: :delete, data: { confirm: t(".sure") } %>
             </td>
           </tr>
-        <% end %>  
+        <% end %>
       </tbody>
     </table>
-    <%= will_paginate %>
+    <%= paginate @categories, theme: "twitter-bootstrap-3" %>
   </div>
 </div>

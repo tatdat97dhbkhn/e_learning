@@ -2,8 +2,7 @@ class QuestionsController < ApplicationController
   before_action :find_question, only: [:edit, :update, :destroy]
 
   def index
-    @questions = Question.paginate page: params[:page],
-      per_page: Settings.data.pages
+    @questions = Question.all.page(params[:page]).per_page Settings.data.pages
   end
 
   def new
