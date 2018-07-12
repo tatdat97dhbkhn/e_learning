@@ -1,0 +1,24 @@
+<% provide :title, t(".add") %>
+<h1><%= t ".add" %></h1>
+<%= render "layouts/menu" %>
+<div class="row">
+  <div class="col-md-9">
+    <%= form_for @answer do |f| %>
+      <%= render "shared/error_messages", object: f.object %>
+      <%= f.label :question_id %>
+      <br>
+      <%= f.select(:question_id,
+        [[t(".chose"), 0]] + Question.all.map{ |c| [c.content, c.id] }) %>
+      <br><br>
+      <%= f.label :content %>
+      <%= f.text_field :content, class: "form-control" %>
+      <br>
+      <%= f.label :correct %><br>
+      <%= f.radio_button :correct, Settings.number.one %>
+      <%= t ".correct_true" %>
+      <%= f.radio_button :correct, Settings.number.zero %>
+      <%= t ".correct_false" %><br>
+      <%= f.submit t(".add"), class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

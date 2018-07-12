@@ -18,7 +18,7 @@ class CategoriesController < ApplicationController
       flash[:success] = t ".success"
       redirect_to request.referrer
     else
-      flash[:danger] = t ".danger"
+      flash[:danger] = t "danger"
       render :new
     end
   end
@@ -28,7 +28,7 @@ class CategoriesController < ApplicationController
       flash[:success] = t ".success"
       redirect_to home_path
     else
-      flash[:danger] = t ".danger"
+      flash[:danger] = t "danger"
       redirect_to root_path
     end
   end
@@ -38,7 +38,7 @@ class CategoriesController < ApplicationController
       flash[:success] = t ".delete"
       redirect_to categories_url
     else
-      flash[:danger] = t ".danger"
+      flash[:danger] = t "danger"
       redirect_to home_path
     end
   end
