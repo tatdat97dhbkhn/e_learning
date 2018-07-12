@@ -7,8 +7,11 @@ vi:
   datthuy: "Pham Tat Dat - Nguyen Như Thuy"
   home: "Trang chủ"
   help: "Trợ giúp"
+  alert: "Dung lượng tối đa là 5MB, vui lòng chọn file khác"
   signup: "Đăng ký"
   elearning: "E-learning"
+  category_blank: "Thể loại không được để trống"
+  size_image: "Dung lượng < 5MB"
   home_page: "Trang chủ"
   profile: "Thông tin cá nhân"
   logout: "Đăng xuất"
@@ -37,6 +40,27 @@ vi:
       sure: "Bạn có chắc không?"
     new:
       add: "Thêm thể loại"
+      chose: "Chọn thể loại"
+  courses:
+    create:
+      success: "Thêm thành công"
+    update:
+      success: "Sửa thành công"
+    destroy:
+      delete: "Xóa thành công"
+    edit:
+      edit: "Cập nhật khóa học"
+    index:
+      all: "Tất cả khóa học"
+      category: "Thể loại"
+      name: "Tên"
+      description: "Giới thiệu"
+      image: "Ảnh"
+      edit: "Chỉnh sửa"
+      delete: "Xóa"
+      sure: "Bạn có chắc không?"
+    new:
+      add: "Thêm khóa học"
   layouts:
     menu:
       admin: "Admin - Elearning"

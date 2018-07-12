@@ -6,34 +6,34 @@
       <% end %>
     </li>
     <li class="has-sub">
-      <%= link_to "#" do %>
+      <%= link_to categories_path do %>
         <span><%= t ".categories" %></span>
       <% end %>
       <ul>
         <li>
-          <%= link_to "/categories" do %>
+          <%= link_to categories_path do %>
             <span><%= t ".lists" %></span>
           <% end %>
         </li>
         <li>
-          <%= link_to "/categories/new" do %>
+          <%= link_to new_category_path do %>
             <span><%= t ".add_category" %></span>
           <% end %>
         </li>
       </ul>
     </li>
     <li class="has-sub">
-      <%= link_to "#" do %>
+      <%= link_to courses_path do %>
         <span><%= t ".courses" %></span>
       <% end %>
       <ul>
         <li>
-          <%= link_to "#" do %>
+          <%= link_to courses_path do %>
             <span><%= t ".lists" %></span>
           <% end %>
         </li>
         <li>
-          <%= link_to "#" do %>
+          <%= link_to new_course_path do %>
             <span><%= t ".add_course" %></span>
           <% end %>
         </li>
