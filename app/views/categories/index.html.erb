@@ -18,10 +18,10 @@
             <td><%= category.name %></td>
             <td><%= category.description %></td>
             <td>
-              <%= link_to t(".edit"), "/categories/#{category.id}/edit" %>
+              <%= link_to t(".edit"), edit_category_path(category) %>
             </td>
             <td>
-              <%= link_to t(".delete"), "/categories/#{category.id}",
+              <%= link_to t(".delete"), category,
                 method: :delete, data: { confirm: t(".sure") } %>
             </td>
           </tr>
