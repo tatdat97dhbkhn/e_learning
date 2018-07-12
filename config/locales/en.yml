@@ -25,10 +25,27 @@ en:
   setting: "Settings"
   log_in: "Please log in."
   image_size: "Shold be less than 5MB."
+  static_pages:
+    menu:
+      all_word: "All world"
+      learned: "Learned"
+      unlearned: "Unlearned"
+      alphabet: "Alphabet"
+      category: "Category"
+    home:
+      start: "Start lession"
+      word: "Word list"
   shared:
     error_messages:
       count: "The form contains "
       mes: "errors"
+  filters:
+    listword:
+      word: "Word"
+      meaning: "Meaning"
+    listwordalphabet:
+      word: "Word"
+      meaning: "Meaning"
   users:
     form:
       name: "Name"

@@ -1,0 +1,17 @@
+<%= render "static_pages/menu" %>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th><%= t ".word" %></th>
+      <th><%= t ".meaning" %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @answers.each do |a| %>
+      <tr>
+        <td><%= a.content %></td>
+        <td><%= a.question.meaning %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
