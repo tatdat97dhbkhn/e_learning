@@ -1,0 +1,41 @@
+<% provide :title, t(".all") %>
+<h1><%= t ".all" %></h1>
+<%= render "layouts/menu" %>
+<div class="row">
+  <div class="col-md-8">
+    <table class="table">
+      <thead>
+        <tr class="success">
+          <th><%= t ".category" %></th>
+          <th><%= t ".course" %></th>
+          <th><%= t ".name" %></th>
+          <th><%= t ".description" %></th>
+          <th><%= t ".image" %></th>
+          <th><%= t ".edit" %></th>
+          <th><%= t ".delete" %></th>
+        </tr>
+      </thead>
+      <tbody> 
+        <% @lessions.each do |lession| %>
+          <tr class="info">
+            <td><%= lession.course.name %></td>
+            <td><%= lession.course.category.name %></td>
+            <td><%= lession.name %></td>
+            <td><%= lession.description %></td>
+            <td>
+              <%= image_tag lession.image.url if lession.image? %>
+            </td>
+            <td>
+              <%= link_to t(".edit"), "/lessions/#{lession.id}/edit" %>
+            </td>
+            <td>
+              <%= link_to t(".delete"), "/lessions/#{lession.id}",
+                method: :delete, data: { confirm: t(".sure") } %>
+            </td>
+          </tr>
+        <% end %>  
+      </tbody>
+    </table>
+    <%= will_paginate %>
+  </div>
+</div>

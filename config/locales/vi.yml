@@ -61,6 +61,30 @@ vi:
       sure: "Bạn có chắc không?"
     new:
       add: "Thêm khóa học"
+  lessions:
+    create:
+      success: "Thêm thành công"
+    update:
+      success: "Sửa thành công"
+    destroy:
+      delete: "Xóa thành công"
+    edit:
+      edit: "Cập nhật bài học"
+    index:
+      all: "Tất cả bài học"
+      course: "Khóa học"
+      category: "Thể loại"
+      name: "Tên"
+      description: "Giới thiệu"
+      image: "Ảnh"
+      edit: "Chỉnh sửa"
+      delete: "Xóa"
+      sure: "Bạn có chắc không?"
+    new:
+      add: "Thêm bài học"
+      chose_category: "- Choose Category -"
+      chose_course: "-Choose Course"
+      category: "Category"
   layouts:
     menu:
       admin: "Admin - Elearning"

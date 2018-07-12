@@ -101,6 +101,30 @@ en:
     new:
       add: "Add course"
       chose: "- Choose Category -"
+  lessions:
+    create:
+      success: "Created successfull"
+    update:
+      success: "Update successfull"
+    destroy:
+      delete: "Deleted successfull"
+    edit:
+      edit: "Edit lession"
+    index:
+      all: "All lessions"
+      course: "Course"
+      category: "Category"
+      name: "Name"
+      description: "Description"
+      image: "Image"
+      edit: "Edit"
+      delete: "Delete"
+      sure: "Sure"
+    new:
+      add: "Add lession"
+      chose_category: "- Choose Category -"
+      chose_course: "-Choose Course"
+      category: "Category"
   layouts:
     menu:
       admin: "Admin - Elearning"
