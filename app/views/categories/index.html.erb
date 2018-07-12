@@ -1,0 +1,33 @@
+<% provide :title, t(".all") %>
+<h1><%= t ".all" %></h1>
+<%= render "layouts/menu" %>
+<div class="row">
+  <div class="col-md-8">
+    <table class="table">
+      <thead>
+        <tr class="success">
+          <th><%= t ".name" %></th>
+          <th><%= t ".description" %></th>
+          <th><%= t ".edit" %></th>
+          <th><%= t ".delete" %></th>
+        </tr>
+      </thead>
+      <tbody> 
+        <% @categories.each do |category| %>
+          <tr class="info">
+            <td><%= category.name %></td>
+            <td><%= category.description %></td>
+            <td>
+              <%= link_to t(".edit"), "/categories/#{category.id}/edit" %>
+            </td>
+            <td>
+              <%= link_to t(".delete"), "/categories/#{category.id}",
+                method: :delete, data: { confirm: t(".sure") } %>
+            </td>
+          </tr>
+        <% end %>  
+      </tbody>
+    </table>
+    <%= will_paginate %>
+  </div>
+</div>

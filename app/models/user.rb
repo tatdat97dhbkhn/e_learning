@@ -8,7 +8,7 @@ class User < ApplicationRecord
 
   before_save :downcase_email
   USER_ATTRS = %w(name email password password_confirmation).freeze
-  USER_ATTRS_EDIT = %w(avatar name email password 
+  USER_ATTRS_EDIT = %w(avatar name email password
     password_confirmation).freeze
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 

@@ -56,3 +56,35 @@ en:
       password_confirmation: "Password_confirmation"
       save: "Save changes"
       avatar: "Avatar"
+  categories:
+    create:
+      success: "Created successfull"
+    update:
+      success: "Update successfull"
+    destroy:
+      delete: "Deleted successfull"
+    edit:
+      edit: "Edit category"
+    index:
+      all: "All categories"
+      name: "Name"
+      description: "Description"
+      edit: "Edit"
+      delete: "Delete"
+      sure: "Sure"
+    new:
+      add: "Add category"
+  layouts:
+    menu:
+      admin: "Admin - Elearning"
+      categories: "Categories"
+      lists: "Lists"
+      add_category: "Add category"
+      courses: "Courses"
+      add_course: "Add course"
+      lessions: "Lessions"
+      add_lession: "Add lession"
+      users: "Users"
+      add_user: "Add user"
+      questions: "Questions"
+      add_question: "Add question"

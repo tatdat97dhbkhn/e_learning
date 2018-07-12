@@ -1,0 +1,94 @@
+<div class="cssmenu">
+  <ul>
+    <li class="active">
+      <%= link_to "#" do %>
+        <span><%= t ".admin" %></span>
+      <% end %>
+    </li>
+    <li class="has-sub">
+      <%= link_to "#" do %>
+        <span><%= t ".categories" %></span>
+      <% end %>
+      <ul>
+        <li>
+          <%= link_to "/categories" do %>
+            <span><%= t ".lists" %></span>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to "/categories/new" do %>
+            <span><%= t ".add_category" %></span>
+          <% end %>
+        </li>
+      </ul>
+    </li>
+    <li class="has-sub">
+      <%= link_to "#" do %>
+        <span><%= t ".courses" %></span>
+      <% end %>
+      <ul>
+        <li>
+          <%= link_to "#" do %>
+            <span><%= t ".lists" %></span>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to "#" do %>
+            <span><%= t ".add_course" %></span>
+          <% end %>
+        </li>
+      </ul>
+    </li>
+    <li class="has-sub">
+      <%= link_to "#" do %>
+        <span><%= t ".lession" %></span>
+      <% end %>
+      <ul>
+        <li>
+          <%= link_to "#" do %>
+            <span><%= t ".lists" %></span>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to "#" do %>
+            <span><%= t ".add_lession" %></span>
+          <% end %>
+        </li>
+      </ul>
+    </li>
+    <li class="has-sub">
+      <%= link_to "#" do %>
+        <span><%= t ".questions" %></span>
+      <% end %>
+      <ul>
+        <li>
+          <%= link_to "#" do %>
+            <span><%= t ".lists" %></span>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to "#" do %>
+            <span><%= t ".add_question" %></span>
+          <% end %>
+        </li>
+      </ul>
+    </li>
+    <li class="has-sub">
+      <%= link_to "#" do %>
+        <span><%= t ".users" %></span>
+      <% end %>
+      <ul>
+        <li>
+          <%= link_to "#" do %>
+            <span><%= t ".lists" %></span>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to "#" do %>
+            <span><%= t ".add_user" %></span>
+          <% end %>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
