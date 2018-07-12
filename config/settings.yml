@@ -1,0 +1,14 @@
+user:
+  length:
+    max_name: 50
+    min_pass: 6
+    max_email: 50
+category:
+  length:
+    max_name: 50
+course:
+  length:
+    max_name: 50
+lession:
+  length:
+    max_name: 50
