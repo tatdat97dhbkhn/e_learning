@@ -1,4 +1,6 @@
 en:
+  remember: "Remember me on this computer"
+  sign-up: "Sigin up now !"
   hello: "Hello world"
   about: "About"
   contact: "Contact"
@@ -10,6 +12,9 @@ en:
   elearning: "E-learning"
   home_page: "Home page"
   login : "Login"
+  profile: "Profile"
+  logout: "Log out"
+  setting: "Settings"
   shared:
     error_messages:
       count: "The form contains "
@@ -32,3 +37,7 @@ en:
       edit: "Edit"
       name: "Name: "
       email: "Emai: "
+    create:
+      success: "Created account sucess"
+  new_user: "New user? "
+  errors1: "Email/Password do not exist!"

@@ -1,4 +1,6 @@
 vi:
+  remember: "Ghi nhớ tôi"
+  sign-up: "Đăng ký ngay !"
   about: "Giới thiệu"
   contact: "Liên hệ"
   design: "Thiết kế bởi"
@@ -8,4 +10,12 @@ vi:
   signup: "Đăng ký"
   elearning: "E-learning"
   home_page: "Trang chủ"
+  profile: "Thông tin cá nhân"
+  logout: "Đăng xuất"
+  setting: "Cài đặt"
   login : "Đăng nhập"
+  new_user: "Tài khoản mới? "
+  errors1: "Tên email hoặc mật khẩu chưa chính xác."
+  users:
+    create:
+      success: "Tạo tài khoản thành công"
