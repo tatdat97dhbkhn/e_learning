@@ -8,6 +8,8 @@ class User < ApplicationRecord
 
   before_save :downcase_email
   USER_ATTRS = %w(name email password password_confirmation).freeze
+  USER_ATTRS_EDIT = %w(avatar name email password 
+    password_confirmation).freeze
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   validates :name, presence: true,
@@ -18,22 +20,25 @@ class User < ApplicationRecord
     uniqueness: {case_sensitive: false}
   validates :password, presence: true,
     length: {minimum: Settings.user.length.min_pass}, allow_nil: true
+  validate  :picture_size
 
   has_secure_password
 
   class << self
     def digest string
       cost = if ActiveModel::SecurePassword.min_cost
-              BCrypt::Engine::MIN_COST
-            else
-              BCrypt::Engine.cost
-            end
+               BCrypt::Engine::MIN_COST
+             else
+               BCrypt::Engine.cost
+             end
       BCrypt::Password.create string, cost: cost
     end
   end
+  mount_uploader :avatar, AvatarUploader
 
-  def downcase_email
-    email.downcase!
+  def picture_size
+    return unless avatar.size > Settings.image.capacity.megabytes
+    errors.add(:picture, t("image_size"))
   end
 
   def self.new_token
@@ -52,5 +57,11 @@ class User < ApplicationRecord
 
   def forget
     update_attributes remember_digest: nil
+  end
+
+  private
+
+  def downcase_email
+    email.downcase!
   end
 end

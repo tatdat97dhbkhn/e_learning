@@ -1,0 +1,14 @@
+<li class="user">
+  <% unless user.avatar.present? %>
+    <%= image_tag "default-avatar.jpg", class: "img-size-small",
+      alt: t(".avatar") %>
+  <% else %>
+    <%= image_tag user.avatar.url, class: "img-size-small",
+      alt: t(".avatar") %>
+  <% end %>
+  <%= link_to user.name, user %>
+  <% if current_user.admin? && !current_user?(user) %>
+    | <%= link_to t(".delete"), user, method: :delete,
+    data: {confirm: t(".confirm")} %>
+  <% end %>
+</li>
