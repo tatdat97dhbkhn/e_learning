@@ -4,10 +4,9 @@
       home_path, id: "logo"%>
     <nav>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to t("home"), class: "header123"%></li>
-        <li><%= link_to t("help"), class: "header123"%></li>
-        <li><%= link_to t("signup"), class: "header123"%></li>
-        <li><%= link_to t("login"), class: "header123"%></li>
+        <li><%= link_to t("home"), root_path %></li>
+        <li><%= link_to t("signup"), signup_path %></li>
+        <li><%= link_to t("login"), "#" %></li>
       </ul>
     </nav>
   </div>
