@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
+
   scope "(:locale)", :locale => /en|vi/ do
+    resources :users
+    
     root "static_pages#home"
     get "/home", to: "static_pages#home"
     get "/help", to: "static_pages#help"
@@ -8,7 +11,8 @@ Rails.application.routes.draw do
     get "/word", to: "static_pages#word"
     get "/signup", to: "users#new"
     get "/profile", to: "users#show"
+    get "/login", to: "sessions#new"
+    post "/login", to: "sessions#create"
+    delete "/logout", to: "sessions#destroy"
   end
-
-  resources :users
 end
