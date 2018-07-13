@@ -1,0 +1,19 @@
+<% provide :title, @user.name %>
+<div class="row margin-top-100">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <% unless @user.avatar.present? %>
+        <%= image_tag  "default-avatar.jpg", size: "150x150",
+          alt: t(".avatar") %>
+      <% else %>
+        <%= image_tag  @user.avatar, size: "150x150", alt: t(".avatar") %>
+      <% end %>
+      </br>
+      <ul>
+        <li><%= t ".name" %><%= @user.name %></li>
+        <li><%= t ".email" %><%= @user.email %></li>
+      <ul>
+    </section>
+    <%= link_to t(".edit"), "#", class: "btn btn-primary" %>
+  </aside>
+</div>
