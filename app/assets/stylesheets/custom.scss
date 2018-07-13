@@ -144,3 +144,27 @@ footer ul li {
 .alert {
   text-align: center;
 }
+.user {
+  padding-bottom: 5px;
+  list-style: none;
+}
+
+.avatar {
+  img {
+    margin-bottom: 10px;
+  }
+
+  input {
+    margin-bottom: 10px;
+  }
+}
+
+.img-size-large {
+  width: 150px;
+  height: 150px;
+}
+
+.img-size-small {
+  width: 40px;
+  height: 40px;
+}

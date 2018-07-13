@@ -12,3 +12,6 @@ course:
 lession:
   length:
     max_name: 50
+image:
+  size: 400
+  capacity: 5
