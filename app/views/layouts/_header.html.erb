@@ -1,0 +1,14 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="container">
+    <%= link_to image_tag("rsz_1elearning.png", alt: "Rails logo"),
+      home_path, id: "logo"%>
+    <nav>
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to t("home"), class: "header123"%></li>
+        <li><%= link_to t("help"), class: "header123"%></li>
+        <li><%= link_to t("signup"), class: "header123"%></li>
+        <li><%= link_to t("login"), class: "header123"%></li>
+      </ul>
+    </nav>
+  </div>
+</header>

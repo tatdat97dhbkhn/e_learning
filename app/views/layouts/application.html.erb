@@ -1,17 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ELearning</title>
+    <title><%= full_title yield :title %></title>
     <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag "application", media: "all",
       "data-turbolinks-track": "reload" %>
     <%= javascript_include_tag "application",
       "data-turbolinks-track": "reload" %>
   </head>
-
   <body>
-    <%= yield %>
+    <p style = "float : right;">
+      <%= link_to_unless I18n.locale == :en,
+        image_tag("en.png"), locale: :en %>
+      <%= link_to_unless I18n.locale == :vi,
+        image_tag("vn.png"), locale: :vi %>
+    </p>
+    <%= render "layouts/header" %>
+    <div class = "container">
+      <%= yield %>
+      <%= render "layouts/footer" %>
+    </div>
   </body>
 </html>
