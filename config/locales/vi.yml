@@ -19,3 +19,36 @@ vi:
   users:
     create:
       success: "Tạo tài khoản thành công"
+  categories:
+    create:
+      success: "Tạo thành công"
+    update:
+      success: "Chỉnh sửa thành công"
+    destroy:
+      delete: "Xóa thành công"
+    edit:
+      edit: "Sửa category"
+    index:
+      all: "Tất cả thể loại"
+      name: "Tên"
+      description: "Giới thiệu"
+      edit: "Chỉnh sửa"
+      delete: "Xóa"
+      sure: "Bạn có chắc không?"
+    new:
+      add: "Thêm thể loại"
+  layouts:
+    menu:
+      admin: "Admin - Elearning"
+      categories: "Thể loại"
+      lists: "Danh sách"
+      add_category: "Thêm thể loại"
+      courses: "Khóa học"
+      add_course: "Thêm khóa học"
+      lessions: "Bài học"
+      add_lession: "Thêm bài học"
+      users: "Người dùng"
+      add_user: "Thêm người dùng"
+      questions: "Câu hỏi"
+      add_question: "Thêm câu hỏi"
+

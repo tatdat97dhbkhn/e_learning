@@ -15,3 +15,5 @@ lession:
 image:
   size: 400
   capacity: 5
+data:
+  pages: 5
