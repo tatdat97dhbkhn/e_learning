@@ -1,0 +1,36 @@
+<% provide :title, t(".add") %>
+<h1><%= t ".add" %></h1>
+<%= render "layouts/menu" %>
+<div class="row">
+  <div class="col-md-9">
+    <%= form_for @lession, html: {multipart: true} do |f| %>
+      <%= render "shared/error_messages", object: f.object %>
+      <%= f.label t(".category") %>
+      <br>
+      <select name="category_id" id="category_id">
+        <option value="0"><%= t ".chose_category" %></option>
+        <%= Category.all.each do |category| %>
+          <option value="<%= category.id %>"><%= category.name %></option>
+        <% end %>
+      </select>
+      <br><br>
+
+      <%= f.label :course %>
+      <br>
+      <%= f.select(:course_id,
+        [[ t(".chose_course"), 0]]+Course.all.map{ |c| [c.name, c.id] }) %>
+      <br><br>
+
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "form-control" %>
+
+      <%= f.label :description %>
+      <%= f.text_field :description, class: "form-control" %> 
+      
+      <%= f.label :image %>
+      <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png",
+        class: "form-control" %>
+      <%= f.submit t(".add"), class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
