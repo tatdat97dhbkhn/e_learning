@@ -26,10 +26,10 @@
               <%= image_tag lession.image.url if lession.image? %>
             </td>
             <td>
-              <%= link_to t(".edit"), "/lessions/#{lession.id}/edit" %>
+              <%= link_to t(".edit"), edit_lession_path(lession) %>
             </td>
             <td>
-              <%= link_to t(".delete"), "/lessions/#{lession.id}",
+              <%= link_to t(".delete"), lession,
                 method: :delete, data: { confirm: t(".sure") } %>
             </td>
           </tr>

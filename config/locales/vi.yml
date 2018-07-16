@@ -85,6 +85,27 @@ vi:
       chose_category: "- Choose Category -"
       chose_course: "-Choose Course"
       category: "Category"
+  questions:
+    create:
+      success: "Thêm thành công"
+    update:
+      success: "Sửa thành công"
+    destroy:
+      delete: "Xóa thành công"
+    edit:
+      edit: "Cập nhật câu hỏi"
+    index:
+      all: "Tất cả câu hỏi"
+      category: "Thể loại"
+      content: "Nội dung"
+      meaning: "Nghĩa"
+      edit: "Chỉnh sửa"
+      delete: "Xóa"
+      sure: "Bạn có chắc không?"
+    new:
+      add: "Thêm câu hỏi"
+      chose_category: "- Choose Category -"
+      category: "Category"
   layouts:
     menu:
       admin: "Admin - Elearning"

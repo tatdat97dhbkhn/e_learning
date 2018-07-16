@@ -23,9 +23,9 @@
             <td>
               <%= image_tag course.image.url if course.image? %>
             </td>
-            <td><%= link_to t(".edit"), "#" %></td>
+            <td><%= link_to t(".edit"), edit_course_path(course) %></td>
             <td>
-              <%= link_to t(".delete"), "/courses/#{course.id}",
+              <%= link_to t(".delete"), course,
                 method: :delete, data: { confirm: t(".sure") } %>
             </td>
           </tr>

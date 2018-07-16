@@ -6,7 +6,7 @@
       <% end %>
     </li>
     <li class="has-sub">
-      <%= link_to categories_path do %>
+      <%= link_to "#" do %>
         <span><%= t ".categories" %></span>
       <% end %>
       <ul>
@@ -23,7 +23,7 @@
       </ul>
     </li>
     <li class="has-sub">
-      <%= link_to courses_path do %>
+      <%= link_to "#" do %>
         <span><%= t ".courses" %></span>
       <% end %>
       <ul>
@@ -40,7 +40,7 @@
       </ul>
     </li>
     <li class="has-sub">
-      <%= link_to lessions_path do %>
+      <%= link_to "#" do %>
         <span><%= t ".lession" %></span>
       <% end %>
       <ul>
@@ -62,12 +62,12 @@
       <% end %>
       <ul>
         <li>
-          <%= link_to "#" do %>
+          <%= link_to questions_path do %>
             <span><%= t ".lists" %></span>
           <% end %>
         </li>
         <li>
-          <%= link_to "#" do %>
+          <%= link_to new_question_path do %>
             <span><%= t ".add_question" %></span>
           <% end %>
         </li>

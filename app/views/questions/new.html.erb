@@ -1,0 +1,23 @@
+<% provide :title, t(".add") %>
+<h1><%= t ".add" %></h1>
+<%= render "layouts/menu" %>
+<div class="row">
+  <div class="col-md-9">
+    <%= form_for @question, html: {multipart: true} do |f| %>
+      <%= render "shared/error_messages", object: f.object %>
+      <%= f.label :category_id %>
+      <br>
+      <%= f.select(:category_id,
+        [[t(".chose"), 0]] + Category.all.map{ |c| [c.name, c.id] }) %>
+      <br><br>
+      
+      <%= f.label :meaning %>
+      <%= f.text_field :meaning, class: "form-control" %>
+
+      <%= f.label :content %>
+      <%= f.text_field :content, class: "form-control" %> 
+      
+      <%= f.submit t(".add"), class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
