@@ -9,13 +9,15 @@ Rails.application.routes.draw do
     get "/signup", to: "users#new"
     get "/profile", to: "users#show"
     get "/edit", to: "users#edit"
+    post "/lession/:id", to: "lession_logs#create"
     get "/login", to: "sessions#new"
     post "/login", to: "sessions#create"
     delete "/logout", to: "sessions#destroy"
-    
-    resources :courses
-    resources :categories
-    resources :users
-    resources :lessions
   end
+
+  resources :users
+  resources :lession_logs
+  resources :lessions
+  resources :courses
+  resources :categories
 end

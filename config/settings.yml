@@ -12,8 +12,11 @@ course:
 lession:
   length:
     max_name: 50
+  page: 30
 image:
   size: 400
   capacity: 5
 data:
   pages: 5
+question:
+  answer_default: 1

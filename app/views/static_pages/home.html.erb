@@ -7,6 +7,9 @@
   <% if !logged_in? %>
     <%= link_to t("signup"), signup_path, class: "btn btn-lg btn-primary" %>
   <% else %>
-    <%= link_to t("profile"), home_path, class: "btn btn-lg btn-primary" %>
+    <%= link_to t("profile"), profile_path,
+      class: "btn btn-lg btn-primary" %>
+    <%= link_to t("start_lession"), "lession/1",
+      method: :post, class: "btn btn-lg btn-primary" %>
   <% end %>
 </div>
