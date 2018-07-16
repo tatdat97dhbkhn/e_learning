@@ -3,16 +3,22 @@ en:
   sign-up: "Sigin up now !"
   hello: "Hello world"
   about: "About"
+  not_blank: "Category cannot be blank."
+  less: "should be less than 5MB"
   contact: "Contact"
+  danger: "Create fail"
   design: "Design by"
   datthuy: "Pham Tat Dat - Nguyen Như Thuy"
   home: "Home"
   help: "Help"
+  alert: "Maximum file size is 5MB. Please choose a smaller file."
   signup: "Signup"
   elearning: "E-learning"
   home_page: "Home page"
   login : "Login"
   profile: "Profile"
+  category_blank: "Category cannot be blank."
+  size_image: "should be less than 5MB"
   logout: "Log out"
   setting: "Settings"
   log_in: "Please log in."
@@ -74,6 +80,27 @@ en:
       sure: "Sure"
     new:
       add: "Add category"
+  courses:
+    create:
+      success: "Created successfull"
+    update:
+      success: "Update successfull"
+    destroy:
+      delete: "Deleted successfull"
+    edit:
+      edit: "Edit course"
+    index:
+      all: "All courses"
+      category: "Category"
+      name: "Name"
+      description: "Description"
+      image: "Image"
+      edit: "Edit"
+      delete: "Delete"
+      sure: "Sure"
+    new:
+      add: "Add course"
+      chose: "- Choose Category -"
   layouts:
     menu:
       admin: "Admin - Elearning"
