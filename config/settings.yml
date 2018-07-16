@@ -20,3 +20,8 @@ data:
   pages: 5
 question:
   answer_default: 1
+number:
+  zero: 0
+  one: 1
+  one_float: 1.0
+  enought_to_pass: 0.8

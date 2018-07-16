@@ -1,13 +1,13 @@
 <div class="container margin-top-100">
   <%= form_for :questionlog, method: :patch do |f| %>
-    <% (0...@questionlogs.count).each do |i| %>
+    <% (0...@question_logs.count).each do |i| %>
       <div>
         <b><%= i+1 %>. <%= @questions[i].content %></b>
         <% @answers[i].each do |ans| %>
           <% next if ans.id == Settings.question.answer_default %>
           <li class="answer">
-            <%= f.radio_button @questionlogs[i].id, ans.id %>
-            <%= f.label "#{@questionlogs[i].id}_#{ans.id}",
+            <%= f.radio_button @question_logs[i].id, ans.id %>
+            <%= f.label "#{@question_logs[i].id}_#{ans.id}",
               ans.content %>
           </li>
         <% end %>
