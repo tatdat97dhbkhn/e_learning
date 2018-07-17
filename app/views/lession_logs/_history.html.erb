@@ -1,17 +1,13 @@
 <fieldset disabled>
 
-  <% (0...@question_logs.count).each do |i| %>
+  <% (Settings.number.zero...@question_logs.count).each do |i| %>
     <div>
       <b><%= i+1 %>. <%= @questions[i].content %></b>
 
-      <% if @question_logs[i].answer_id == @corrects[i][0] %>
-        <span class="result correct">
-          <%= t ".correct" %>
-        </span>
+      <% if @question_logs[i].answer_id == @corrects[i] %>
+        <span class="result correct"><%= t ".correct" %></span>
       <% else %>
-        <span class="result uncorrect">
-          <%= t ".uncorrect" %>
-        </span>
+        <span class="result uncorrect"><%= t ".uncorrect" %></span>
       <% end %>
 
       <% @answers[i].each do |ans| %>

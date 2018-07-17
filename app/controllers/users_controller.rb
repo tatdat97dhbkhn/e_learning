@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def index
-    @users = User.paginate page: params[:page], per_page: 20
+    @users = User.paginate page: params[:page],
+      per_page: Settings.data.pages
   end
 
   def new
@@ -10,7 +11,7 @@ class UsersController < ApplicationController
   def show
     if current_user? current_user
       @user = current_user
-      @lession_logs = @user.lession_logs.not_nill
+      @lession_logs = @user.lession_logs.finished
       @lessions = Lession.get_name_by_lession_logs @lession_logs
     else
       redirect_to root_path
@@ -34,14 +35,38 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = current_user
+    if request.path == admin_path
+      @user = current_user
 
-    if user.update_attributes user_params_edit
-      flash[:success] = t ".success"
-      redirect_to user
+      if user.update_attributes user_params_edit
+        flash[:success] = t ".success"
+        redirect_back fallback_location: root_path
+      else
+        flash[:danger] = t ".danger"
+        render :edit
+      end
     else
-      render :edit
+      @user = User.find_by id: params[:id]
+      @user.update_attributes admin: !@user.admin
+      redirect_back fallback_location: root_path
     end
+  end
+
+  def destroy
+    @user = User.find_by id: params[:id]
+    if user.destroy
+      flash[:success] = t ".success"
+      redirect_back fallback_location: root_path
+    else
+      flash[:success] = t ".danger"
+      redirect_to root_path
+    end
+  end
+
+  def admin
+    @users = User.paginate page: params[:page],
+      per_page: Settings.data.pages
+    @master = User.find_by admin: true
   end
 
   private

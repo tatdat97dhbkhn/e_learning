@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     get "/signup", to: "users#new"
     get "/profile", to: "users#show"
     get "/edit", to: "users#edit"
+    get "/admin", to: "users#admin"
     post "/lession/:id", to: "lession_logs#create"
     get "/login", to: "sessions#new"
     post "/login", to: "sessions#create"
