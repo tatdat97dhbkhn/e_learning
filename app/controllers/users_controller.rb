@@ -35,19 +35,12 @@ class UsersController < ApplicationController
   end
 
   def update
-    if request.path == admin_path
-      @user = current_user
-
-      if user.update_attributes user_params_edit
-        flash[:success] = t ".success"
-        redirect_back fallback_location: root_path
-      else
-        flash[:danger] = t ".danger"
-        render :edit
-      end
+    @user = User.find_by id: params[:id]
+    if current_user.equal? user
+      update_profile user
+      redirect_to profile_path
     else
-      @user = User.find_by id: params[:id]
-      @user.update_attributes admin: !@user.admin
+      user.update_attributes admin: !user.admin
       redirect_back fallback_location: root_path
     end
   end
@@ -79,5 +72,13 @@ class UsersController < ApplicationController
 
   def user_params_edit
     params.required(:user).permit User::USER_ATTRS_EDIT
+  end
+
+  def update_profile user
+    if user.update_attributes user_params_edit
+      flash[:success] = t ".success"
+    else
+      flash[:danger] = t ".danger"
+    end
   end
 end

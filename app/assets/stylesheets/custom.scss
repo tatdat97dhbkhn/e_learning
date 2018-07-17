@@ -546,3 +546,10 @@ footer ul li {
 .bold-style {
   font-weight: bold !important;
 }
+
+.img-medium{
+  img {
+    max-width: 150px;
+    height: auto;
+  }
+}

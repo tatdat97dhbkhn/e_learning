@@ -25,7 +25,7 @@ class CategoriesController < ApplicationController
   def update
     if @category.update_attributes category_params
       flash[:success] = t ".success"
-      redirect_to home_path
+      redirect_to categories_path
     else
       flash[:danger] = t "danger"
       redirect_to root_path

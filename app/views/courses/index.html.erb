@@ -20,7 +20,7 @@
             <td><%= course.category.name %></td>
             <td><%= course.name %></td>
             <td><%= course.description %></td>
-            <td>
+            <td class="img-medium">
               <%= image_tag course.image.url if course.image? %>
             </td>
             <td><%= link_to t(".edit"), edit_course_path(course) %></td>
