@@ -1,0 +1,17 @@
+<div class="category_progress">
+  <p><%= t ".progress" %></p> 
+  <% for i in 0...@progress[0].count do %>
+    <%= @progress[0][i].name  %>
+    <div class="progress">
+        <div class="progress-bar progress-bar-<%= @arr_color[rand(0..@arr_color.count)] %>" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="<%= "width: #{(@progress[1][i] * 100).to_f}%;" %>">
+        <span style="color:black;">
+          <% if @progress[1][i].nan? %>
+            <%= t ".zero" %>
+          <% else %>
+            <%= "%.2f" % ( @progress[1][i] * 100).to_f %>% <%= t ".sucessfull" %>
+          <% end %>
+        </span>
+      </div>
+    </div>
+  <% end %> 
+</div>

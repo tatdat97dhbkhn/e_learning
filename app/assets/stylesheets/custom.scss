@@ -10,6 +10,7 @@ $black: black;
 $black1: #333333;
 $black-light: #333;
 $gray-black: #222;
+$gray1: #a6a6a6;
 $green: #003300;
 $green1: #4CAF50;
 $green2: #339933;
@@ -564,4 +565,10 @@ footer ul li {
 
 .chooseCategory {
   margin-top: 80px;
+}
+
+.category_progress {
+  color: $white;
+  background-color: $gray1;
+  padding: 10px;
 }
