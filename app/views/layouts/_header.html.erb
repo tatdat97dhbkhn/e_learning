@@ -10,10 +10,9 @@
           <% if current_user.admin %>
             <li><%= link_to t("manage"), admin_path,
               class: "header123" %></li>
-          <% else %>
-            <li><%= link_to t("user_list"), users_path,
-              class: "header123" %></li>
           <% end %>
+          <li><%= link_to t("user_list"), users_path,
+            class: "header123" %></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <%= @current_user[:name] %> <b class="caret"></b>

@@ -79,6 +79,9 @@ en:
       danger: "Update failed"
     index:
       title: "Users"
+      all: "All"
+      follow: "Follow"
+      unfollow: "Unfollow"
     edit:
       title: "Edit profile"
       name: "Name"

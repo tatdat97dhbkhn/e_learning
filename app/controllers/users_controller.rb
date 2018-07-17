@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_action :find_user, only: %i(show update destroy)
+  before_action :find_user, except: %i(new create)
   before_action :logged_in_user, only: %i(index show edit update)
-  skip_before_action :is_admin?, only: %i(index new create show edit update)
+  skip_before_action :is_admin?, except: %i(admin destroy)
 
   def index
     @users = User.paginate page: params[:page],
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @lession_logs = user.lession_logs.all.order_date
+    @lession_logs = user.lession_logs.order_date :desc
     @lessions = Lession.get_name_by_lession_logs @lession_logs
     @results = LessionLog.get_result @lession_logs
     @follow = current_user.follow_status user
@@ -36,9 +36,9 @@ class UsersController < ApplicationController
   end
 
   def update
-    if current_user.equal? user
+    if current_user == user
       update_profile user
-      redirect_to profile_path
+      redirect_to user
     else
       user.update_attributes admin: !user.admin
       redirect_back fallback_location: root_path
@@ -58,6 +58,18 @@ class UsersController < ApplicationController
   def admin
     @users = User.all.page(params[:page]).per_page Settings.data.pages
     @master = User.find_by admin: true
+  end
+
+  def follow
+    @users = user.get_followers.paginate page: params[:page],
+      per_page: Settings.data.pages
+    render :index
+  end
+
+  def unfollow
+    @users = user.get_unfollowers.paginate page: params[:page],
+      per_page: Settings.data.pages
+    render :index
   end
 
   private
