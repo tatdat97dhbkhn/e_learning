@@ -9,7 +9,7 @@ category:
 course:
   length:
     max_name: 50
-lession:
+lesson:
   length:
     max_name: 50
   page: 30
@@ -26,6 +26,8 @@ number:
   one_float: 1.0
   enought_to_pass: 0.8
 time:
+  format1: "%H:%M:%S"
   format: "%m/%d/%Y %H:%M"
 status_unlearn: "unlearned"
 status_learn: "learned"
+max_time: 300

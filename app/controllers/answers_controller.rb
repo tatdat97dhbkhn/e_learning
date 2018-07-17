@@ -1,5 +1,5 @@
 class AnswersController < ApplicationController
-  before_action :find_answer, only: [:edit, :update, :destroy]
+  before_action :find_answer, only: %i(edit update destroy)
 
   def index
     @all_answers = Answer.all.question_id

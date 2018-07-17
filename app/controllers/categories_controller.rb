@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :find_category, only: [:edit, :update, :destroy]
+  before_action :find_category, only: %i(edit update destroy)
 
   def new
     @category = Category.new

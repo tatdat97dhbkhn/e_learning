@@ -7,7 +7,7 @@
           alt: t(".avatar") %>
       <% else %>
         <%= image_tag @user.avatar.url, class: "img-size-large",
-              alt: t(".avatar") %>
+          alt: t(".avatar") %>
       <% end %>
       </br>
       <ul>
@@ -15,7 +15,10 @@
         <li><%= t ".email" %><%= @user.email %></li>
       <ul>
     </section>
-    <%= link_to t(".edit"), edit_path, class: "btn btn-primary" %>
+    <% if current_user? @user %>
+      <%= link_to t(".edit"), edit_path, class: "btn btn-primary" %>
+    <% end %>
+    <%= render "follow_form" %>
   </aside>
   <%= render "activities" %>
 </div>

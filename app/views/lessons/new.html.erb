@@ -3,7 +3,7 @@
 <%= render "layouts/menu" %>
 <div class="row">
   <div class="col-md-9">
-    <%= form_for @lession, html: {multipart: true} do |f| %>
+    <%= form_for @lesson, html: {multipart: true} do |f| %>
       <%= render "shared/error_messages", object: f.object %>
       <%= f.label t(".category") %>
       <br>

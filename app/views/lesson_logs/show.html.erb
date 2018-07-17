@@ -1,0 +1,59 @@
+<div class="container margin-top-100">
+  <% if @lesson_log.pass.nil? %>
+    <center>
+      <div id="clockdiv" class="clockdiv">
+        <div>
+          <span class="days"></span>
+          <div class="smalltext">
+            <%= t ".day" %>
+          </div>
+        </div>
+        <div>
+          <span class="hours"></span>
+          <div class="smalltext">
+            <%= t ".hours" %>
+          </div>
+        </div>
+        <div>
+          <span class="minutes"></span>
+          <div class="smalltext">
+            <%= t ".minute" %>
+          </div>
+        </div>
+        <div>
+          <span class="seconds"></span>
+          <div class="smalltext">
+            <%= t ".second" %>
+          </div>
+        </div>
+      </div>
+    </center>
+    <%= form_for :questionlog, method: :patch, html: {name: "go"} do |f| %>
+      <% (Settings.number.zero...@question_logs.count).each do |i| %>
+        <div>
+          <b><%= i+1 %>. <%= @questions[i].content %></b>
+          
+          <% @answers[i].each do |ans| %>
+            <% next if ans.id == Settings.question.answer_default %>
+            <li class="answer">
+              <% if @question_logs[i].answer_id == ans.id %>
+                <%= f.radio_button @question_logs[i].id, ans.id,
+                  checked: true %>
+              <% else %>
+                <%= f.radio_button @question_logs[i].id, ans.id %>
+              <% end %>
+              <%= f.label "#{@question_logs[i].id}_#{ans.id}",
+                ans.content %>
+            </li>
+          <% end %>
+        </div>
+        <br/>
+      <% end %>
+      <%= f.submit t(".finish"), class: "btn btn-primary", id: "finish" %>
+      <%= f.submit t(".save"), class: "btn btn-primary", id: "save" %>
+      
+    <% end %>
+  <% else %>
+    <%= render "history" %>
+  <% end %>
+</div>

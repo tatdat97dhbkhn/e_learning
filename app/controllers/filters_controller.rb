@@ -1,6 +1,7 @@
 class FiltersController < ApplicationController
   before_action :logged_in_user,
     only: %i(listword listwordcategory listwordalphabet listword_learned)
+  skip_before_action :is_admin?
 
   def listword
     @answers = Answer.where correct: Settings.number.one
@@ -17,19 +18,11 @@ class FiltersController < ApplicationController
 
   def listword_learned
     @status = params[:status]
-    @lession_logs = LessionLog.where user_id: current_user.id
-    @lession_logs_count = @lession_logs.all.group(:lession_id).count
-
-    @lession_logs_last = []
-    unless @lession_logs_count.empty?
-      @lession_logs_count.each do |lle|
-        @lession_logs_last.push LessionLog.where(lession_id: lle[0]).last
-      end
-    end
+    @lesson_logs = LessonLog.where user_id: current_user.id
 
     @question_logs = []
-    @lession_logs_last.each do |lll|
-      @question_logs.push QuestionLog.where lession_log_id: lll.id
+    @lesson_logs.each do |lesson_log|
+      @question_logs.push QuestionLog.where lesson_log_id: lesson_log.id
     end
 
     @learned = []
@@ -47,7 +40,7 @@ class FiltersController < ApplicationController
 
     @arr = []
     @arr = @answer_true.flatten.uniq
-  
+
     @unlearned = []
     return unless @status == Settings.status_unlearn
     @unlearned.push Answer.where.not id: @arr

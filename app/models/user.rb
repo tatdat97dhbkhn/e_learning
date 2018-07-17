@@ -3,8 +3,8 @@ class User < ApplicationRecord
 
   has_many :follow_users, dependent: :destroy
   has_many :follow_courses, dependent: :destroy
-  has_many :lession_logs, dependent: :destroy
-  has_many :question_logs, through: :lession_logs, dependent: :destroy
+  has_many :lesson_logs, dependent: :destroy
+  has_many :question_logs, through: :lesson_logs, dependent: :destroy
 
   before_save :downcase_email
   USER_ATTRS = %w(name email password password_confirmation).freeze
@@ -59,9 +59,34 @@ class User < ApplicationRecord
     update_attributes remember_digest: nil
   end
 
+  def following? follower
+    follow_users.find_follow(follower).count > Settings.number.zero
+  end
+
+  def follow_status user
+    follow_users.find_or_initialize_by follower: user.id
+  end
+
+  def get_followers
+    User.where id: get_follower_ids
+  end
+
+  def get_unfollowers
+    User.where.not id: get_follower_ids.push(id)
+  end
+
   private
 
   def downcase_email
     email.downcase!
+  end
+
+  def get_follower_ids
+    follower_ids = []
+    
+    follow_users.each do |follower|
+      follower_ids.push follower.follower
+    end
+    follower_ids
   end
 end

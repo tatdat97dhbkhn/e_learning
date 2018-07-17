@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  skip_before_action :is_admin?
+
   def new; end
 
   def create

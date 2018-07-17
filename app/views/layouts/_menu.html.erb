@@ -41,17 +41,17 @@
     </li>
     <li class="has-sub">
       <%= link_to "#" do %>
-        <span><%= t ".lession" %></span>
+        <span><%= t ".lesson" %></span>
       <% end %>
       <ul>
         <li>
-          <%= link_to lessions_path do %>
+          <%= link_to lessons_path do %>
             <span><%= t ".lists" %></span>
           <% end %>
         </li>
         <li>
-          <%= link_to new_lession_path do %>
-            <span><%= t ".add_lession" %></span>
+          <%= link_to new_lesson_path do %>
+            <span><%= t ".add_lesson" %></span>
           <% end %>
         </li>
       </ul>
@@ -69,23 +69,6 @@
         <li>
           <%= link_to new_question_path do %>
             <span><%= t ".add_question" %></span>
-          <% end %>
-        </li>
-      </ul>
-    </li>
-    <li class="has-sub">
-      <%= link_to "#" do %>
-        <span><%= t ".answers" %></span>
-      <% end %>
-      <ul>
-        <li>
-          <%= link_to answers_path do %>
-            <span><%= t ".lists" %></span>
-          <% end %>
-        </li>
-        <li>
-          <%= link_to new_answer_path do %>
-            <span><%= t ".add_answer" %></span>
           <% end %>
         </li>
       </ul>

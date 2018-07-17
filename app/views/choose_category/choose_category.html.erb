@@ -1,4 +1,5 @@
-<h1><%= t ".choose_lession" %></h1>
+<h1><%= t ".choose_lesson" %></h1>
+<%= render "progress" %>
 <div class="cssmenu">
   <ul>
     <li class="active">
@@ -18,11 +19,11 @@
                 <span><%= course.name %></span>
               <% end %>
               <ul>
-                <% course.lessions.each do |lession| %>
+                <% course.lessons.each do |lesson| %>
                   <li>
-                    <%= link_to "lession_logs/#{lession.id}",
+                    <%= link_to "lesson_logs/#{lesson.id}",
                       method: :post do %>
-                      <span><%= lession.name %></span>
+                      <span><%= lesson.name %></span>
                     <% end %>
                   </li>
                 <% end %>
