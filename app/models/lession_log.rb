@@ -3,6 +3,8 @@ class LessionLog < ApplicationRecord
   belongs_to :lession
   has_many :question_logs, dependent: :destroy
 
+  scope :not_nil, ->{where.not pass: nil}
+
   def create_lession_log
     category = lession.course.category
     @questions = category.questions.order("RAND()").first Settings.lession.page
@@ -14,21 +16,16 @@ class LessionLog < ApplicationRecord
   end
 
   def update_result question_logs
-    @total = question_logs.keys.count
-    @correct = Settings.number.zero
+    total = question_logs.keys.count
+    correct = Settings.number.zero
 
     question_logs.keys.each do |question_log_id|
       quession_log = QuestionLog.find_by id: question_log_id
       quession_log.update_attributes answer_id: question_logs[question_log_id]
-      @correct += Settings.number.one if quession_log.answer.correct
+      correct += Settings.number.one if quession_log.answer.correct
     end
 
-    if (@correct * Settings.number.one_float / @total) >
-       Settings.number.enought_to_pass
-      update_attributes pass: true
-    else
-      update_attributes pass: false
-    end
+    get_result correct, total
   end
 
   class << self
@@ -42,6 +39,17 @@ class LessionLog < ApplicationRecord
       end
 
       [@questions, @answers]
+    end
+  end
+
+  private
+
+  def get_result correct, total
+    if (correct * Settings.number.one_float / total) >
+       Settings.number.enought_to_pass
+      update_attributes pass: true
+    else
+      update_attributes pass: false
     end
   end
 end
