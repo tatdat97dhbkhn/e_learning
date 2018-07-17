@@ -2,28 +2,28 @@
 <div class="center jumbotron">
   <% if logged_in? %>
     <div class="row">
-        <div class="col-sm-12">
-            <%= link_to image_tag("rsz_header.png", alt: "e-learning"),
-            home_path %>
+      <div class="col-sm-12">
+        <%= link_to image_tag("rsz_header.png", alt: "e-learning"),
+          home_path %>
+      </div>
+      <div class="col-sm-6">
+        <%= link_to image_tag("rsz_2word.jpg", alt: "List words"),
+          listword_path %>
+        <div class="">
+          <span>
+            <%= link_to t(".word"), listword_path,
+              class:"btn btn-primary btn-sm btn-course" %>
+          </span>
         </div>
-        <div class="col-sm-6">
-            <%= link_to image_tag("rsz_2word.jpg", alt: "List words"),
-              listword_path %>
-            <div class="">
-                <span>
-                  <%= link_to t(".word"), listword_path,
-                  class:"btn btn-primary btn-sm btn-course" %>
-                </span>
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <%= link_to image_tag("rsz_lession.jpg", alt: "Start lession"),
-            "#", method: :post %>
-            <span>
-              <%= link_to t(".start"), "#",
-              class: "btn btn-primary btn-sm btn-course", method: :post %>
-            </span>
-        </div>
+      </div>
+      <div class="col-sm-6">
+        <%= link_to image_tag("rsz_lession.jpg", alt: "Start lession"),
+          "#", method: :post %>
+        <span>
+          <%= link_to t(".start"), "lession_logs/1",
+            class: "btn btn-primary btn-sm btn-course", method: :post %>
+        </span>
+      </div>  
     </div>
   <% else %>
     <h1><%= t "elearning" %></h1>

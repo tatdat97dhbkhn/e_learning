@@ -11,7 +11,7 @@ class LessionLogsController < ApplicationController
     lession_log.create_lession_log
     redirect_to lession_log
   end
-  
+
   def show
     redirect_to root_path unless current_user
     @question_logs = lession_log.question_logs
@@ -21,12 +21,12 @@ class LessionLogsController < ApplicationController
   end
 
   def update
-    if params[:questionlog]
-      @question_logs = params[:questionlog]
-    else
-      @question_logs = Settings.number.zero
-    end
-    lession_log.update_result @question_logs
+    @question_logs = if params[:questionlog]
+                       params[:questionlog]
+                     else
+                       Settings.number.zero
+                     end
+    lession_log.update_result @question_logs, params[:commit]
     redirect_to profile_path
   end
 

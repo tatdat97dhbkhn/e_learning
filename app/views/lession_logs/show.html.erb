@@ -1,23 +1,32 @@
 <div class="container margin-top-100">
-  <%= form_for :questionlog, method: :patch do |f| %>
-    <% if @lession_log.pass.nil? %>
-    <% (Settings.number.zero...@question_logs.count).each do |i| %>
-      <div>
-        <b><%= i+1 %>. <%= @questions[i].content %></b>
-        <% @answers[i].each do |ans| %>
-          <% next if ans.id == Settings.question.answer_default %>
-          <li class="answer">
-            <%= f.radio_button @question_logs[i].id, ans.id %>
-            <%= f.label "#{@question_logs[i].id}_#{ans.id}",
-              ans.content %>
-          </li>
-        <% end %>
-      </div>
-      <br/>
+
+  <% if @lession_log.pass.nil? %>
+
+    <%= form_for :questionlog, method: :patch do |f| %>
+      <% (Settings.number.zero...@question_logs.count).each do |i| %>
+        <div>
+          <b><%= i+1 %>. <%= @questions[i].content %></b>
+          
+          <% @answers[i].each do |ans| %>
+            <% next if ans.id == Settings.question.answer_default %>
+            <li class="answer">
+              <% if @question_logs[i].answer_id == ans.id %>
+                <%= f.radio_button @question_logs[i].id, ans.id,
+                  checked: true %>
+              <% else %>
+                <%= f.radio_button @question_logs[i].id, ans.id %>
+              <% end %>
+              <%= f.label "#{@question_logs[i].id}_#{ans.id}",
+                ans.content %>
+            </li>
+          <% end %>
+        </div>
+        <br/>
+      <% end %>
+      <%= f.submit t(".save"), class: "btn btn-primary" %>
+      <%= f.submit t(".finish"), class: "btn btn-primary" %>
     <% end %>
-    <%= f.submit t(".finish"), class: "btn btn-primary" %>
-    <% else %>
-      <%= render "history" %>
-    <% end %>
+  <% else %>
+    <%= render "history" %>
   <% end %>
 </div>

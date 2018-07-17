@@ -1,4 +1,6 @@
 en:
+  save: "Save"
+  Finish: "Finish"
   remember: "Remember me on this computer"
   sign-up: "Sigin up now !"
   hello: "Hello world"
@@ -86,6 +88,7 @@ en:
       created: "Created at "
       pass: "Pass"
       failed: "Failed"
+      unfinished: "unfinished"
     destroy:
       success: "Deleted account"
       danger: "Don't have permission to delete the account"
@@ -242,6 +245,7 @@ en:
   lession_logs:
     show:
       finish: "Finish"
+      save: "Save"
       add_answer: "Add answer"
       answers: "Answers"
       danger: "Lesson don't exist"

@@ -1,6 +1,6 @@
 class FiltersController < ApplicationController
   before_action :logged_in_user,
-  only: %i(listword listwordcategory listwordalphabet listword_learned)
+    only: %i(listword listwordcategory listwordalphabet listword_learned)
 
   def listword
     @answers = Answer.where correct: Settings.number.one
@@ -14,14 +14,14 @@ class FiltersController < ApplicationController
   def listword_alphabet
     @answers = Answer.where(correct: Settings.number.one).order "content ASC"
   end
-  
+
   def listword_learned
     @status = params[:status]
     @lession_logs = LessionLog.where user_id: current_user.id
     @lession_logs_count = @lession_logs.all.group(:lession_id).count
 
-    @lession_logs_last =[]
-    if !@lession_logs_count.empty?
+    @lession_logs_last = []
+    unless @lession_logs_count.empty?
       @lession_logs_count.each do |lle|
         @lession_logs_last.push LessionLog.where(lession_id: lle[0]).last
       end
@@ -37,21 +37,17 @@ class FiltersController < ApplicationController
     @question_logs.each do |question_log|
       question_log.each do |ql|
         @answer.push Answer.where id: ql.answer_id
-      end           
+      end
     end
 
     @answer_true = []
     @answer.each do |a|
-      if a[0].correct
-        @answer_true.push a
-      end
+      @answer_true.push a if a[0].correct
     end
-    
+
     @arr = []
     @arr = @answer_true.flatten.uniq
     @unlearned = []
-    if @status == "unlearned"
-        @unlearned.push Answer.where.not id: @arr
-    end
+    @unlearned.push Answer.where.not id: @arr if @status == "unlearned"
   end
 end
