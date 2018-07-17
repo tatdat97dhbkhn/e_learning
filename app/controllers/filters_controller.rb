@@ -1,6 +1,7 @@
 class FiltersController < ApplicationController
   before_action :logged_in_user,
     only: %i(listword listwordcategory listwordalphabet listword_learned)
+  skip_before_action :is_admin?
 
   def listword
     @answers = Answer.where correct: Settings.number.one

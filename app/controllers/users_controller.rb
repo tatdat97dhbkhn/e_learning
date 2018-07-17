@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+  before_action :find_user, only: %i(show update destroy)
+  before_action :logged_in_user, only: %i(index show edit update)
+  skip_before_action :is_admin?, only: %i(index new create show edit update)
+
   def index
     @users = User.paginate page: params[:page],
       per_page: Settings.data.pages
@@ -21,14 +25,9 @@ class UsersController < ApplicationController
   end
 
   def show
-    if current_user? current_user
-      @user = current_user
-      @lession_logs = @user.lession_logs.all.order_date
-      @lessions = Lession.get_name_by_lession_logs @lession_logs
-      @results = LessionLog.get_result @lession_logs
-    else
-      redirect_to root_path
-    end
+    @lession_logs = @user.lession_logs.all.order_date
+    @lessions = Lession.get_name_by_lession_logs @lession_logs
+    @results = LessionLog.get_result @lession_logs
   end
 
   def edit
@@ -36,7 +35,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find_by id: params[:id]
     if current_user.equal? user
       update_profile user
       redirect_to profile_path
@@ -47,7 +45,6 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find_by id: params[:id]
     if user.destroy
       flash[:success] = t ".success"
       redirect_back fallback_location: root_path
@@ -58,14 +55,19 @@ class UsersController < ApplicationController
   end
 
   def admin
-    @users = User.paginate page: params[:page],
-      per_page: Settings.data.pages
+    @users = User.all.page(params[:page]).per_page Settings.data.pages
     @master = User.find_by admin: true
   end
 
   private
 
   attr_reader :user
+
+  def find_user
+    @user = User.find_by id: params[:id]
+    return if @user
+    @user = current_user
+  end
 
   def user_params
     params.required(:user).permit User::USER_ATTRS
