@@ -64,6 +64,10 @@ en:
       password_confirmation: "Password_confirmation"
       save: "Save changes"
       avatar: "Avatar"
+    activities:
+      created: "Created at "
+      pass: "Pass"
+      failed: "Failed"
   categories:
     create:
       success: "Created successfull"
@@ -189,3 +193,6 @@ en:
       finish: "Finish"
       add_answer: "Add answer"
       answers: "Answers"
+    history:
+      correct: "correct"
+      uncorrect: "uncorrect"

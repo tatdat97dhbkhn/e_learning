@@ -7,8 +7,9 @@ class LessionLogsController < ApplicationController
     redirect_to root_path unless current_user
     @lession_log = LessionLog.find_by id: params[:id]
     @question_logs = @lession_log.question_logs
-
     @questions, @answers = LessionLog.get_lession_log @question_logs
+    return if @lession_log.pass.nil?
+    @corrects = Answer.get_correct_answers @answers
   end
 
   def create
@@ -23,6 +24,6 @@ class LessionLogsController < ApplicationController
     @question_logs = params[:questionlog]
 
     @lession_log.update_result @question_logs
-    redirect_to "#"
+    redirect_to profile_path
   end
 end

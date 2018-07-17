@@ -10,6 +10,8 @@ class UsersController < ApplicationController
   def show
     if current_user? current_user
       @user = current_user
+      @lession_logs = @user.lession_logs.not_nill
+      @lessions = Lession.get_name_by_lession_logs @lession_logs
     else
       redirect_to root_path
     end

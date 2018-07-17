@@ -1,5 +1,6 @@
 <div class="container margin-top-100">
   <%= form_for :questionlog, method: :patch do |f| %>
+    <% if @lession_log.pass.nil? %>
     <% (0...@question_logs.count).each do |i| %>
       <div>
         <b><%= i+1 %>. <%= @questions[i].content %></b>
@@ -14,5 +15,8 @@
       </div>
     <% end %>
     <%= f.submit t(".finish"), class: "btn btn-primary" %>
+    <% else %>
+      <%= render "history" %>
+    <% end %>
   <% end %>
 </div>
