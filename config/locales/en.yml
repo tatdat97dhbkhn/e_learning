@@ -257,5 +257,9 @@ en:
       uncorrect: "uncorrect"
   choose_category:
     choose_category:
-      all_category: "All lessions"
-      choose_lession: "Choose lessions"
+      all_category: "All lessons"
+      choose_lession: "Choose lessons"
+    progress:
+      progress: "Progress:"
+      sucessfull: "sucessfull"
+      zero: "0.00%"

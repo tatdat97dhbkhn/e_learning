@@ -164,5 +164,9 @@ vi:
       answers: "Từ vựng"
   choose_category:
     choose_category:
-      all_category: "All lessions"
-      choose_lession: "Choose lessions"
+      all_category: "All lessons"
+      choose_lession: "Choose lessons"
+    progress:
+      progress: "Tiến độ học tập:"
+      sucessfull: "sucessfull"
+      zero: "0.00%"

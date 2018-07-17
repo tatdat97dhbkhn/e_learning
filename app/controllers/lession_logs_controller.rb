@@ -7,6 +7,9 @@ class LessionLogsController < ApplicationController
     @lession_log = LessionLog.create user_id: current_user[:id],
       lession_id: params[:id]
     lession_log.create_lession_log
+
+    @follow_course = FollowCourse.create(user_id: current_user.id, course_id: lession_log.lession.course.id)
+    byebug
     redirect_to lession_log
   end
 
@@ -17,7 +20,7 @@ class LessionLogsController < ApplicationController
     return if lession_log.pass.nil?
     @corrects = Answer.get_correct_answers @answers
   end
-
+  
   def update
     @question_logs = if params[:questionlog]
                        params[:questionlog]

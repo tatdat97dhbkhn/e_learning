@@ -1,0 +1,19 @@
+<div class="category_progress">
+  <p><%= t ".progress" %></p> 
+  <% @categories.each do |category| %>
+    <%= category.name  %>
+    <div class="progress">
+      <div class="progress-bar progress-bar-<%= @arr_color[rand(0..@arr_color.count)] %>" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="<%= "width: #{(@result[0] * 100).to_f}%;" %>">
+        <span style="color:black;">
+          <% if @result[0].nan? %>
+            <%= t ".zero" %>
+          <% else %>
+            <%= "%.2f" % (@result[0] * 100).to_f %>% <%= t ".sucessfull" %>
+          <% end %>
+        </span>
+      </div>
+    </div>
+    <% @result.delete_at(0) %>
+  <% end %>
+  
+</div>
