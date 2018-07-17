@@ -3,7 +3,7 @@ class LessionLog < ApplicationRecord
   belongs_to :lession
   has_many :question_logs, dependent: :destroy
 
-  scope :not_nil, ->{where.not pass: nil}
+  scope :finished, ->{where.not pass: nil}
 
   def create_lession_log
     category = lession.course.category
