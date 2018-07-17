@@ -1,25 +1,25 @@
-class Lession < ApplicationRecord
+class Lesson < ApplicationRecord
   belongs_to :course
-  has_many :lession_logs, dependent: :destroy
+  has_many :lesson_logs, dependent: :destroy
 
-  LESSION_ATTRS = %w(name description course_id image).freeze
+  LESSON_ATTRS = %w(name description course_id image).freeze
   mount_uploader :image, ImagesUploader
 
   validates :name, presence: true,
-    length: {maximum: Settings.lession.length.max_name},
+    length: {maximum: Settings.lesson.length.max_name},
     uniqueness: {case_sensitive: false}
   validates :course_id,
     presence: {message: I18n.t("not_blank")}
   validate  :image_size
 
   class << self
-    def get_name_by_lession_logs lession_logs
-      @lessions = []
+    def get_name_by_lesson_logs lesson_logs
+      @lessons = []
 
-      lession_logs.each do |lession_log|
-        @lessions.push lession_log.lession.name
+      lesson_logs.each do |lesson_log|
+        @lessons.push lesson_log.lesson.name
       end
-      @lessions
+      @lessons
     end
   end
 
