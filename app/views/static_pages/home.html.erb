@@ -8,7 +8,7 @@
         </div>
         <div class="col-sm-6">
             <%= link_to image_tag("rsz_2word.jpg", alt: "List words"),
-            listword_path %>
+              listword_path %>
             <div class="">
                 <span>
                   <%= link_to t(".word"), listword_path,
@@ -18,9 +18,9 @@
         </div>
         <div class="col-sm-6">
             <%= link_to image_tag("rsz_lession.jpg", alt: "Start lession"),
-            "lession/6", method: :post %>
+            "#", method: :post %>
             <span>
-              <%= link_to t(".start"), "lession/6",
+              <%= link_to t(".start"), "#",
               class: "btn btn-primary btn-sm btn-course", method: :post %>
             </span>
         </div>

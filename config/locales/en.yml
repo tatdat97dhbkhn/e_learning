@@ -71,6 +71,7 @@ en:
       success: "Created account"
     update:
       success: "Updated!"
+      danger: "Update failed"
     index:
       title: "Users"
     edit:
@@ -85,6 +86,17 @@ en:
       created: "Created at "
       pass: "Pass"
       failed: "Failed"
+    destroy:
+      success: "Deleted account"
+      danger: "Don't have permission to delete the account"
+    user:
+      confirm: "Are you sure?"
+    admin:
+      manage: "Manage user"
+      name: "Name"
+      email: "Email"
+      admin: "Admin"
+      delete: "Delete"
   categories:
     create:
       success: "Created successfull"
@@ -210,6 +222,8 @@ en:
       finish: "Finish"
       add_answer: "Add answer"
       answers: "Answers"
+      danger: "Lesson don't exist"
     history:
       correct: "correct"
       uncorrect: "uncorrect"
+

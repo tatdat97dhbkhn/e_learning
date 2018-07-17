@@ -1,5 +1,6 @@
 class LessionsController < ApplicationController
-  before_action :find_lession, only: [:edit, :update, :destroy]
+  before_action :find_lession, only: %i(edit update destroy)
+
   def new
     @lession = Lession.new
   end

@@ -1,0 +1,46 @@
+<% provide :title, t(".manage") %>
+<h1><%= t ".manage" %></h1>
+<%= render "layouts/menu" %>
+<div class="row">
+  <div class="col-md-8">
+    <table class="table">
+      <tr>
+        <th><%= t ".name" %></th>
+        <th><%= t ".email" %></th>
+        <th><%= t ".admin" %></th>
+        <th><%= t ".delete" %></th>
+      </tr>
+      <% @users.each do |user| %>
+        <% next if user.id == current_user.id %>
+        <tr>
+          <td><%= user.name %></td>
+          <td><%= user.email %></td>
+          <td>
+          <% unless user.admin %>
+            <%= link_to "not admin", user, method: :patch %>
+          <% else %>
+            <% if current_user.id == @master.id %>
+              <%= link_to "admin", user, method: :patch %>
+            <% else %>
+              admin
+            <% end %>
+          <% end %>
+        </td>
+        <td>
+          <% unless user.admin %>
+            <%= link_to t(".delete"), user,
+              method: :delete, data: {confirm: t(".sure")} %>
+          <% else %>
+            <% if current_user.id == @master.id %>
+              <%= link_to t(".delete"), user,
+                method: :delete, data: {confirm: t(".sure")} %>
+            <% else %>
+              For master account
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
