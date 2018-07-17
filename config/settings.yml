@@ -17,7 +17,7 @@ image:
   size: 400
   capacity: 5
 data:
-  pages: 5
+  pages: 20
 question:
   answer_default: 1
 number:

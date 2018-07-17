@@ -2,7 +2,8 @@ class AnswersController < ApplicationController
   before_action :find_answer, only: [:edit, :update, :destroy]
 
   def index
-    @answers = Answer.all.page(params[:page]).per_page(Settings.data.pages)
+    @all_answers = Answer.all.question_id
+    @answers = @all_answers.page(params[:page]).per_page Settings.data.pages
   end
 
   def new

@@ -2,8 +2,7 @@ class CoursesController < ApplicationController
   before_action :find_course, only: [:edit, :update, :destroy]
 
   def index
-    @courses = Course.paginate page: params[:page],
-      per_page: Settings.data.pages
+    @courses = Course.all.page(params[:page]).per_page Settings.data.pages
   end
 
   def new

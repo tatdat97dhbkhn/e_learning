@@ -18,8 +18,7 @@ class LessionsController < ApplicationController
   def edit; end
 
   def index
-    @lessions = Lession.paginate page: params[:page],
-      per_page: Settings.data.pages
+    @lessions = Lession.all.page(params[:page]).per_page Settings.data.pages
   end
 
   def destroy

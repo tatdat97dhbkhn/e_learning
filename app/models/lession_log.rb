@@ -24,7 +24,7 @@ class LessionLog < ApplicationRecord
     end
 
     if (@correct * Settings.number.one_float / @total) >
-      Settings.number.enought_to_pass
+       Settings.number.enought_to_pass
       update_attributes pass: true
     else
       update_attributes pass: false
