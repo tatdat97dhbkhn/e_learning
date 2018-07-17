@@ -59,6 +59,18 @@ class User < ApplicationRecord
     update_attributes remember_digest: nil
   end
 
+  def following? follower
+    follow_users.find_follow(follower).count > Settings.number.zero
+  end
+
+  def follow_status user
+    if following? user.id
+      return follow_users.find_by(follower: user.id)
+    else
+      return follow_users.build
+    end
+  end
+
   private
 
   def downcase_email

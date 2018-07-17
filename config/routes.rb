@@ -27,4 +27,5 @@ Rails.application.routes.draw do
   resources :lessions
   resources :courses
   resources :categories
+  resources :follow_users
 end

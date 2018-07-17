@@ -2,7 +2,7 @@ en:
   manage: "Manage"
   admin_access: "You don't have access"
   save: "Save"
-  Finish: "Finish"
+  finish: "Finish"
   remember: "Remember me on this computer"
   sign-up: "Sigin up now !"
   hello: "Hello world"
@@ -29,6 +29,7 @@ en:
   setting: "Settings"
   log_in: "Please log in."
   image_size: "Shold be less than 5MB."
+  errors1: "Email/Password do not exist!"
   static_pages:
     menu:
       all_word: "All world"
@@ -104,6 +105,10 @@ en:
       admin: "Admin"
       delete: "Delete"
       sure: "Are you sure?"
+    follow:
+      follow: "Follow"
+    unfollow:
+      unfollow: "Unfollow"
   categories:
     create:
       success: "Created successfull"
