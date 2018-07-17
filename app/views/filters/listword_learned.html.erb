@@ -1,0 +1,28 @@
+<%= render "static_pages/menu" %>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th><%= t ".word" %></th>
+      <th><%= t ".meaning" %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @status == "learned" %>
+      <% @answer_true.each do |answer| %>
+        <tr>
+          <td><%= answer[0].content %></td>
+          <td><%= answer[0].question.meaning %></td>
+        </tr>
+      <% end %>
+    <% else %>
+     <% @unlearned[0].each do |unlearned| %>
+      <% if unlearned.correct %>
+        <tr>
+          <td><%= unlearned.content %></td>
+          <td><%= unlearned.question.meaning %></td>
+        </tr>
+      <% end %>
+     <% end %>
+    <% end %>
+  </tbody>
+</table>
