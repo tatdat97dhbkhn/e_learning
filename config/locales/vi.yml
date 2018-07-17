@@ -85,7 +85,24 @@ vi:
       chose_category: "- Choose Category -"
       chose_course: "-Choose Course"
       category: "Category"
-  questions:
+  answers:
+    create:
+      success: "Thêm thành công"
+    update:
+      success: "Sửa thành công"
+    destroy:
+      delete: "Xóa thành công"
+    edit:
+      edit: "Cập nhật từ vựng"
+    index:
+      all: "Tất cả từ vựng"
+      content: "Nội dung"
+      edit: "Chỉnh sửa"
+      delete: "Xóa"
+      sure: "Bạn có chắc không?"
+    new:
+      add: "Thêm từ vựng"
+    questions:
     create:
       success: "Thêm thành công"
     update:
@@ -98,14 +115,17 @@ vi:
       all: "Tất cả câu hỏi"
       category: "Thể loại"
       content: "Nội dung"
+      question: "Câu hỏi"
+      correct: "Đáp án"
       meaning: "Nghĩa"
       edit: "Chỉnh sửa"
       delete: "Xóa"
       sure: "Bạn có chắc không?"
     new:
       add: "Thêm câu hỏi"
-      chose_category: "- Choose Category -"
-      category: "Category"
+      chose: "- Choose Question -"
+      correct_true: "Đúng"
+      correct_false: "Sai"
   layouts:
     menu:
       admin: "Admin - Elearning"
@@ -120,4 +140,6 @@ vi:
       add_user: "Thêm người dùng"
       questions: "Câu hỏi"
       add_question: "Thêm câu hỏi"
+      add_answer: "Thêm từ vựng"
+      answers: "Từ vựng"
 

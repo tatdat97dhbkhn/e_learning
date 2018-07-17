@@ -148,6 +148,28 @@ en:
       add: "Add question"
       chose_category: "- Choose Category -"
       category: "Category"
+  answers:
+    create:
+      success: "Created successfull"
+    update:
+      success: "Update successfull"
+    destroy:
+      delete: "Deleted successfull"
+    edit:
+      edit: "Edit answer"
+    index:
+      all: "All answers"
+      content: "Content"
+      question: "Question"
+      correct: "Correct"
+      edit: "Edit"
+      delete: "Delete"
+      sure: "Sure"
+    new:
+      add: "Add answer"
+      correct_true: "True"
+      correct_false: "False"
+      chose: "--Choose question--"
   layouts:
     menu:
       admin: "Admin - Elearning"
@@ -165,3 +187,5 @@ en:
   lession_logs:
     show:
       finish: "Finish"
+      add_answer: "Add answer"
+      answers: "Answers"
