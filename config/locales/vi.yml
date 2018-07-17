@@ -19,6 +19,23 @@ vi:
   login : "Đăng nhập"
   new_user: "Tài khoản mới? "
   errors1: "Tên email hoặc mật khẩu chưa chính xác."
+  filters:
+    listword:
+      word: "Từ"
+      meaning: "Nghĩa"
+    listwordalphabet:
+      word: "Từ"
+      meaning: "Nghĩa"
+  static_pages:
+    menu:
+      all_word: "Danh sách các từ"
+      learned: "Đã học"
+      unlearned: "Chưa học"
+      alphabet: "Alphabet"
+      category: "Thể loại"
+    home:
+      start: "Bắt đầu bài test"
+      word: "Danh sách các từ"
   users:
     create:
       success: "Tạo tài khoản thành công"
@@ -102,7 +119,10 @@ vi:
       sure: "Bạn có chắc không?"
     new:
       add: "Thêm từ vựng"
-    questions:
+      chose: "- Choose Question -"
+      correct_true: "Đúng"
+      correct_false: "Sai"
+  questions:
     create:
       success: "Thêm thành công"
     update:

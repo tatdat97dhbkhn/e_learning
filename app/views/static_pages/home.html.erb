@@ -1,15 +1,34 @@
 
 <div class="center jumbotron">
-  <h1><%= t "elearning" %></h1>
-  <h2>
-    <%= t "home_page" %>
-  </h2>
-  <% if !logged_in? %>
-    <%= link_to t("signup"), signup_path, class: "btn btn-lg btn-primary" %>
+  <% if logged_in? %>
+    <div class="row">
+        <div class="col-sm-12">
+            <%= link_to image_tag("rsz_header.png", alt: "e-learning"),
+            home_path %>
+        </div>
+        <div class="col-sm-6">
+            <%= link_to image_tag("rsz_2word.jpg", alt: "List words"),
+            listword_path %>
+            <div class="">
+                <span>
+                  <%= link_to t(".word"), listword_path,
+                  class:"btn btn-primary btn-sm btn-course" %>
+                </span>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <%= link_to image_tag("rsz_lession.jpg", alt: "Start lession"),
+            "lession/6", method: :post %>
+            <span>
+              <%= link_to t(".start"), "lession/6",
+              class: "btn btn-primary btn-sm btn-course", method: :post %>
+            </span>
+        </div>
+    </div>
   <% else %>
-    <%= link_to t("profile"), profile_path,
-      class: "btn btn-lg btn-primary" %>
-    <%= link_to t("start_lession"), "lession/1",
-      method: :post, class: "btn btn-lg btn-primary" %>
+    <h1><%= t "elearning" %></h1>
+    <h2>
+      <%= t "home_page" %>
+    </h2>
   <% end %>
 </div>
