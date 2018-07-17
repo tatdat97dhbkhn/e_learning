@@ -5,16 +5,24 @@ class LessionLogsController < ApplicationController
 
   def show
     redirect_to root_path unless current_user
-    @lessionlog = LessionLog.find_by id: params[:id]
-    @questionlogs = @lessionlog.question_logs
+    @lession_log = LessionLog.find_by id: params[:id]
+    @question_logs = @lession_log.question_logs
 
-    @questions, @answers = LessionLog.get_lessionlog @questionlogs
+    @questions, @answers = LessionLog.get_lession_log @question_logs
   end
 
   def create
-    @lessionlog = LessionLog.create user_id: current_user[:id],
+    @lession_log = LessionLog.create user_id: current_user[:id],
       lession_id: params[:id]
-    @lessionlog.create_lessionlog
-    redirect_to @lessionlog
+    @lession_log.create_lession_log
+    redirect_to @lession_log
+  end
+
+  def update
+    @lession_log = LessionLog.find_by id: params[:id]
+    @question_logs = params[:questionlog]
+
+    @lession_log.update_result @question_logs
+    redirect_to "#"
   end
 end
