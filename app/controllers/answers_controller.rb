@@ -33,6 +33,16 @@ class AnswersController < ApplicationController
     end
   end
 
+  def update
+    if @answer.update_attributes answer_params
+      flash[:success] = t ".success"
+      redirect_to answers_path
+    else
+      flash[:danger] = t "danger"
+      redirect_to root_path
+    end
+  end
+
   private
 
   attr_reader :answer

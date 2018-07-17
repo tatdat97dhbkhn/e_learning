@@ -7,8 +7,8 @@
       <%= render "shared/error_messages", object: f.object %>
       <%= f.label :question_id %>
       <br>
-      <%= f.select(:question_id,
-        [[t(".chose"), 0]] + Question.all.map{ |c| [c.content, c.id] }) %>
+      <%= f.select :question_id, Question.all.map{|c| [c.content, c.id]},
+        include_blank: t(".chose"), selected: t(".chose") %>
       <br><br>
       <%= f.label :content %>
       <%= f.text_field :content, class: "form-control" %>

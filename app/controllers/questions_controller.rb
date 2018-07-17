@@ -32,6 +32,16 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def update
+    if @question.update_attributes question_params
+      flash[:success] = t ".success"
+      redirect_to questions_path
+    else
+      flash[:danger] = t "danger"
+      redirect_to root_path
+    end
+  end
+
   private
 
   attr_reader :question

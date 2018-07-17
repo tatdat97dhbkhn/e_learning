@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     get "/admin", to: "users#admin"
     get "/lession/:id", to: "lession_logs#show"
     post "/lession/:id", to: "lession_logs#create"
+    patch "/lession/:id", to: "lession_logs#update"
     get "/login", to: "sessions#new"
     post "/login", to: "sessions#create"
     delete "/logout", to: "sessions#destroy"
