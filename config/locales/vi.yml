@@ -162,4 +162,7 @@ vi:
       add_question: "Thêm câu hỏi"
       add_answer: "Thêm từ vựng"
       answers: "Từ vựng"
-
+  choose_category:
+    choose_category:
+      all_category: "All lessions"
+      choose_lession: "Choose lessions"

@@ -27,3 +27,5 @@ number:
   enought_to_pass: 0.8
 time:
   format: "%m/%d/%Y %H:%M"
+status_unlearn: "unlearned"
+status_learn: "learned"

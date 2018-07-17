@@ -7,11 +7,11 @@
     </tr>
   </thead>
   <tbody>
-    <% if @status == "learned" %>
-      <% @answer_true.each do |answer| %>
+    <% if @status == Settings.status_learn %>
+      <% @arr.each do |answer| %>
         <tr>
-          <td><%= answer[0].content %></td>
-          <td><%= answer[0].question.meaning %></td>
+          <td><%= answer.content %></td>
+          <td><%= answer.question.meaning %></td>
         </tr>
       <% end %>
     <% else %>
