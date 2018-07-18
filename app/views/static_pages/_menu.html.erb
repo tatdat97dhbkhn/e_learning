@@ -1,16 +1,18 @@
 <center>
   <div class="btn-group">
     <%= link_to t(".all_word"), listword_path, class: "btn btn-primary" %>
-    <%= link_to t(".learned"), "#", class: "btn btn-primary" %>
-    <%= link_to t(".unlearned"), "#", class: "btn btn-primary" %>
-    <%= link_to t(".alphabet"), listwordalphabet_path,
-    class: "btn btn-primary" %>
+    <%= link_to t(".learned"), "/listword_learned/learned",
+      class: "btn btn-primary" %>
+    <%= link_to t(".unlearned"), "/listword_learned/unlearned",
+      class: "btn btn-primary" %>
+    <%= link_to t(".alphabet"), listword_alphabet_path,
+      class: "btn btn-primary" %>
     <div class="btn-group">
       <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
       <%= t ".category" %><span class="caret"></span></button>
       <ul class="dropdown-menu" role="menu">
         <% Category.all.each do |c| %>
-          <li><%= link_to "#{c.name}", "/listwordcategory/#{c.id}" %></li>
+          <li><%= link_to "#{c.name}", "/listword_category/#{c.id}" %></li>
         <% end %>
       </ul>
     </div>
