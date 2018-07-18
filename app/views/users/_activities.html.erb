@@ -11,7 +11,7 @@
           <%= t ".created" %>
           <%= @lession_logs[i].created_at.strftime Settings.time.format %>
         </span>
-
+        <span><%= @results[i] %></span>
         <% if @lession_logs[i].pass %>
           <span class="result true">
             <%= t ".pass" %>

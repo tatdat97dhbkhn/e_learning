@@ -235,6 +235,8 @@ en:
       finish: "Finish"
       add_answer: "Add answer"
       answers: "Answers"
+      danger: "Lesson don't exist"
     history:
       correct: "correct"
       uncorrect: "uncorrect"
+

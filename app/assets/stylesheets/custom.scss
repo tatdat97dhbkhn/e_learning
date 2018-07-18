@@ -13,6 +13,7 @@ $gray-black: #222;
 $green: #003300;
 $green1: #4CAF50;
 $green2: #339933;
+$green3: #99ff99;
 $red: red;
 $red-brick: #cc2900;
 $blue: #1b9bff;
@@ -470,7 +471,7 @@ footer ul li {
 }
 
 .activities {
-  width: 40%;
+  width: 60%;
   margin-left: 20px;
   margin-bottom: 5px;
   clear: both;
@@ -545,6 +546,7 @@ footer ul li {
 
 .bold-style {
   font-weight: bold !important;
+  color: $green3;
 }
 
 .img-medium{

@@ -8,16 +8,6 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def show
-    if current_user? current_user
-      @user = current_user
-      @lession_logs = @user.lession_logs.finished
-      @lessions = Lession.get_name_by_lession_logs @lession_logs
-    else
-      redirect_to root_path
-    end
-  end
-
   def create
     @user = User.new user_params
 
@@ -27,6 +17,17 @@ class UsersController < ApplicationController
       redirect_to root_path
     else
       render :new
+    end
+  end
+
+  def show
+    if current_user? current_user
+      @user = current_user
+      @lession_logs = @user.lession_logs.finished
+      @lessions = Lession.get_name_by_lession_logs @lession_logs
+      @results = LessionLog.get_result @lession_logs
+    else
+      redirect_to root_path
     end
   end
 
