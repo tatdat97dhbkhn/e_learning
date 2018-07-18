@@ -31,6 +31,16 @@ class LessionsController < ApplicationController
     end
   end
 
+  def update
+    if @lession.update_attributes lession_params
+      flash[:success] = t ".success"
+      redirect_to lessions_path
+    else
+      flash[:danger] = t "danger"
+      redirect_to root_path
+    end
+  end
+
   private
 
   attr_reader :lession

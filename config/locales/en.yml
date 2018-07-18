@@ -120,10 +120,16 @@ en:
       success: "Created successfull"
     update:
       success: "Update successfull"
+      danger: "Update failed"
     destroy:
       delete: "Deleted successfull"
     edit:
       edit: "Edit course"
+      category: "Category"
+      name: "Name"
+      description: "Description"
+      image: "Image"
+      update: "Save change"
     index:
       all: "All courses"
       category: "Category"
@@ -141,10 +147,17 @@ en:
       success: "Created successfull"
     update:
       success: "Update successfull"
+      danger: "Update failed"
     destroy:
       delete: "Deleted successfull"
     edit:
       edit: "Edit lession"
+      course: "Course"
+      category: "Category"
+      name: "Name"
+      description: "Description"
+      image: "Image"
+      update: "Save change"
     index:
       all: "All lessions"
       course: "Course"

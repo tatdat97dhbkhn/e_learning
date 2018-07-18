@@ -32,6 +32,16 @@ class CoursesController < ApplicationController
     end
   end
 
+  def update
+    if @course.update_attributes course_params
+      flash[:success] = t ".success"
+      redirect_to courses_path
+    else
+      flash[:danger] = t "danger"
+      redirect_to root_path
+    end
+  end
+
   private
 
   attr_reader :course
