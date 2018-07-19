@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   def show
     if current_user? current_user
       @user = current_user
-      @lession_logs = @user.lession_logs.finished
+      @lession_logs = @user.lession_logs.all.order_date
       @lessions = Lession.get_name_by_lession_logs @lession_logs
       @results = LessionLog.get_result @lession_logs
     else

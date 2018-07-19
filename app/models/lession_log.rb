@@ -3,7 +3,7 @@ class LessionLog < ApplicationRecord
   belongs_to :lession
   has_many :question_logs, dependent: :destroy
 
-  scope :finished, ->{where.not pass: nil}
+  scope :order_date, ->{order created_at: :desc}
 
   def create_lession_log
     category = lession.course.category
@@ -15,10 +15,11 @@ class LessionLog < ApplicationRecord
     end
   end
 
-  def update_result question_logs
-    if question_logs == Settings.number.zero
+  def update_result question_logs, status
+    if question_logs == Settings.number.zero && status.eql?(I18n.t("finish"))
       update_attributes pass: false
     else
+      return if question_logs == Settings.number.zero
       total = self.question_logs.count
       correct = Settings.number.zero
 
@@ -27,7 +28,7 @@ class LessionLog < ApplicationRecord
         quession_log.update_attributes answer_id: question_logs[question_log_id]
         correct += Settings.number.one if quession_log.answer.correct
       end
-
+      return if status.eql? I18n.t("save")
       update_pass correct, total
     end
   end
@@ -47,18 +48,21 @@ class LessionLog < ApplicationRecord
 
     def get_result lession_logs
       question_logs = []
+
       lession_logs.each do |lession_log|
         question_logs.push lession_log.question_logs
       end
-      correct = Settings.number.zero
       results = []
+
       question_logs.each do |question_log|
+        correct = Settings.number.zero
+
         question_log.each do |q|
           correct += 1 if q.answer.correct
         end
         results.push "#{correct}/#{question_log.count}"
       end
-      return results
+      results
     end
   end
 

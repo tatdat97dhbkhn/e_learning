@@ -11,12 +11,16 @@
           <%= t ".created" %>
           <%= @lession_logs[i].created_at.strftime Settings.time.format %>
         </span>
-        <span><%= @results[i] %></span>
-        <% if @lession_logs[i].pass %>
+        <% if  @lession_logs[i].pass.nil? %>
+          <span class="result unfinished">
+            <%= t ".unfinished" %>
+        <% elsif @lession_logs[i].pass %>
+          <span><%= @results[i] %></span>
           <span class="result true">
             <%= t ".pass" %>
           </span>
         <% else %>
+          <span><%= @results[i] %></span>
           <span class="result false">
             <%= t ".failed" %> 
           </span>
