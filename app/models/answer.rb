@@ -1,6 +1,6 @@
 class Answer < ApplicationRecord
   belongs_to :question
-  has_many :question_logs
+  has_many :question_logs, dependent: :destroy
 
   scope :correct_ans, ->{where correct: true}
 

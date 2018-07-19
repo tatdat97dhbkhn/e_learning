@@ -7,8 +7,8 @@
       <%= render "shared/error_messages", object: f.object %>
       <%= f.label :category_id %>
       <br>
-      <%= f.select(:category_id,
-        [[t(".chose"), 0]] + Category.all.map{ |c| [c.name, c.id] }) %>
+      <%= f.select :category_id, Category.all.map{|c| [c.name, c.id]},
+        include_blank: t(".chose"), selected: t(".chose") %>
       <br><br>
       
       <%= f.label :meaning %>

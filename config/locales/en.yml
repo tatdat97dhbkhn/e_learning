@@ -97,6 +97,7 @@ en:
       email: "Email"
       admin: "Admin"
       delete: "Delete"
+      sure: "Are you sure?"
   categories:
     create:
       success: "Created successfull"
@@ -182,6 +183,10 @@ en:
       delete: "Deleted successfull"
     edit:
       edit: "Edit question"
+      category: "Category"
+      meaning: "Meaning"
+      content: "Content"
+      update: "Save change"
     index:
       all: "All questions"
       category: "Category"
@@ -203,6 +208,10 @@ en:
       delete: "Deleted successfull"
     edit:
       edit: "Edit answer"
+      content: "Content"
+      question: "Question"
+      correct: "Correct"
+      update: "Save change"
     index:
       all: "All answers"
       content: "Content"
