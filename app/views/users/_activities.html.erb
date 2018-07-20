@@ -4,12 +4,16 @@
     <% (Settings.number.zero...@lessions.count).each do |i| %>
       <li>
         <span class="lession">
-          <%= link_to "Lession: #{@lessions[i]}",
-            @lession_logs[i] %>
+          <% if current_user? @user %>
+            <%= link_to "Lession: #{@lessions[i]}",
+              @lession_logs[i] %>
+          <% else %>
+            <span><%= t ".name" %><%= @lessions[i] %></span>
+          <% end %>
         </span>
         <span class="created">
-          <%= t ".created" %>
-          <%= @lession_logs[i].created_at.strftime Settings.time.format %>
+          <%= t ".last_change" %>
+          <%= @lession_logs[i].updated_at.strftime Settings.time.format %>
         </span>
         <% if  @lession_logs[i].pass.nil? %>
           <span class="result unfinished">

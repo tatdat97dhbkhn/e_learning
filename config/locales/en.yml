@@ -1,4 +1,6 @@
 en:
+  manage: "Manage"
+  admin_access: "You don't have access"
   save: "Save"
   Finish: "Finish"
   remember: "Remember me on this computer"
@@ -85,10 +87,11 @@ en:
       save: "Save changes"
       avatar: "Avatar"
     activities:
-      created: "Created at "
+      last_change: "Last changed at "
       pass: "Pass"
       failed: "Failed"
       unfinished: "unfinished"
+      name: "Lesson: "
     destroy:
       success: "Deleted account"
       danger: "Don't have permission to delete the account"

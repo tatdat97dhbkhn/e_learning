@@ -1,9 +1,7 @@
 class LessionLogsController < ApplicationController
+  before_action :logged_in_user, only: :show
   before_action :find_lession_log, only: %i(show update)
-
-  def index
-    redirect_to root_path if current_user? current_user
-  end
+  skip_before_action :is_admin?
 
   def create
     @lession_log = LessionLog.create user_id: current_user[:id],

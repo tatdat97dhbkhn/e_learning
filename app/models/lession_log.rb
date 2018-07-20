@@ -3,7 +3,7 @@ class LessionLog < ApplicationRecord
   belongs_to :lession
   has_many :question_logs, dependent: :destroy
 
-  scope :order_date, ->{order created_at: :desc}
+  scope :order_date, ->{order updated_at: :desc}
 
   def create_lession_log
     category = lession.course.category
