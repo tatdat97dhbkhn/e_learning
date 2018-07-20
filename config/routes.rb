@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     get "/listword_alphabet", to: "filters#listword_alphabet"
     get "/listword_learned/:status", to: "filters#listword_learned"
     get "/word", to: "static_pages#word"
+    get "/choose_category", to: "choose_category#choose_category"
     get "/signup", to: "users#new"
     get "/profile", to: "users#show"
     get "/edit", to: "users#edit"

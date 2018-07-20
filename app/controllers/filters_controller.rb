@@ -47,7 +47,9 @@ class FiltersController < ApplicationController
 
     @arr = []
     @arr = @answer_true.flatten.uniq
+  
     @unlearned = []
-    @unlearned.push Answer.where.not id: @arr if @status == "unlearned"
+    return unless @status == Settings.status_unlearn
+    @unlearned.push Answer.where.not id: @arr
   end
 end

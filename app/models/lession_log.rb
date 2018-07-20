@@ -56,7 +56,6 @@ class LessionLog < ApplicationRecord
 
       question_logs.each do |question_log|
         correct = Settings.number.zero
-
         question_log.each do |q|
           correct += 1 if q.answer.correct
         end

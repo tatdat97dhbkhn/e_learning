@@ -19,6 +19,8 @@ $red-brick: #cc2900;
 $blue: #1b9bff;
 $blue2: #0082e7;
 $blue3: #4eb1ff;
+$color-foreground: #fcfcfc;
+$color-background: #1F4788;
 
 body {
   padding-top: 60px;
@@ -49,14 +51,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 3em;
+  font-size: 4.5em;
   letter-spacing: -2px;
   margin-bottom: 30px;
   text-align: center;
 }
 
 h2 {
-  font-size: 1.2em;
+  font-size: 1.8em;
   letter-spacing: -1px;
   color: $gray; 
   margin-bottom: 30px;
@@ -65,7 +67,7 @@ h2 {
 }
 
 p {
-  font-size: 1.1em;
+  font-size: 1.65em;
   line-height: 1.7em;
 }
 
@@ -75,7 +77,7 @@ p {
   float: left;
   color: $white;
   margin-right: 10px;
-  font-size: 1.7em;
+  font-size: 2.55em;
   text-transform: uppercase;
   letter-spacing: -1px;
   padding-top: 9px;
@@ -289,7 +291,7 @@ footer ul li {
   background: $black1;
   font-family: 'Oxygen Mono', Tahoma, Arial, sans-serif;
   zoom: 1;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .cssmenu:before {
@@ -373,7 +375,7 @@ footer ul li {
 }
 
 .cssmenu ul ul a {
-  font-size: 12px;
+  font-size: 14px;
   color: $white;
 }
 
@@ -558,4 +560,8 @@ footer ul li {
     max-width: 150px;
     height: auto;
   }
+}
+
+.chooseCategory {
+  margin-top: 80px;
 }
