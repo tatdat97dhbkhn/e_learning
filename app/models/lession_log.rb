@@ -3,7 +3,9 @@ class LessionLog < ApplicationRecord
   belongs_to :lession
   has_many :question_logs, dependent: :destroy
 
-  scope :order_date, ->{order updated_at: :desc}
+  scope :order_date, ->{order created_at: :desc}
+  scope :current, ->(current_user){where(user_id: current_user)}
+  scope :pass_lession, ->{where(pass: true)}
 
   def create_lession_log
     category = lession.course.category
@@ -52,6 +54,7 @@ class LessionLog < ApplicationRecord
       lession_logs.each do |lession_log|
         question_logs.push lession_log.question_logs
       end
+
       results = []
 
       question_logs.each do |question_log|
