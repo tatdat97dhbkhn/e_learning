@@ -96,6 +96,8 @@ en:
       failed: "Failed"
       unfinished: "unfinished"
       name: "Lesson: "
+      duration: "Duration:"
+      spend: "Spend time:"
     destroy:
       success: "Deleted account"
       danger: "Don't have permission to delete the account"
@@ -157,6 +159,12 @@ en:
     new:
       add: "Add course"
       chose: "- Choose Category -"
+  lession_logs:
+    show:
+      day: "Days"
+      hours: "Hours"
+      minute: "Minutes"
+      second: "Seconds"
   lessions:
     create:
       success: "Created successfull"

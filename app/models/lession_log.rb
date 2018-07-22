@@ -71,6 +71,8 @@ class LessionLog < ApplicationRecord
 
   private
 
+  attr_reader :lession_log
+
   def update_pass correct, total
     if (correct * Settings.number.one_float / total) >
        Settings.number.enought_to_pass
