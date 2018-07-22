@@ -3,7 +3,7 @@ class LessionLog < ApplicationRecord
   belongs_to :lession
   has_many :question_logs, dependent: :destroy
 
-  scope :order_date, ->{order created_at: :desc}
+  scope :order_date, ->(cond){order updated_at: cond}
   scope :current, ->(current_user){where(user_id: current_user)}
   scope :pass_lession, ->{where(pass: true)}
 
@@ -59,6 +59,7 @@ class LessionLog < ApplicationRecord
 
       question_logs.each do |question_log|
         correct = Settings.number.zero
+
         question_log.each do |q|
           correct += 1 if q.answer.correct
         end

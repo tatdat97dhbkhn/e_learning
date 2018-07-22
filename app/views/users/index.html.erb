@@ -1,5 +1,12 @@
 <% provide :title, t(".title") %>
 <h1><%= t ".title" %></h1>
+<div class="choose-users">
+  <%= link_to_unless request.path == users_path, t(".all"), users_path %>
+  <%= link_to_unless request.path == follow_path, t(".follow"),
+    follow_path %>
+  <%= link_to_unless request.path == unfollow_path, t(".unfollow"),
+    unfollow_path %>
+</div>
 <ul class="users">
   <%= render @users %>
 </ul>

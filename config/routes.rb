@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     get "/login", to: "sessions#new"
     post "/login", to: "sessions#create"
     delete "/logout", to: "sessions#destroy"
+    get "follow", to: "users#follow"
+    get "unfollow", to: "users#unfollow"
   end
   resources :answers
   resources :questions
@@ -27,5 +29,5 @@ Rails.application.routes.draw do
   resources :lessions
   resources :courses
   resources :categories
-  resources :follow_users
+  resources :follow_users, only: %i(create destroy)
 end
