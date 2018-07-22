@@ -1,6 +1,5 @@
 <div class="activities">
   <ul>
-
     <% (Settings.number.zero...@lessions.count).each do |i| %>
       <li>
         <span class="lession">
@@ -11,11 +10,21 @@
             <span><%= t ".name" %><%= @lessions[i] %></span>
           <% end %>
         </span>
-        <span class="created">
-          <%= t ".last_change" %>
-          <%= @lession_logs[i].updated_at.strftime Settings.time.format %>
+        <span>
+          <%= t ".duration" %>  
+          <%= Time.at(Settings.max_time).utc.strftime Settings.time.format1 %>
         </span>
-        <% if  @lession_logs[i].pass.nil? %>
+        <span class="created">
+          <% time1 = @lession_logs[i].updated_at.to_i %>
+          <% time2 = @lession_logs[i].spend_time %>
+          <% time = time1 - time2 %>
+          <% if time > Settings.max_time %>
+            <% time = Settings.max_time %>
+          <% end %>
+          <%= t ".spend" %>
+          <%= Time.at(time).utc.strftime Settings.time.format1 %>
+        </span>
+        <% if @lession_logs[i].pass.nil? %>
           <span class="result unfinished">
             <%= t ".unfinished" %>
         <% elsif @lession_logs[i].pass %>

@@ -11,6 +11,7 @@ class LessionLogsController < ApplicationController
   end
 
   def show
+    lession_log.update_attributes spend_time: @lession_log.updated_at
     redirect_to root_path unless current_user
     @question_logs = lession_log.question_logs
     @questions, @answers = LessionLog.get_lession_log @question_logs
@@ -19,6 +20,7 @@ class LessionLogsController < ApplicationController
   end
 
   def update
+    lession_log.update_attributes spend_time: lession_log.updated_at.to_i
     @question_logs = if params[:questionlog]
                        params[:questionlog]
                      else

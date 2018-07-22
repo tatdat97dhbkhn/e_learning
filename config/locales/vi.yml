@@ -39,6 +39,9 @@ vi:
   users:
     create:
       success: "Tạo tài khoản thành công"
+    activities:
+      duration: "Duration:"
+      spend: "Spend time:"
   categories:
     create:
       success: "Tạo thành công"
