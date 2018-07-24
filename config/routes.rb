@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     get "/profile", to: "users#show"
     get "/edit", to: "users#edit"
     get "/admin", to: "users#admin"
-    post "/lession_logs/:id", to: "lession_logs#create"
+    post "/lesson_logs/:id", to: "lesson_logs#create"
     get "/login", to: "sessions#new"
     post "/login", to: "sessions#create"
     delete "/logout", to: "sessions#destroy"
@@ -25,8 +25,8 @@ Rails.application.routes.draw do
   resources :answers
   resources :questions
   resources :users
-  resources :lession_logs, only: %i(create show update)
-  resources :lessions
+  resources :lesson_logs, only: %i(create show update)
+  resources :lessons
   resources :courses
   resources :categories
   resources :follow_users, only: %i(create destroy)

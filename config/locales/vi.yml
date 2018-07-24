@@ -81,7 +81,7 @@ vi:
       sure: "Bạn có chắc không?"
     new:
       add: "Thêm khóa học"
-  lessions:
+  lessons:
     create:
       success: "Thêm thành công"
     update:
@@ -157,8 +157,8 @@ vi:
       add_category: "Thêm thể loại"
       courses: "Khóa học"
       add_course: "Thêm khóa học"
-      lessions: "Bài học"
-      add_lession: "Thêm bài học"
+      lessons: "Bài học"
+      add_lesson: "Thêm bài học"
       users: "Người dùng"
       add_user: "Thêm người dùng"
       questions: "Câu hỏi"
@@ -168,7 +168,7 @@ vi:
   choose_category:
     choose_category:
       all_category: "All lessons"
-      choose_lession: "Choose lessons"
+      choose_lesson: "Choose lessons"
     progress:
       progress: "Tiến độ học tập:"
       sucessfull: "sucessfull"

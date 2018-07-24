@@ -20,7 +20,7 @@ en:
   signup: "Signup"
   elearning: "E-learning"
   home_page: "Home page"
-  start_lession: "Start lession"
+  start_lesson: "Start lesson"
   login : "Login"
   profile: "Profile"
   category_blank: "Category cannot be blank."
@@ -38,7 +38,7 @@ en:
       alphabet: "Alphabet"
       category: "Category"
     home:
-      start: "Start lession"
+      start: "Start lesson"
       word: "Word list"
   shared:
     error_messages:
@@ -159,13 +159,13 @@ en:
     new:
       add: "Add course"
       chose: "- Choose Category -"
-  lession_logs:
+  lesson_logs:
     show:
       day: "Days"
       hours: "Hours"
       minute: "Minutes"
       second: "Seconds"
-  lessions:
+  lessons:
     create:
       success: "Created successfull"
     update:
@@ -174,7 +174,7 @@ en:
     destroy:
       delete: "Deleted successfull"
     edit:
-      edit: "Edit lession"
+      edit: "Edit lesson"
       course: "Course"
       category: "Category"
       name: "Name"
@@ -182,7 +182,7 @@ en:
       image: "Image"
       update: "Save change"
     index:
-      all: "All lessions"
+      all: "All lessons"
       course: "Course"
       category: "Category"
       name: "Name"
@@ -192,7 +192,7 @@ en:
       delete: "Delete"
       sure: "Sure"
     new:
-      add: "Add lession"
+      add: "Add lesson"
       chose_category: "- Choose Category -"
       chose_course: "-Choose Course"
       category: "Category"
@@ -255,13 +255,13 @@ en:
       add_category: "Add category"
       courses: "Courses"
       add_course: "Add course"
-      lessions: "Lessions"
-      add_lession: "Add lession"
+      lessons: "lessons"
+      add_lesson: "Add lesson"
       users: "Users"
       add_user: "Add user"
       questions: "Questions"
       add_question: "Add question"
-  lession_logs:
+  lesson_logs:
     show:
       finish: "Finish"
       save: "Save"
@@ -274,7 +274,7 @@ en:
   choose_category:
     choose_category:
       all_category: "All lessons"
-      choose_lession: "Choose lessons"
+      choose_lesson: "Choose lessons"
     progress:
       progress: "Progress:"
       sucessfull: "sucessfull"

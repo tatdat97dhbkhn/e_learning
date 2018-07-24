@@ -16,26 +16,26 @@
         </tr>
       </thead>
       <tbody> 
-        <% @lessions.each do |lession| %>
+        <% @lessons.each do |lesson| %>
           <tr class="info">
-            <td><%= lession.course.name %></td>
-            <td><%= lession.course.category.name %></td>
-            <td><%= lession.name %></td>
-            <td><%= lession.description %></td>
+            <td><%= lesson.course.name %></td>
+            <td><%= lesson.course.category.name %></td>
+            <td><%= lesson.name %></td>
+            <td><%= lesson.description %></td>
             <td class="img-medium">
-              <%= image_tag lession.image.url if lession.image? %>
+              <%= image_tag lesson.image.url if lesson.image? %>
             </td>
             <td>
-              <%= link_to t(".edit"), edit_lession_path(lession) %>
+              <%= link_to t(".edit"), edit_lesson_path(lesson) %>
             </td>
             <td>
-              <%= link_to t(".delete"), lession,
-                method: :delete, data: { confirm: t(".sure") } %>
+              <%= link_to t(".delete"), lesson,
+                method: :delete, data: {confirm: t(".sure")} %>
             </td>
           </tr>
         <% end %>  
       </tbody>
     </table>
-    <%= paginate @lessions, theme: "twitter-bootstrap-3" %>
+    <%= paginate @lessons, theme: "twitter-bootstrap-3" %>
   </div>
 </div>
