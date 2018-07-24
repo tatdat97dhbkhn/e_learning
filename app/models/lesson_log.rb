@@ -1,18 +1,21 @@
-class LessionLog < ApplicationRecord
+class LessonLog < ApplicationRecord
   belongs_to :user
-  belongs_to :lession
+  belongs_to :lesson
   has_many :question_logs, dependent: :destroy
+
+  accepts_nested_attributes_for :question_logs
 
   scope :order_date, ->(cond){order updated_at: cond}
   scope :current, ->(current_user){where(user_id: current_user)}
-  scope :pass_lession, ->{where(pass: true)}
+  scope :pass_lesson, ->{where(pass: true)}
 
-  def create_lession_log
-    category = lession.course.category
-    @questions = category.questions.order("RAND()").first Settings.lession.page
+  def create_lesson_log
+    category = lesson.course.category
+    @questions = category.questions.order("RAND()").first
+      Settings.lesson.page
 
     @questions.each do |question|
-      question_logs.create question_id: question.id,
+      question_logs.create question_id: question,
         answer_id: Settings.question.answer_default
     end
   end
@@ -22,7 +25,7 @@ class LessionLog < ApplicationRecord
       update_attributes pass: false
     else
       return if question_logs == Settings.number.zero
-      total = self.question_logs.count
+      total = question_logs.count
       correct = Settings.number.zero
 
       question_logs.keys.each do |question_log_id|
@@ -36,23 +39,23 @@ class LessionLog < ApplicationRecord
   end
 
   class << self
-    def get_lession_log question_logs
+    def get_lesson_log question_logs
       @questions = []
       @answers = []
 
       question_logs.each do |question_log|
-        @questions << question_log.question
-        @answers << question_log.question.answers.order("RAND()")
+        @questions.push question_log.question.id
+        @answers.push question_log.question.answers.order("RAND()")
       end
 
       [@questions, @answers]
     end
 
-    def get_result lession_logs
+    def get_result lesson_logs
       question_logs = []
 
-      lession_logs.each do |lession_log|
-        question_logs.push lession_log.question_logs
+      lesson_logs.each do |lesson_log|
+        question_logs.push lesson_log.question_logs
       end
 
       results = []
@@ -71,7 +74,7 @@ class LessionLog < ApplicationRecord
 
   private
 
-  attr_reader :lession_log
+  attr_reader :lesson_log
 
   def update_pass correct, total
     if (correct * Settings.number.one_float / total) >

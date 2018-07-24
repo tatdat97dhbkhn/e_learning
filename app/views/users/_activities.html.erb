@@ -1,13 +1,13 @@
 <div class="activities">
   <ul>
-    <% (Settings.number.zero...@lessions.count).each do |i| %>
+    <% (Settings.number.zero...@lessons.count).each do |i| %>
       <li>
-        <span class="lession">
+        <span class="lesson">
           <% if current_user? @user %>
-            <%= link_to "Lession: #{@lessions[i]}",
-              @lession_logs[i] %>
+            <%= link_to "Lesson: #{@lessons[i]}",
+              @lesson_logs[i] %>
           <% else %>
-            <span><%= t ".name" %><%= @lessions[i] %></span>
+            <span><%= t ".name" %><%= @lessons[i] %></span>
           <% end %>
         </span>
         <span>
@@ -15,8 +15,8 @@
           <%= Time.at(Settings.max_time).utc.strftime Settings.time.format1 %>
         </span>
         <span class="created">
-          <% time1 = @lession_logs[i].updated_at.to_i %>
-          <% time2 = @lession_logs[i].spend_time %>
+          <% time1 = @lesson_logs[i].updated_at.to_i %>
+          <% time2 = @lesson_logs[i].spend_time %>
           <% time = time1 - time2 %>
           <% if time > Settings.max_time %>
             <% time = Settings.max_time %>
@@ -24,10 +24,10 @@
           <%= t ".spend" %>
           <%= Time.at(time).utc.strftime Settings.time.format1 %>
         </span>
-        <% if @lession_logs[i].pass.nil? %>
+        <% if @lesson_logs[i].pass.nil? %>
           <span class="result unfinished">
             <%= t ".unfinished" %>
-        <% elsif @lession_logs[i].pass %>
+        <% elsif @lesson_logs[i].pass %>
           <span><%= @results[i] %></span>
           <span class="result true">
             <%= t ".pass" %>
