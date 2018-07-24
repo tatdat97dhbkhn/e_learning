@@ -21,13 +21,12 @@ class ChooseCategoryController < ApplicationController
         end
       end
     end
-
+    
     @status_courses = []
+    @i = 0
     @number_courses.each do |number_course|
-      @status_courses.push pass_courses[Settings.number.zero...number_course]
-      (Settings.number.zero...number_course).each do |number|
-        pass_courses.delete_at(number)
-      end
+      @status_courses.push pass_courses[@i...number_course + @i]
+      @i += number_course
     end
 
     @result = []
@@ -39,5 +38,6 @@ class ChooseCategoryController < ApplicationController
     @progress = []
     @progress.push @categories
     @progress.push @result
+    
   end
 end
