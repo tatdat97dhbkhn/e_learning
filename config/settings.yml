@@ -9,7 +9,7 @@ category:
 course:
   length:
     max_name: 50
-lession:
+lesson:
   length:
     max_name: 50
   page: 30

@@ -24,7 +24,7 @@ end
   5.times do |j|
     course = cate.courses.create!(name: "Lorem Ipsum #{i}#{j}")
     3.times do |m|
-      lesson = course.lessions.create!(name: "Lorem Ipsum #{i}#{j}#{m}")
+      lesson = course.lessons.create!(name: "Lorem Ipsum #{i}#{j}#{m}")
     end
   end
   100.times do |j|

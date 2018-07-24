@@ -1,7 +1,7 @@
 class Category < ApplicationRecord
   has_many :courses, dependent: :destroy
   has_many :questions, dependent: :destroy
-  has_many :lessions, through: :courses, dependent: :destroy
+  has_many :lessons, through: :courses, dependent: :destroy
   has_many :answers, through: :questions, dependent: :destroy
 
   CATEGORY_ATTRS = %w(name description).freeze
