@@ -3,21 +3,14 @@ class LessonLog < ApplicationRecord
   belongs_to :lesson
   has_many :question_logs, dependent: :destroy
 
-  accepts_nested_attributes_for :question_logs
-
   scope :order_date, ->(cond){order updated_at: cond}
   scope :current, ->(current_user){where(user_id: current_user)}
   scope :pass_lesson, ->{where(pass: true)}
 
-  def create_lesson_log
-    category = lesson.course.category
-    @questions = category.questions.order("RAND()").first
-      Settings.lesson.page
+  after_create :create_question_log
 
-    @questions.each do |question|
-      question_logs.create question_id: question,
-        answer_id: Settings.question.answer_default
-    end
+  def create_question_log
+    QuestionLog.create_question_logs
   end
 
   def update_result question_logs, status
