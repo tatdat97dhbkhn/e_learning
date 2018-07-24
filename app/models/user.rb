@@ -3,8 +3,8 @@ class User < ApplicationRecord
 
   has_many :follow_users, dependent: :destroy
   has_many :follow_courses, dependent: :destroy
-  has_many :lession_logs, dependent: :destroy
-  has_many :question_logs, through: :lession_logs, dependent: :destroy
+  has_many :lesson_logs, dependent: :destroy
+  has_many :question_logs, through: :lesson_logs, dependent: :destroy
 
   before_save :downcase_email
   USER_ATTRS = %w(name email password password_confirmation).freeze

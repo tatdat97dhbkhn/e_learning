@@ -55,35 +55,35 @@ ActiveRecord::Schema.define(version: 2018_07_12_095003) do
     t.index ["user_id"], name: "index_follow_users_on_user_id"
   end
 
-  create_table "lession_logs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "lesson_logs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.boolean "pass"
     t.bigint "spend_time", default: 0
     t.bigint "user_id"
-    t.bigint "lession_id"
+    t.bigint "lesson_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["lession_id"], name: "index_lession_logs_on_lession_id"
-    t.index ["user_id"], name: "index_lession_logs_on_user_id"
+    t.index ["lesson_id"], name: "index_lesson_logs_on_lesson_id"
+    t.index ["user_id"], name: "index_lesson_logs_on_user_id"
   end
 
-  create_table "lessions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "lessons", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "description"
     t.string "image"
     t.bigint "course_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["course_id"], name: "index_lessions_on_course_id"
+    t.index ["course_id"], name: "index_lessons_on_course_id"
   end
 
   create_table "question_logs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "lession_log_id"
+    t.bigint "lesson_log_id"
     t.bigint "question_id"
-    t.bigint "answer_id"
+    t.integer "number"
+    t.integer "answer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["answer_id"], name: "index_question_logs_on_answer_id"
-    t.index ["lession_log_id"], name: "index_question_logs_on_lession_log_id"
+    t.index ["lesson_log_id"], name: "index_question_logs_on_lesson_log_id"
     t.index ["question_id"], name: "index_question_logs_on_question_id"
   end
 
@@ -117,11 +117,10 @@ ActiveRecord::Schema.define(version: 2018_07_12_095003) do
   add_foreign_key "follow_courses", "courses"
   add_foreign_key "follow_courses", "users"
   add_foreign_key "follow_users", "users"
-  add_foreign_key "lession_logs", "lessions"
-  add_foreign_key "lession_logs", "users"
-  add_foreign_key "lessions", "courses"
-  add_foreign_key "question_logs", "answers"
-  add_foreign_key "question_logs", "lession_logs"
+  add_foreign_key "lesson_logs", "lessons"
+  add_foreign_key "lesson_logs", "users"
+  add_foreign_key "lessons", "courses"
+  add_foreign_key "question_logs", "lesson_logs"
   add_foreign_key "question_logs", "questions"
   add_foreign_key "questions", "categories"
 end

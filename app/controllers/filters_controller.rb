@@ -18,11 +18,11 @@ class FiltersController < ApplicationController
 
   def listword_learned
     @status = params[:status]
-    @lession_logs = LessionLog.where user_id: current_user.id
+    @lesson_logs = LessonLog.where user_id: current_user.id
 
     @question_logs = []
-    @lession_logs.each do |lession_log|
-      @question_logs.push QuestionLog.where lession_log_id: lession_log.id
+    @lesson_logs.each do |lesson_log|
+      @question_logs.push QuestionLog.where lesson_log_id: lesson_log.id
     end
 
     @learned = []

@@ -1,8 +1,8 @@
 class Course < ApplicationRecord
   belongs_to :category
   has_many :follow_courses, dependent: :destroy
-  has_many :lessions, dependent: :destroy
-  has_many :lession_logs, through: :lessions
+  has_many :lessons, dependent: :destroy
+  has_many :lesson_logs, through: :lessons
 
   COURSE_ATTRS = %w(name description category_id image).freeze
   mount_uploader :image, ImagesUploader

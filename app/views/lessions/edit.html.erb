@@ -3,7 +3,7 @@
 <%= render "layouts/menu" %>
 <div class="row">
   <div class="col-md-9">
-    <%= form_for @lession, html: {multipart: true} do |f| %>
+    <%= form_for @lesson, html: {multipart: true} do |f| %>
       <%= render "shared/error_messages", object: f.object %>
       <%= f.label t(".category") %>
       <br>
@@ -29,7 +29,7 @@
       
       <%= f.label :image %>
       <div class="img-medium">
-        <%= image_tag @lession.image.url if @lession.image? %>
+        <%= image_tag @lesson.image.url if @lesson.image? %>
       </div>
       <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png",
         class: "form-control" %>
