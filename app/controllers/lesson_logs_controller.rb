@@ -6,15 +6,13 @@ class LessonLogsController < ApplicationController
   def create
     @lesson_log = LessonLog.create user_id: current_user[:id],
       lesson_id: params[:id]
-    lesson_log.create_lesson_log
     redirect_to lesson_log
   end
 
   def show
-    lesson_log.update_attributes spend_time: @lesson_log.updated_at
     redirect_to root_path unless current_user
-    @question_logs = lesson_log.question_logs
-    @questions, @answers = LessonLog.get_lesson_log @question_logs
+    @qls = lesson_log.question_logs.preload(:answer)
+    @questions = Question.get_questions_by_question_logs @qls 
     return if lesson_log.pass.nil?
     @corrects = Answer.get_correct_answers @answers
   end

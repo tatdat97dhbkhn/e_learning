@@ -29,22 +29,53 @@
       </div>
     </center>
     <%= form_for :questionlog, method: :patch, html: {name: "go"} do |f| %>
-      <% (Settings.number.zero...@question_logs.count).each do |i| %>
+      <% i = 0 %>
+      <% j = 0 %>
+      <% flag = true %>
+      <% @questions.each do |q| %>
+        <% next if q.answers.size < 2 %>
         <div>
-          <b><%= i+1 %>. <%= Question.find_by(id: @questions[i]).content %></b>
-          
-          <% @answers[i].each do |ans| %>
-            <% next if ans.id == Settings.question.answer_default %>
-            <li class="answer">
-              <% if @question_logs[i].answer_id == ans.id %>
-                <%= f.radio_button @question_logs[i].id, ans.id,
-                  checked: true %>
-              <% else %>
-                <%= f.radio_button @question_logs[i].id, ans.id %>
-              <% end %>
-              <%= f.label "#{@question_logs[i].id}_#{ans.id}",
-                ans.content %>
-            </li>
+
+          <% if flag %>
+            <b><%= i += 1 %>. <%= q.content %></b>
+            <% flag = false %>
+          <% end %>
+
+          <% if q.answers.select {|a| a.correct == true}.size == 1 %>
+            <% if q.id == @qls[j].question_id %>
+              <li class="answer">
+                <% if @qls[j].number %>
+                  <%= f.radio_button q.id,
+                    @qls[j].id, checked: true %>
+                <% else %>
+                  <%= f.radio_button q.id,
+                    @qls[j].id %>
+                <% end %>
+                <%= f.label "#{q.id}_#{@qls[j].id}",
+                  @qls[j].answer.content %>
+              </li>
+              <% j += 1 %>
+              <% redo unless j == @qls.size %>
+            <% else %>
+              <% flag = true %>
+            <% end %>
+          <% else %>
+            <% if q.id == @qls[j].question_id %>
+              <li class="answer">
+                <% if @qls[j].number %>
+                  <%= f.check_box q.id,
+                    @qls[j].id, checked: true %>
+                <% else %>
+                  <%= f.check_box @qls[j].id %>
+                <% end %>
+                <%= f.label "#{q.id}_#{@qls[j].id}",
+                  @qls[j].answer.content %>
+              </li>
+              <% j += 1 %>
+              <% redo unless j == @qls.size %>
+            <% else %>
+              <% flag = true %>
+            <% end %>
           <% end %>
         </div>
         <br/>
