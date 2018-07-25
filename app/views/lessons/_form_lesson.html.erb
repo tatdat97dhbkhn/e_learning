@@ -1,0 +1,25 @@
+<%= form_for @lesson, html: {multipart: true} do |f| %>
+  <%= render "shared/error_messages", object: f.object %>
+  <%= f.label t(".category") %>
+  <br>
+  <select name="category_id" id="category_id">
+    <option value="0"><%= t ".chose_category" %></option>
+    <%= Category.all.each do |category| %>
+      <option value="<%= category.id %>"><%= category.name %></option>
+    <% end %>
+  </select>
+  <br/><br/>
+  <%= f.label :name %>
+  <%= f.text_field :name, class: "form-control" %>
+
+  <%= f.label :description %>
+  <%= f.text_field :description, class: "form-control" %> 
+  
+  <%= f.label :image %>
+  <div class="img-medium">
+    <%= image_tag @lesson.image.url if @lesson.image? %>
+  </div>
+  <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png",
+    class: "form-control" %>
+  <%= f.submit yield(:submit), class: "btn btn-primary" %>
+<% end %>

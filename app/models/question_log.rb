@@ -34,7 +34,7 @@ class QuestionLog < ApplicationRecord
     question_logs = QuestionLog.where(lesson_log_id: lesson_log_id,
       question_id: question_id,
       number: Settings.number.one).update number: Settings.number.zero
-    ques_log.update_attributes number: Settings.number.one
+    update_attributes number: Settings.number.one
   end
 
   def update_multiple

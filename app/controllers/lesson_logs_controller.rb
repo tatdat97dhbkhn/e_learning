@@ -11,7 +11,6 @@ class LessonLogsController < ApplicationController
 
   def show
     redirect_to root_path unless current_user
-    lesson_log.update_attributes saved: false if lesson_log.saved
     @question_logs = lesson_log.question_logs.preload :answer
     @types = Question.get_questions @question_logs
     @results = lesson_log.get_question_logs_each_question @question_logs
@@ -23,6 +22,7 @@ class LessonLogsController < ApplicationController
   end
 
   def edit
+    lesson_log.update_attributes saved: false if lesson_log.saved
     @question_logs = lesson_log.question_logs.preload :question
     @types = Question.get_questions @question_logs
   end

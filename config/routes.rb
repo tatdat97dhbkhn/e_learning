@@ -24,7 +24,6 @@ Rails.application.routes.draw do
     get "/restore_questions", to: "questions#restore"
   end
 
-  resources :answers
   resources :questions
   resources :users
   resources :lesson_logs, only: %i(create show update edit)

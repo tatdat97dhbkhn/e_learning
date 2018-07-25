@@ -6,6 +6,8 @@ $(document).on('turbolinks:load', function() {
     }
   });
 
+  $('table').addClass('table table-hover');
+
   $('#lesson_image').bind('change', function() {
     var size_in_megabytes = this.files[0].size/1024/1024;
     if (size_in_megabytes > 5) {
@@ -14,7 +16,7 @@ $(document).on('turbolinks:load', function() {
   });
 
   $('.update-result').change(function(){
-    $.get('../question_logs/' + $(this).val(), function(data, status) {});
+    $.get('/question_logs/' + $(this).val(), function(data, status) {});
   });
 
   $('.menu-start').click(function(e){
