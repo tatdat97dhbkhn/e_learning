@@ -1,7 +1,7 @@
 <fieldset disabled>
   <% (Settings.number.zero...@question_logs.count).each do |i| %>
     <div>
-      <b><%= i+1 %>. <%= @questions[i].content %></b>
+      <b><%= i+1 %>. <%= Question.find_by(id: @questions[i]).content %></b>
 
       <% if @question_logs[i].answer_id == @corrects[i][0] %>
         <span class="result correct"><%= t ".correct" %></span>

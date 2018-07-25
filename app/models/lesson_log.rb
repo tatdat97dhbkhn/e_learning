@@ -11,11 +11,10 @@ class LessonLog < ApplicationRecord
 
   def create_lesson_log
     category = lesson.course.category
-    @questions = category.questions.order("RAND()").first
-      Settings.lesson.page
+    @questions = category.questions.order("RAND()").first Settings.lesson.page
 
     @questions.each do |question|
-      question_logs.create question_id: question,
+      question_logs.create question_id: question.id,
         answer_id: Settings.question.answer_default
     end
   end

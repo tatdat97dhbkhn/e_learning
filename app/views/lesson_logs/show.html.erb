@@ -31,7 +31,7 @@
     <%= form_for :questionlog, method: :patch, html: {name: "go"} do |f| %>
       <% (Settings.number.zero...@question_logs.count).each do |i| %>
         <div>
-          <b><%= i+1 %>. <%= @questions[i].content %></b>
+          <b><%= i+1 %>. <%= Question.find_by(id: @questions[i]).content %></b>
           
           <% @answers[i].each do |ans| %>
             <% next if ans.id == Settings.question.answer_default %>
