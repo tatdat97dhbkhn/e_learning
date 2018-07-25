@@ -1,5 +1,15 @@
 <div class="container margin-top-100">
   <% if @lesson_log.pass.nil? %>
+    <input id="created_at" name="<%= @lesson_log.created_at %>" 
+      value="<%= @lesson_log.created_at %>" type="hidden" />
+    <input id="id_lessonlog"
+      value="<%= @lesson_log.id %>" type="hidden" />
+    <input id="updated_at" 
+      value="<%= @lesson_log.updated_at %>" type="hidden" />
+    <input id="saved" 
+      value="<%= @lesson_log.saved %>" type="hidden" />
+    <input id="spend_time" 
+      value="<%= @lesson_log.spend_time %>" type="hidden" />
     <center>
       <div id="clockdiv" class="clockdiv">
         <div>
@@ -72,7 +82,9 @@
         <br/>
       <% end %>
       <%= f.submit t(".finish"), class: "btn btn-primary", id: "finish" %>
-      <%= f.submit t(".save"), class: "btn btn-primary", id: "save" %>
+      <% if !@lesson_log.saved %>
+        <%= f.submit t(".save"), class: "btn btn-primary", id: "save" %>
+      <% end %>
     <% end %>
   <% else %>
     <%= render "history" %>

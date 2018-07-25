@@ -31,4 +31,4 @@ time:
   format: "%m/%d/%Y %H:%M"
 status_unlearn: "unlearned"
 status_learn: "learned"
-max_time: 300
+max_time: 60

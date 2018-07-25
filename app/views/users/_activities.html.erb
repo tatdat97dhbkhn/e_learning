@@ -16,11 +16,11 @@
         </span>
         <span class="created">
           <% time1 = @lesson_logs[i].updated_at.to_i %>
-          <% time2 = @lesson_logs[i].spend_time %>
+          <% time2 = @lesson_logs[i].created_at.to_i %>
           <% time = time1 - time2 %>
-          <% if time > Settings.max_time %>
-            <% time = Settings.max_time %>
-          <% end %>
+          <% if time > Settings.max_time
+            time = Settings.max_time 
+          end %>
           <%= t ".spend" %>
           <%= Time.at(time).utc.strftime Settings.time.format1 %>
         </span>

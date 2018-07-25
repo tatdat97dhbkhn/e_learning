@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     get "/edit", to: "users#edit"
     get "/admin", to: "users#admin"
     post "/lesson_logs/:id", to: "lesson_logs#create"
+    post "/update_reload/:id", to: "lesson_logs#update"
     get "/login", to: "sessions#new"
     post "/login", to: "sessions#create"
     delete "/logout", to: "sessions#destroy"
