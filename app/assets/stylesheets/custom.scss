@@ -1,32 +1,14 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
+@import 'color';
 
-$gray: #777;
-$gray-black: #222;
-$white: #fff;
-$white1: #eee;
-$white2: #ccc;
-$black: black;
-$black1: #333333;
-$black-light: #333;
-$gray-black: #222;
-$gray1: #a6a6a6;
-$green: #003300;
-$green1: #4CAF50;
-$green2: #339933;
-$green3: #99ff99;
-$red: red;
-$red-brick: #cc2900;
-$blue: #1b9bff;
-$blue2: #0082e7;
-$blue3: #4eb1ff;
-$blue4: #00BF96;
-$blue5: #00816A;
-$color-foreground: #fcfcfc;
-$color-background: #1F4788;
+* {
+  box-sizing: border-box;
+}
 
 body {
-  padding-top: 60px;
+  margin: 0;
+  font-family: Arial;
 }
 
 section {
@@ -74,29 +56,82 @@ p {
   line-height: 1.7em;
 }
 
-.logo {
-  margin-top: 10px;
-  max-height: 45px;
+.max {
+  max-width: 1920px;
+}
+
+.header {
+  overflow: hidden;
+  background-color: $white3;
+  padding: 20px 10px;
+  overflow: visible;
+  text-align: center;
+  border-bottom: 1px solid $gray2;
+
+  li.dropdown {
+    display: inline-block;
+    overflow: none;
+
+    .dropdown-menu {
+      li a {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.header a {
   float: left;
-  color: $white;
-  margin-right: 10px;
-  font-size: 2.55em;
-  text-transform: uppercase;
-  letter-spacing: -1px;
-  padding-top: 9px;
+  color: $black;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px; 
+  line-height: 25px;
+  border-radius: 4px;
+}
+
+.header a.logo {
+  font-size: 25px;
   font-weight: bold;
 
   &:hover {
-    color: $white;
-    text-decoration: none;
+    background-color: transparent;
+  }
+}
+
+.header a:hover {
+  background-color: $white4;
+  color: $black;
+}
+
+.header a.active {
+  background-color: $blue6;
+  color: $white;
+}
+
+.header-right {
+  float: right;
+}
+
+@media screen and (max-width: 500px) {
+  .header a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  
+  .header-right {
+    float: none;
   }
 }
 
 footer {
   color: $gray;
-  background-color: $gray-black;
+  width: 100%;
+  background-color: $black-light;
   margin-top: 45px;
-  padding-top: 5px;
+  padding: 5px 10px 0;
 }
 
 footer a {
@@ -121,8 +156,22 @@ footer ul li {
   margin-left: 15px;
 }
 
+.i18n {
+  cursor: default;
+  font-weight: bold;
+  color: $black;
+
+  a {
+    color: $black-light;
+  }
+}
+
+.clear {
+  clear: both;
+}
+
 .margin-top-100 {
-  margin-top: 80px !important;
+  margin-top: 100px !important;
 }
 
 .btn {
@@ -141,7 +190,7 @@ footer ul li {
 
 .remember {
   width: auto;
-  margin-left: 20px;
+  margin-left: 0 !important;
 }
 
 .error_explanation {
@@ -291,7 +340,7 @@ footer ul li {
 
 .cssmenu {
   width: 200px;
-  background: $black1;
+  background: $black-light;
   font-family: 'Oxygen Mono', Tahoma, Arial, sans-serif;
   zoom: 1;
   font-size: 14px;
@@ -616,4 +665,46 @@ footer ul li {
 .smalltext {
   padding-top: 5px;
   font-size: 16px;
+}
+
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -1px;
+}
+
+.table {
+  margin-top: 20px;
+
+  th {
+    background-color: $white4;
+  }
+}
+
+.cate {
+  padding: 10px;
+  margin: 5px 0;
+  overflow: hidden;
+  background: $white2;
+
+  p {
+    text-align: justify;
+    font-size: 1.5em;
+  }
+
+  &:hover {
+    box-shadow: 0 4px 8px 0 $black2, 0 6px 20px 0 $black3;
+  }
+}
+
+.modal-body {
+  text-align: left;
+}
+
+.margin-top-5 {
+  display: inline-block;
 }

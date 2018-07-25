@@ -1,4 +1,5 @@
 en:
+  e_learning: "E-learning"
   manage: "Manage"
   admin_access: "You don't have access"
   save: "Save"
@@ -91,13 +92,19 @@ en:
       save: "Save changes"
       avatar: "Avatar"
     activities:
-      last_change: "Last changed at "
+      created_date: "Created date"
+      lesson: "Lesson"
       pass: "Pass"
       failed: "Failed"
       unfinished: "unfinished"
-      name: "Lesson: "
-      duration: "Duration:"
-      spend: "Spend time:"
+      name: "Lesson"
+      duration: "Duration"
+      spent_time: "Spend time"
+      result: "Result"
+      status0: "save"
+      status1: "unfinish"
+      status2: "pass"
+      status3: "fail"
     destroy:
       success: "Deleted account"
       danger: "Don't have permission to delete the account"
@@ -279,3 +286,6 @@ en:
       progress: "Progress:"
       sucessfull: "sucessfull"
       zero: "0.00%"
+  sessions:
+    form_log_in:
+      new_user: "New user?"

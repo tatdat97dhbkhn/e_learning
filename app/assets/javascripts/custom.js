@@ -5,12 +5,26 @@ $(document).on('turbolinks:load', function() {
       alert(I18n.t('alert'));
     }
   });
+
   $('#lesson_image').bind('change', function() {
     var size_in_megabytes = this.files[0].size/1024/1024;
     if (size_in_megabytes > 5) {
       alert(I18n.t('alert'));
     }
   });
+
+  $('.update-result').change(function(){
+    $.get('../question_logs/' + $(this).val(), function(data, status) {});
+  });
+
+  $('.menu-start').click(function(e){
+    $(this).parent().siblings().children('.dropdown-menu').hide();
+    $(this).next('ul').toggle();
+    e.stopPropagation();
+    e.preventDefault();
+  });
+
+  $('.container').animate({minHeight:($(window).height() - 200)});
 });
 
 $(document).ready(function(){
@@ -23,12 +37,7 @@ $(document).ready(function(){
 
   setTimeout(function(){
     $('#flash').remove();
-  }, 3000);
-
-  $('.update-result').change(function(){
-    $.get('../question_logs/' + $(this).val(), function(data) {
-    }); 
-  });
+  }, 3000); 
 });
 
 $(document).on('turbolinks:load', function() {

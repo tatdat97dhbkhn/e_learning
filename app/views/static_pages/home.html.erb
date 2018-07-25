@@ -1,34 +1,45 @@
-
-<div class="center jumbotron">
-  <% if logged_in? %>
-    <div class="row">
-      <div class="col-sm-12">
-        <%= link_to image_tag("rsz_header.png", alt: "e-learning"),
-          home_path %>
-      </div>
-      <div class="col-sm-6">
-        <%= link_to image_tag("rsz_2word.jpg", alt: "List words"),
-          listword_path %>
-        <div class="">
-          <span>
-            <%= link_to t(".word"), listword_path,
-              class:"btn btn-primary btn-sm btn-course" %>
-          </span>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <%= link_to image_tag("rsz_lesson.jpg", alt: "Start lesson"),
-          choose_category_path %>
-        <span>
-          <%= link_to t(".start"), choose_category_path,
-            class: "btn btn-primary btn-sm btn-course" %>
-        </span>
-      </div>
-    </div>
-  <% else %>
-    <h1><%= t "elearning" %></h1>
-    <h2>
-      <%= t "home_page" %>
-    </h2>
-  <% end %>
-</div>
+<% if logged_in? %>
+  <div class="dropdown" >
+    <button class="btn btn-primary dropdown-toggle"
+      type="button" data-toggle="dropdown">
+      <%= t ".start" %>
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      <% @categories.each do |cate| %>
+        <% next if cate.courses.size.zero? %>
+        <li class="dropdown-submenu">
+          <a class="menu-start" tabindex="-1">
+            <%= cate.name %>
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <% @courses.select{|c| c.id.in? cate.courses.ids}.each do |c| %>
+              <% next if c.lessons.size.zero? %>
+              <li class="dropdown-submenu">
+                <a class="menu-start" tabindex="-1">
+                  <%= c.name %>
+                  <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <% c.lessons.each do |l| %>
+                    <li>
+                      <%= link_to l.name, "lesson_logs/#{l.id}",
+                        method: :post %>
+                    </li>
+                  <% end %>
+                </ul>
+              </li>
+            <% end %>
+          </ul>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div>
+    <%= render "users/activities"%>
+  </div>
+  <%= paginate @lesson_logs, theme: "twitter-bootstrap-3" %>
+<% else %>
+  <%= render "unlogged_in" %>
+<% end %>
+<div class="clear"></div>
