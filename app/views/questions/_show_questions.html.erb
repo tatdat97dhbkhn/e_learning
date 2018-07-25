@@ -1,0 +1,23 @@
+<%= link_to t(".add"), new_question_path,
+  class: "btn btn-primary" %>
+<table class="table table-hover">
+  <tr>
+    <th><%= t ".category" %></th>
+    <th><%= t ".meaning" %></th>
+    <th><%= t ".content" %></th>
+    <th><%= t ".edit" %></th>
+    <th><%= decide_action %></th>
+  </tr>
+  <% @questions.each do |question| %>
+    <tr>
+      <td><%= question.category.name %></td>
+      <td><%= question.meaning %></td>
+      <td><%= question.content %></td>
+      <td><%= link_to t(".edit"), edit_question_path(question) %></td>
+      <td>
+        <%= link_to decide_action, question, method: :delete %>
+      </td>
+    </tr>
+  <% end %>  
+</table>
+<%= paginate @questions, theme: "twitter-bootstrap-3" %>

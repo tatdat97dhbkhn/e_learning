@@ -1,82 +1,11 @@
-<div class="cssmenu">
-  <ul>
-    <li class="active">
-      <%= link_to "#" do %>
-        <span><%= t ".admin" %></span>
-      <% end %>
-    </li>
-    <li class="has-sub">
-      <%= link_to "#" do %>
-        <span><%= t ".categories" %></span>
-      <% end %>
-      <ul>
-        <li>
-          <%= link_to categories_path do %>
-            <span><%= t ".lists" %></span>
-          <% end %>
-        </li>
-        <li>
-          <%= link_to new_category_path do %>
-            <span><%= t ".add_category" %></span>
-          <% end %>
-        </li>
-      </ul>
-    </li>
-    <li class="has-sub">
-      <%= link_to "#" do %>
-        <span><%= t ".courses" %></span>
-      <% end %>
-      <ul>
-        <li>
-          <%= link_to courses_path do %>
-            <span><%= t ".lists" %></span>
-          <% end %>
-        </li>
-        <li>
-          <%= link_to new_course_path do %>
-            <span><%= t ".add_course" %></span>
-          <% end %>
-        </li>
-      </ul>
-    </li>
-    <li class="has-sub">
-      <%= link_to "#" do %>
-        <span><%= t ".lesson" %></span>
-      <% end %>
-      <ul>
-        <li>
-          <%= link_to lessons_path do %>
-            <span><%= t ".lists" %></span>
-          <% end %>
-        </li>
-        <li>
-          <%= link_to new_lesson_path do %>
-            <span><%= t ".add_lesson" %></span>
-          <% end %>
-        </li>
-      </ul>
-    </li>
-    <li class="has-sub">
-      <%= link_to questions_path do %>
-        <span><%= t ".questions" %></span>
-      <% end %>
-      <ul>
-        <li>
-          <%= link_to questions_path do %>
-            <span><%= t ".lists" %></span>
-          <% end %>
-        </li>
-        <li>
-          <%= link_to new_question_path do %>
-            <span><%= t ".add_question" %></span>
-          <% end %>
-        </li>
-      </ul>
-    </li>
-    <li class="has-sub">
-      <%= link_to admin_path do %>
-        <span><%= t ".users" %></span>
-      <% end %>
-    </li>
-  </ul>
+<div class="col-md-4">
+  <center>
+    <div class="vertical-menu manage-menu">
+      <%= link_to t(".users"), admin_path %>
+      <%= link_to t(".categories"), categories_path %>
+      <%= link_to t(".courses"), courses_path %>
+      <%= link_to t(".lessons"), lessons_path %>
+      <%= link_to t(".questions"), questions_path %>
+    </div>
+  </center>
 </div>

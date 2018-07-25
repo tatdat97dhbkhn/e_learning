@@ -3,7 +3,7 @@ class QuestionsController < ApplicationController
   before_action :get_all_category, only: %i(new edit)
 
   def index
-    @questions = Question.all.page(params[:page]).per_page Settings.data.pages
+    @questions = get_using_question true
   end
 
   def new
@@ -25,12 +25,12 @@ class QuestionsController < ApplicationController
   def edit; end
 
   def destroy
-    if @question.destroy
-      flash[:success] = t ".delete"
-      redirect_to questions_url
+    if question.update used: !question.used
+      flash[:success] = t ".success"
+      redirect_to questions_path
     else
-      flash[:danger] = t "danger"
-      redirect_to home_path
+      flash[:danger] = t ".danger"
+      redirect_to questions_path
     end
   end
 
@@ -42,6 +42,10 @@ class QuestionsController < ApplicationController
       flash[:danger] = t "danger"
       redirect_to root_path
     end
+  end
+
+  def restore
+    @questions = get_using_question false
   end
 
   private
@@ -61,5 +65,9 @@ class QuestionsController < ApplicationController
 
   def get_all_category
     @categories = Category.all
+  end
+
+  def get_using_question flag
+    Question.using(flag).page(params[:page]).per_page Settings.data.pages
   end
 end

@@ -10,7 +10,7 @@
   <% i = Settings.number.zero %>
   <% @lesson_logs.each do |ql| %>
     <% status = get_status(ql) %>
-    <tr class="<%= status[1] %>">
+    <tr class="<%= status.second %>">
       <td><%= ql.created_at.strftime Settings.time.format %></td>
       <% if current_user? current_user %>
         <td><%= link_to ql.lesson.name, url_for(ql) %></td>
@@ -18,9 +18,10 @@
         <td><%= ql.lesson.name %></td>
       <% end %>
       <td><%= Settings.max_time %> m</td>
-      <td><%= Time.at (ql.updated_at - ql.created_at) %></td>
+      <td><%= Time.at(ql.updated_at - ql.created_at).
+        strftime Settings.time.format %></td>
       <td><%= @results[i] %></td>
-      <td><%= status[0] %></td>
+      <td><%= status.first %></td>
     </tr>
   <% i += Settings.number.one %>
   <% end %>

@@ -232,6 +232,14 @@ en:
       content: "Content"
       answers: "Answers"
       add_new: "Add a new question"
+    show_questions:
+      add: "Add new question"
+      edit: "Edit"
+      delete: "Delete"
+      restore: "Restore"
+    restore:
+      using: "Using questions"
+      all: "All questions deleted"
   answers:
     create:
       success: "Created successfull"
@@ -266,7 +274,7 @@ en:
       add_category: "Add category"
       courses: "Courses"
       add_course: "Add course"
-      lessons: "lessons"
+      lessons: "Lessons"
       add_lesson: "Add lesson"
       users: "Users"
       add_user: "Add user"

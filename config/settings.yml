@@ -50,3 +50,5 @@ table:
 github: "https://github.com/tatdat97dhbkhn/e_learning"
 class_css:
   active: "active"
+action:
+  restore: "restore"

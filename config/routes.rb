@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     get "follow", to: "users#follow"
     get "unfollow", to: "users#unfollow"
     get "/question_logs/:id", to: "question_logs#update"
+    get "/restore_questions", to: "questions#restore"
   end
   resources :answers
   resources :questions

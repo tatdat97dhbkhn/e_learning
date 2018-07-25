@@ -25,6 +25,14 @@ $(document).on('turbolinks:load', function() {
   });
 
   $('.container').animate({minHeight:($(window).height() - 200)});
+
+  if($('.manage-menu').length != 0){
+    $('.manage-menu a').each(function(){
+      if(window.location.pathname.includes($(this).attr('href').split('/')[1])){
+        $(this).addClass('active');
+      }
+    });
+  }
 });
 
 $(document).ready(function(){
