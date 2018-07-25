@@ -10,9 +10,6 @@
       <%= f.select :category_id, Category.all.map{|c| [c.name, c.id]},
         include_blank: t(".chose"), selected: t(".chose") %>
       <br><br>
-      
-      <%= f.label :meaning %>
-      <%= f.text_field :meaning, class: "form-control" %>
 
       <%= f.label :content %>
       <%= f.text_field :content, class: "form-control" %> 

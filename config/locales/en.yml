@@ -217,6 +217,7 @@ en:
       edit: "Edit"
       delete: "Delete"
       sure: "Sure"
+      answer: "Answer"
     new:
       add: "Add question"
       chose_category: "- Choose Category -"

@@ -4,26 +4,43 @@
 <div class="row">
   <div class="col-md-8">
     <table class="table">
-      <thead>
-        <tr class="success">
-          <th><%= t ".category" %></th>
-          <th><%= t ".meaning" %></th>
+      <thead >
+        <tr style="text-align:center;" class="info">
           <th><%= t ".content" %></th>
+          <th colspan="6" style="text-align:center;"><%= t ".answer" %></th>
           <th><%= t ".edit" %></th>
           <th><%= t ".delete" %></th>
         </tr>
       </thead>
       <tbody> 
         <% @questions.each do |question| %>
-          <tr class="info">
-            <td><%= question.category.name %></td>
-            <td><%= question.meaning %></td>
+          <tr class="success">
             <td><%= question.content %></td>
+            <% answers = question.answers %>
+            <% answers.each do |a| %>
+              <td><%= a.content %></td>
+            <% end %>
+            <% if answers.count < 6 %>
+              <% (0...(6-answers.count)).each do |j| %>
+                <td></td>
+              <% end %>
+            <% end %>
             <td><%= link_to t(".edit"), edit_question_path(question) %></td>
             <td>
               <%= link_to t(".delete"), question,
                 method: :delete, data: {confirm: t(".sure")} %>
             </td>
+          </tr>
+          <tr>
+            <td></td>
+            <% answers.each do |answer| %>
+              <% if answer.correct == true %>
+                <td class="marker">✔</td>
+              <% else %>
+                <td class="marker">✖</td>
+              <% end %>
+            <% end %>
+            <td></td>
           </tr>
         <% end %>  
       </tbody>

@@ -1,5 +1,7 @@
 <div class="container margin-top-100">
   <% if @lesson_log.pass.nil? %>
+  <input id="created_at" name="<%= @lesson_log.created_at %>" 
+    value="<%= @lesson_log.created_at %>" type="hidden" />
     <center>
       <div id="clockdiv" class="clockdiv">
         <div>

@@ -5,7 +5,6 @@ class Question < ApplicationRecord
 
   QUESTION_ATTRS = %w(meaning content category_id).freeze
 
-  validates :meaning, presence: true
   validates :content, presence: true
 
   scope :get_ques_by_ids, ->(ids){where id: ids}
