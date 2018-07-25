@@ -1,0 +1,38 @@
+<%= form_for @lesson_log do |f| %>
+  <h2><%= @lesson_log.lesson.name %></h2>
+  <% i = Settings.number.zero %>
+  <% ques = Settings.number.one_negative %>
+  <% flag = finished_lesson_log @lesson_log %>
+  <div class="answer">
+    <% @question_logs.each_with_index do |ql, j| %>
+      <% question = ql.question %>
+      <% if ques != question.id %>
+        <br/>
+        <b><%= i + Settings.number.one %>. <%= question.content %></b>
+        <% unless flag %>
+          <% if @results[i] %>
+            <div class="result correct"><%= t "correct" %></div>
+          <% else %>
+            <div class="result uncorrect"><%= t "uncorrect" %></div>
+          <% end %>
+        <% end %>
+        <% i += Settings.number.one %>
+        <% ques = question.id %>
+        <br/>
+      <% end %>
+      <% if @types[i - Settings.number.one] < Settings.number.two %>
+        <%= render "answers/form_show_answer_single", question_log: ql %>
+      <% else %>
+        <%= render "answers/form_show_answer_multy", question_log: ql %>
+      <% end %>
+      <span class="<%= decide_answer ql %>"></span>
+      <br/>
+    <% end %>
+  </div>
+  <% if flag %>
+    <%= f.submit t(".finish"), class: "btn btn-primary", id: "finish" %>
+    <% if @lesson_log.saved.nil? %>
+      <%= f.submit t(".save"), class: "btn btn-warning f-right", id: "save" %>
+    <% end %>
+  <%  end %>
+<% end %>

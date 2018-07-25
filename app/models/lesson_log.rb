@@ -22,27 +22,37 @@ class LessonLog < ApplicationRecord
   end
 
   def update_pass
-    update_attributes pass:
-      if get_result > Settings.number.enought_to_pass
-        true
-      else
-        false
-      end
+    update_attributes pass: get_result > Settings.number.enought_to_pass
   end
 
   def get_result
     question_logs = self.question_logs
-    total = Question.get_ques_by_ids(question_logs.select :question_id).size
-    uncorrect = []
-    answers = question_logs.preload(:answer)
-    questions = question_logs.preload(:question)
+    total = Question.get_ques_by_ids(question_logs.pluck :question_id).size
+    corrects = get_question_logs_each_question question_logs
+    corrects.delete nil
+    score = corrects.size * Settings.number.one_float / total
+  end
 
-    answers.size.times do |i|
-      if answers[i].answer.correct && answers[i].number.zero?
-        uncorrect.push questions[i].question.id
-      end
+  def get_question_logs_each_question question_logs
+    prev = question_logs.last.question_id
+    corrects = []
+    question_logs.each_with_index do |ql, j|
+      next if ql.question_id == prev
+      prev = ql.question_id
+      num = question_logs.select{|q| q.question_id == prev}.size
+      corrects.push question_result question_logs[j...j+num]
     end
-    score = (total - uncorrect.uniq.size) * Settings.number.one_float / total
+    corrects
+  end
+
+  def question_result question_logs
+    choose = []
+    correct = []
+    question_logs.each do |ql|
+      choose.push ql.answer_id if !ql.number.zero?
+      correct.push ql.answer_id if ql.answer.correct
+    end
+    true if choose.sort == correct.sort
   end
 
   class << self
@@ -58,13 +68,17 @@ class LessonLog < ApplicationRecord
       [@questions, @answers]
     end
 
-    def get_results lesson_logs
+    def get_scores lesson_logs
       results = []
 
       lesson_logs.preload(:question_logs).each do |ll|
         question_log = ll.question_logs
-        total = Question.get_ques_by_ids(question_log.select :question_id).size
-        results.push "#{(ll.get_result * total).to_i} / #{total}"
+        total = Question.get_ques_by_ids(question_log.pluck :question_id).size
+        results.push (unless ll.pass.nil?
+                       "#{(ll.get_result * total).to_i} / #{total}"
+                     else
+                       ""
+                     end)
       end
       results
     end

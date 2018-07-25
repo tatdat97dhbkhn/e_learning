@@ -519,7 +519,7 @@ footer ul li {
 .answer {
   list-style: none;
   font-style: none;
-  
+
   label {
     font-weight: 100;
   }
@@ -737,4 +737,8 @@ tr:nth-child(even) {
   margin-left: 10px;
   position: relative;
   top: 10px;
+}
+
+.glyphicon {
+  color: $green2;
 }

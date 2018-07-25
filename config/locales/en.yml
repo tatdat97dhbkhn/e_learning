@@ -166,12 +166,6 @@ en:
     new:
       add: "Add course"
       chose: "- Choose Category -"
-  lesson_logs:
-    show:
-      day: "Days"
-      hours: "Hours"
-      minute: "Minutes"
-      second: "Seconds"
   lessons:
     create:
       success: "Created successfull"
@@ -287,9 +281,16 @@ en:
       add_answer: "Add answer"
       answers: "Answers"
       danger: "Lesson don't exist"
+      day: "Days"
+      hours: "Hours"
+      minute: "Minutes"
+      second: "Seconds"
     history:
       correct: "correct"
       uncorrect: "uncorrect"
+    form_lesson_log:
+      save: "Save"
+      finish: "Finish"
   choose_category:
     choose_category:
       all_category: "All lessons"
