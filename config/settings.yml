@@ -27,13 +27,14 @@ image:
   size: 400
   capacity: 5
 data:
-  pages: 20
+  pages: 8
 number:
   zero: 0
   one: 1
   two: 2
   one_float: 1.0
   enought_to_pass: 0.8
+  four: 4
 time:
   format1: "%H:%M:%S"
   format: "%m/%d/%Y - %H:%M"
@@ -41,7 +42,7 @@ status_unlearn: "unlearned"
 status_learn: "learned"
 max_time: 60
 table:
-  status: 
+  status:
     s0: "warning"
     s1: "active"
     s2: "success"

@@ -1,0 +1,26 @@
+<%= form_for question, html: {multipart: true} do |f| %>
+  <%= render "shared/error_messages", object: f.object %>
+  <%= f.label :category_id %><br/>
+  <%= f.select :category_id, @categories.map{|c| [c.name, c.id]},
+    include_blank: t(".chose_category"),
+    selected: t(".chose"), class: "cate" %>
+  <br/><br/>
+  <%= f.label t(".question") %>
+  <%= f.text_field :content, class: "form-control question_content" %> 
+  <br/>
+  <%= f.label t(".content") %>
+  <%= f.text_field :meaning, class: "form-control question_meaning" %>
+  <br/>
+  <h3><%= t(".answers") %></h3>
+  <div class="sub_answer">
+    <%= f.fields_for :answers do |builder| %>
+      <%= render "answer_fields", f: builder %>
+    <% end %>
+  </div>
+  <div class="links">
+    <%= link_to t(".add_new"), "#", id: "sub-field",
+      class: "add_answer",
+      data: {field: sub_answer_field(f)} %>
+  </div>
+  <%= f.submit yield(:submit), class: "btn btn-primary add_question" %>
+<% end %>

@@ -67,6 +67,7 @@ p {
   overflow: visible;
   text-align: center;
   border-bottom: 1px solid $gray2;
+  margin-bottom: 10px;
 
   li.dropdown {
     display: inline-block;
@@ -707,4 +708,27 @@ footer ul li {
 
 .margin-top-5 {
   display: inline-block;
+}
+
+.close-answer {
+  font-weight: 300;
+  color: $red-fresh;
+  float: right;
+
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+.add_question {
+  width: 100%;
+}
+
+.f-right {
+  float: right;
+}
+
+tr:nth-child(even) {
+  background-color: $white3;
 }

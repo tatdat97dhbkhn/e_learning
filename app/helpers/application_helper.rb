@@ -24,4 +24,12 @@ module ApplicationHelper
       [t(".status3"), Settings.table.status.s3]
     end
   end
+
+  def sub_answer_field form
+    sub_address = form.object.answers.build
+    form.fields_for :answers, sub_address,
+      child_index: "hello" do |builder|
+      render "answer_fields", f: builder
+    end
+  end
 end
