@@ -8,9 +8,19 @@ class Question < ApplicationRecord
   validates :meaning, presence: true
   validates :content, presence: true
 
+  scope :get_ques_by_ids, ->(ids){where id: ids}
+
   class << self
-    def get_questions_by_question_logs question_logs
-      questions = Question.where(id: question_logs.select(:question_id)).preload(:answers)
+    def get_questions question_logs
+      ids = question_logs.select(:question_id)
+      questions = Question.get_ques_by_ids(ids).preload(:answers)
+      answers = []
+      types = []
+
+      questions.each do |q|
+        types.push q.answers.select{|a| a.correct == true}.size
+      end
+      [questions, types]
     end
   end
 end

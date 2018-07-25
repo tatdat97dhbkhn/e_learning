@@ -13,22 +13,36 @@ class LessonLog < ApplicationRecord
     QuestionLog.create_question_logs
   end
 
-  def update_result question_logs, status
-    if question_logs.keys.count.zero? && status.eql?(I18n.t("finish"))
-      update_attributes pass: false
+  def update_result status
+    if status.eql? I18n.t("save")
+      update_attributes save: true
     else
-      return if question_logs.keys.count.zero?
-      total = question_logs.keys.count
-      correct = Settings.number.zero
-
-      question_logs.keys.each do |question_log_id|
-        quession_log = QuestionLog.find_by id: question_log_id
-        quession_log.update_attributes answer_id: question_logs[question_log_id]
-        correct += Settings.number.one if quession_log.answer.correct
-      end
-      return if status.eql? I18n.t("save")
-      update_pass correct, total
+      update_pass
     end
+  end
+
+  def update_pass
+    update_attributes pass:
+      if get_result > Settings.number.enought_to_pass
+        true
+      else
+        false
+      end
+  end
+
+  def get_result
+    question_logs = self.question_logs
+    total = Question.get_ques_by_ids(question_logs.select :question_id).size
+    uncorrect = []
+    answers = question_logs.preload(:answer)
+    questions = question_logs.preload(:question)
+
+    answers.size.times do |i|
+      if answers[i].answer.correct && answers[i].number.zero?
+        uncorrect.push questions[i].question.id
+      end
+    end
+    score = (total - uncorrect.uniq.size) * Settings.number.one_float / total
   end
 
   class << self
@@ -44,22 +58,13 @@ class LessonLog < ApplicationRecord
       [@questions, @answers]
     end
 
-    def get_result lesson_logs
-      question_logs = []
-
-      lesson_logs.each do |lesson_log|
-        question_logs.push lesson_log.question_logs
-      end
-
+    def get_results lesson_logs
       results = []
 
-      question_logs.each do |question_log|
-        correct = Settings.number.zero
-
-        question_log.each do |q|
-          correct += 1 if q.answer.correct
-        end
-        results.push "#{correct}/#{question_log.count}"
+      lesson_logs.preload(:question_logs).each do |ll|
+        question_log = ll.question_logs
+        total = Question.get_ques_by_ids(question_log.select :question_id).size
+        results.push "#{(ll.get_result * total).to_i} / #{total}"
       end
       results
     end
@@ -68,13 +73,4 @@ class LessonLog < ApplicationRecord
   private
 
   attr_reader :lesson_log
-
-  def update_pass correct, total
-    if (correct * Settings.number.one_float / total) >
-       Settings.number.enought_to_pass
-      update_attributes pass: true
-    else
-      update_attributes pass: false
-    end
-  end
 end

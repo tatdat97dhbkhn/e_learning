@@ -5,18 +5,17 @@ class Answer < ApplicationRecord
   scope :correct_ans, ->{where correct: true}
 
   ANSWER_ATTRS = %w(content question_id correct).freeze
-  scope :question_id, ->{order(question_id: :asc)}
 
   validates :content, presence: true
 
   class << self
-    def get_correct_answers answers
-      @corrects = []
+    def get_correct_answers questions
+      corrects = []
 
-      answers.each do |answer|
-        @corrects.push(answer.correct_ans.ids)
+      questions.preload(:answers).each do |q|
+        corrects.push q.answers.select{|a| a.correct == true}
       end
-      @corrects
+      corrects.flatten!
     end
   end
 end

@@ -83,7 +83,7 @@ class User < ApplicationRecord
 
   def get_follower_ids
     follower_ids = []
-    
+
     follow_users.each do |follower|
       follower_ids.push follower.follower
     end
