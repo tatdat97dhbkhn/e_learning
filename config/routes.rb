@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     delete "/logout", to: "sessions#destroy"
     get "follow", to: "users#follow"
     get "unfollow", to: "users#unfollow"
+    get "/question_logs/:id", to: "question_logs#update"
   end
   resources :answers
   resources :questions

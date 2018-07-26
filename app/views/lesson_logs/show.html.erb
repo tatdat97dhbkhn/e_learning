@@ -28,61 +28,51 @@
         </div>
       </div>
     </center>
+    
     <%= form_for :questionlog, method: :patch, html: {name: "go"} do |f| %>
-      <% i = 0 %>
-      <% j = 0 %>
-      <% flag = true %>
+      <% i = Settings.number.zero %>
+      <% j = Settings.number.zero %>
+
       <% @questions.each do |q| %>
-        <% next if q.answers.size < 2 %>
+        <% next if q.answers.size < Settings.number.two || @types[i].zero? %>
         <div>
+          <b><%= i + Settings.number.one %>. <%= q.content %></b>
 
-          <% if flag %>
-            <b><%= i += 1 %>. <%= q.content %></b>
-            <% flag = false %>
-          <% end %>
-
-          <% if q.answers.select {|a| a.correct == true}.size == 1 %>
-            <% if q.id == @qls[j].question_id %>
+          <% if @types[i] == Settings.number.one %>
+            <% q.answers.size.times do %>
+              <% ql = @question_logs[j] %>
               <li class="answer">
-                <% if @qls[j].number %>
-                  <%= f.radio_button q.id,
-                    @qls[j].id, checked: true %>
-                <% else %>
-                  <%= f.radio_button q.id,
-                    @qls[j].id %>
-                <% end %>
-                <%= f.label "#{q.id}_#{@qls[j].id}",
-                  @qls[j].answer.content %>
+                <%= radio_button_tag q.id, ql.id,
+                  (if ql.number == Settings.number.one
+                    true
+                  else
+                    false
+                  end), {class: "update-result"} %>
+                <%= label_tag "#{q.id}_#{ql.id}", ql.answer.content %>
+                <% j += Settings.number.one %>
               </li>
-              <% j += 1 %>
-              <% redo unless j == @qls.size %>
-            <% else %>
-              <% flag = true %>
             <% end %>
           <% else %>
-            <% if q.id == @qls[j].question_id %>
+            <% q.answers.size.times do %>
+              <% ql = @question_logs[j] %>
               <li class="answer">
-                <% if @qls[j].number %>
-                  <%= f.check_box q.id,
-                    @qls[j].id, checked: true %>
-                <% else %>
-                  <%= f.check_box @qls[j].id %>
-                <% end %>
-                <%= f.label "#{q.id}_#{@qls[j].id}",
-                  @qls[j].answer.content %>
+                <%= check_box_tag ql.id, ql.id,
+                  (if ql.number == Settings.number.one
+                    true
+                  else
+                    false
+                  end), {class: "update-result"} %>
+                <%= label_tag ql.id, ql.answer.content %>
+                <% j += Settings.number.one %>
               </li>
-              <% j += 1 %>
-              <% redo unless j == @qls.size %>
-            <% else %>
-              <% flag = true %>
             <% end %>
           <% end %>
+          <% i += Settings.number.one %>
         </div>
         <br/>
       <% end %>
       <%= f.submit t(".finish"), class: "btn btn-primary", id: "finish" %>
       <%= f.submit t(".save"), class: "btn btn-primary", id: "save" %>
-      
     <% end %>
   <% else %>
     <%= render "history" %>

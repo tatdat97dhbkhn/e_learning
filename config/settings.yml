@@ -23,6 +23,7 @@ question:
 number:
   zero: 0
   one: 1
+  two: 2
   one_float: 1.0
   enought_to_pass: 0.8
 time:

@@ -11,20 +11,15 @@ class LessonLogsController < ApplicationController
 
   def show
     redirect_to root_path unless current_user
-    @qls = lesson_log.question_logs.preload(:answer)
-    @questions = Question.get_questions_by_question_logs @qls 
+    @question_logs = lesson_log.question_logs.preload(:answer)
+    @questions, @types = Question.get_questions @question_logs
     return if lesson_log.pass.nil?
-    @corrects = Answer.get_correct_answers @answers
+    @corrects = Answer.get_correct_answers @questions
   end
 
   def update
     lesson_log.update_attributes spend_time: lesson_log.updated_at.to_i
-    @question_logs = if params[:questionlog]
-                       params[:questionlog]
-                     else
-                       Settings.number.zero
-                     end
-    lesson_log.update_result @question_logs, params[:commit]
+    lesson_log.update_result params[:commit]
     redirect_to profile_path
   end
 

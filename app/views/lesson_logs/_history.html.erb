@@ -1,27 +1,66 @@
 <fieldset disabled>
-  <% (Settings.number.zero...@question_logs.count).each do |i| %>
+  <% i = Settings.number.zero %>
+  <% j = Settings.number.zero %>
+
+  <% @questions.each do |q| %>
+    <% next if q.answers.size < Settings.number.two || @types[i].zero? %>
     <div>
-      <b><%= i+1 %>. <%= Question.find_by(id: @questions[i]).content %></b>
-
-      <% if @question_logs[i].answer_id == @corrects[i][0] %>
-        <span class="result correct"><%= t ".correct" %></span>
+      <b><%= i + Settings.number.one %>. <%= q.content %></b>
+      <% answer = @corrects.slice! Settings.number.zero...@types[i] %>
+      <% if @types[i] == Settings.number.one %>
+        <% unless @question_logs.select{|ql|
+          ql.answer_id == answer.first.id}.first.number.zero? %>
+          <span class="result correct">correct</span>
+        <% else %>
+          <span class="result uncorrect">uncorrect</span>
+        <% end %>
+        <% q.answers.size.times do %>
+          <% ql = @question_logs[j] %>
+          <li class="answer">
+            <%= radio_button_tag nil, nil,
+              (if ql.number == Settings.number.one
+                true
+              else
+                false
+              end), {class: "update-result"} %>
+            <%= label_tag nil, ql.answer.content,
+              {class: if ql.answer.correct
+                        "bold-style"
+                      end} %>
+            <% j += Settings.number.one %>
+          </li>
+        <% end %>
       <% else %>
-        <span class="result uncorrect"><%= t ".uncorrect" %></span>
+      <% flag = true %>
+        <% answer.each do |a| 
+          next unless @question_logs.select{|ql|
+          ql.answer_id == a.id}.first.number.zero?
+          flag = false
+          break 
+        end %>
+        <% if flag %>
+          <span class="result correct">correct</span>
+        <% else %>
+          <span class="result uncorrect">uncorrect</span>
+        <% end %>
+        <% q.answers.size.times do %>
+          <% ql = @question_logs[j] %>
+          <li class="answer">
+            <%= check_box_tag ql.id, ql.id,
+              (if ql.number == Settings.number.one
+                true
+              else
+                false
+              end), {class: "update-result"} %>
+            <%= label_tag nil, ql.answer.content,
+              {class: if ql.answer.correct
+                        "bold-style"
+                      end} %>
+            <% j += Settings.number.one %>
+          </li>
+        <% end %>
       <% end %>
-
-      <% @answers[i].each do |ans| %>
-        <% next if ans.id == Settings.question.answer_default %>
-        <li class="answer">
-          <%= radio_button_tag nil, ans.id,
-            (true if @question_logs[i].answer_id == ans.id) %>
-
-          <% if ans.correct %>
-            <%= label_tag nil, ans.content, class: "bold-style" %>
-          <% else %>
-            <%= label_tag nil, ans.content %>
-          <% end %>
-        </li>
-      <% end %>
+      <% i += Settings.number.one %>
     </div>
     <br/>
   <% end %>

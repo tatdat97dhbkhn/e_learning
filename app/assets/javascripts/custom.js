@@ -20,9 +20,15 @@ $(document).ready(function(){
       $('#course_id').html(data);
     });
   });
+
   setTimeout(function(){
     $('#flash').remove();
   }, 3000);
+
+  $('.update-result').change(function(){
+    $.get('../question_logs/' + $(this).val(), function(data) {
+    }); 
+  });
 });
 
 $(document).on('turbolinks:load', function() {
