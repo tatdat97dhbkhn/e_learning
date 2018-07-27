@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 2018_07_12_095003) do
 
   create_table "lesson_logs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.boolean "pass"
+    t.boolean "saved"
     t.bigint "spend_time", default: 0
     t.bigint "user_id"
     t.bigint "lesson_id"

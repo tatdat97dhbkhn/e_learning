@@ -15,7 +15,7 @@ class LessonLog < ApplicationRecord
 
   def update_result status
     if status.eql? I18n.t("save")
-      update_attributes save: true
+      update_attributes saved: true
     else
       update_pass
     end

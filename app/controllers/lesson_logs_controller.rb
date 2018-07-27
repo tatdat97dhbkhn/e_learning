@@ -6,6 +6,7 @@ class LessonLogsController < ApplicationController
   def create
     @lesson_log = LessonLog.create user_id: current_user[:id],
       lesson_id: params[:id]
+    @lesson_log.update_attributes spend_time: @lesson_log.updated_at.to_i
     redirect_to lesson_log
   end
 
@@ -15,6 +16,7 @@ class LessonLogsController < ApplicationController
     @questions, @types = Question.get_questions @question_logs
     return if lesson_log.pass.nil?
     @corrects = Answer.get_correct_answers @questions
+    
   end
 
   def update
