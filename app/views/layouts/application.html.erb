@@ -9,14 +9,8 @@
       "data-turbolinks-track": "reload" %>
   </head>
   <body>
-    <p style = "float : right;">
-      <%= link_to_unless I18n.locale == :en,
-        image_tag("en.png"), locale: :en %>
-      <%= link_to_unless I18n.locale == :vi,
-        image_tag("vn.png"), locale: :vi %>
-    </p>
     <%= render "layouts/header" %>
-    
+    <div class="clear"></div>
     <div class = "container">
       <div id="flash">
         <% flash.each do |message_type, message| %>
@@ -26,7 +20,7 @@
         <% end %>
       </div>
       <%= yield %>
-      <%= render "layouts/footer" %>
     </div>
+    <%= render "layouts/footer" %>
   </body>
 </html>

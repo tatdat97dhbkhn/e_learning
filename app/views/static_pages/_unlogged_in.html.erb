@@ -1,0 +1,14 @@
+<div class="row">
+  <% @categories.each do |c| %>
+    <div class="col-sm-4">
+      <center class="cate">
+        <h3><%= c.name %></h3>
+        <p><%= c.description %></p>
+        <button type="button" class="btn btn-primary"
+          data-toggle="modal" data-target="#myModal">Start
+        </button>
+        <%= render "modal_log_in" %>
+      </center>
+    </div>
+  <% end %>
+</div>

@@ -68,6 +68,10 @@ class LessonLog < ApplicationRecord
       end
       results
     end
+
+    def get_lessons_user user
+      user.lesson_logs.order_date(:desc).includes :lesson
+    end
   end
 
   private

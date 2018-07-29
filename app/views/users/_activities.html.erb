@@ -1,44 +1,27 @@
-<div class="activities">
-  <ul>
-    <% (Settings.number.zero...@lessons.count).each do |i| %>
-      <li>
-        <span class="lesson">
-          <% if current_user? @user %>
-            <%= link_to "Lesson: #{@lessons[i]}",
-              @lesson_logs[i] %>
-          <% else %>
-            <span><%= t ".name" %><%= @lessons[i] %></span>
-          <% end %>
-        </span>
-        <span>
-          <%= t ".duration" %>  
-          <%= Time.at(Settings.max_time).utc.strftime Settings.time.format1 %>
-        </span>
-        <span class="created">
-          <% time1 = @lesson_logs[i].updated_at.to_i %>
-          <% time2 = @lesson_logs[i].created_at.to_i %>
-          <% time = time1 - time2 %>
-          <% if time > Settings.max_time
-            time = Settings.max_time 
-          end %>
-          <%= t ".spend" %>
-          <%= Time.at(time).utc.strftime Settings.time.format1 %>
-        </span>
-        <% if @lesson_logs[i].pass.nil? %>
-          <span class="result unfinished">
-            <%= t ".unfinished" %>
-        <% elsif @lesson_logs[i].pass %>
-          <span><%= @results[i] %></span>
-          <span class="result true">
-            <%= t ".pass" %>
-          </span>
-        <% else %>
-          <span><%= @results[i] %></span>
-          <span class="result false">
-            <%= t ".failed" %> 
-          </span>
-        <% end %>
-      </li>
-    <% end %>
-  </ul>
-</div>
+<table class="table table-hover">
+  <tr>
+    <th><%= t ".last_change" %></th>
+    <th><%= t ".lesson" %></th>
+    <th><%= t ".duration" %></th>
+    <th><%= t ".spent_time" %></th>
+    <th><%= t ".score" %></th>
+    <th><%= t ".result" %></th>
+  </tr>
+  <% i = Settings.number.zero %>
+  <% @lesson_logs.each do |ql| %>
+    <% status = get_status(ql) %>
+    <tr class="<%= status[1] %>">
+      <td><%= ql.created_at.strftime Settings.time.format %></td>
+      <% if current_user? current_user %>
+        <td><%= link_to ql.lesson.name, url_for(ql) %></td>
+      <% else %>
+        <td><%= ql.lesson.name %></td>
+      <% end %>
+      <td><%= Settings.max_time %> m</td>
+      <td><%= Time.at (ql.updated_at - ql.created_at) %></td>
+      <td><%= @results[i] %></td>
+      <td><%= status[0] %></td>
+    </tr>
+  <% i += Settings.number.one %>
+  <% end %>
+</table>

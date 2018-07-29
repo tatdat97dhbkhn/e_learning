@@ -1,12 +1,17 @@
 <footer class="footer">
-  <small>
-    <%= t "design" %>  <%= link_to t("datthuy"),
-      "https://github.com/tatdat97dhbkhn/e_learning" %>
-  </small>
-  <nav>
-    <ul>
-      <li><%= link_to t("about") %></li>
-      <li><%= link_to t("contact") %></li>
-    </ul>
-  </nav>
+  <div class="max">
+    <small>
+      <%= t "design" %>  <%= link_to t("datthuy"), Settings.github %>
+    </small>
+    <nav>
+      <ul>
+        <li class="i18n">
+          <%= link_to_unless I18n.locale == :en, "EN", locale: :en %>
+        </li>
+        <li class="i18n">
+          <%= link_to_unless I18n.locale == :vi, "VI", locale: :vi %>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </footer>
