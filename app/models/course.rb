@@ -10,8 +10,8 @@ class Course < ApplicationRecord
   validates :name, presence: true,
     length: {maximum: Settings.course.length.max_name},
     uniqueness: {case_sensitive: false}
-  validates :category_id,
-    presence: {message: I18n.t("not_blank")}
+  validates :description,
+    length: {maximum: Settings.course.length.max_des}
   validate  :image_size
 
   private

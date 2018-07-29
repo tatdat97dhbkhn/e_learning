@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2018_07_12_095003) do
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "description"
+    t.boolean "used", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -33,6 +34,7 @@ ActiveRecord::Schema.define(version: 2018_07_12_095003) do
     t.string "description"
     t.string "image"
     t.bigint "category_id"
+    t.boolean "used", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_courses_on_category_id"
@@ -58,7 +60,6 @@ ActiveRecord::Schema.define(version: 2018_07_12_095003) do
   create_table "lesson_logs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.boolean "pass"
     t.boolean "saved"
-    t.bigint "spend_time", default: 0
     t.bigint "user_id"
     t.bigint "lesson_id"
     t.datetime "created_at", null: false
@@ -72,6 +73,7 @@ ActiveRecord::Schema.define(version: 2018_07_12_095003) do
     t.string "description"
     t.string "image"
     t.bigint "course_id"
+    t.boolean "used", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["course_id"], name: "index_lessons_on_course_id"
@@ -92,6 +94,7 @@ ActiveRecord::Schema.define(version: 2018_07_12_095003) do
     t.string "meaning"
     t.string "content"
     t.bigint "category_id"
+    t.boolean "used", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_questions_on_category_id"

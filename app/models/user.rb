@@ -7,10 +7,11 @@ class User < ApplicationRecord
   has_many :question_logs, through: :lesson_logs, dependent: :destroy
 
   before_save :downcase_email
+  
   USER_ATTRS = %w(name email password password_confirmation).freeze
   USER_ATTRS_EDIT = %w(avatar name email password
     password_confirmation).freeze
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  VALID_EMAIL_REGEX = /\A[a-z][a-z0-9_\.]{5,32}@[a-z0-9]{3,}(\.[a-z0-9]{2,4}){1,2}\Z/i
 
   validates :name, presence: true,
     length: {maximum: Settings.user.length.max_name}
