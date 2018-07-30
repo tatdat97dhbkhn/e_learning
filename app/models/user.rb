@@ -1,5 +1,11 @@
 class User < ApplicationRecord
   require "securerandom"
+
+  attr_accessor :remember_token, :activation_token, :reset_token
+
+  before_save :downcase_email
+  before_create :create_activation_digest
+
   def self.find_or_create_from_auth_hash auth
     where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |u|
       u.provider = auth.provider
@@ -14,16 +20,15 @@ class User < ApplicationRecord
     end
   end
 
-  attr_accessor :remember_token
+
 
   has_many :follow_users, dependent: :destroy
   has_many :follow_courses, dependent: :destroy
   has_many :lesson_logs, dependent: :destroy
   has_many :question_logs, through: :lesson_logs, dependent: :destroy
 
-  before_save :downcase_email
-
   USER_ATTRS = %w(name email password password_confirmation).freeze
+  USER_PARAMS = %w(password password_confirmation).freeze
   USER_ATTRS_EDIT = %w(avatar name email password
     password_confirmation).freeze
   VALID_EMAIL_REGEX = /\A[a-z][a-z0-9_\.]{5,32}@[a-z0-9]{3,}(\.[a-z0-9]{2,4}){1,2}\Z/i
@@ -66,9 +71,10 @@ class User < ApplicationRecord
     update_attributes remember_digest: User.digest(remember_token)
   end
 
-  def authenticated? remember_token
-    return false if remember_digest.nil?
-    BCrypt::Password.new(remember_digest).is_password? remember_token
+  def authenticated?(attribute, token)
+    digest = send "#{attribute}_digest"
+    return false if digest.nil?
+    BCrypt::Password.new(digest).is_password? token
   end
 
   def forget
@@ -91,10 +97,38 @@ class User < ApplicationRecord
     User.where.not id: get_follower_ids.push(id)
   end
 
+  def activate
+    update_attributes activated: true, activated_at: Time.zone.now
+  end
+  
+  def send_activation_email
+    UserMailer.account_activation(self).deliver_now
+  end
+
+  def create_reset_digest
+    self.reset_token = User.new_token
+    update_attributes reset_digest: User.digest(reset_token),
+      reset_sent_at: Time.zone.now
+  end
+
+  def send_password_reset_email
+    UserMailer.password_reset(self).deliver_now
+  end
+
+  def password_reset_expired?
+    time = Settings.time.hours
+    reset_sent_at < time.hours.ago
+  end
+
   private
 
   def downcase_email
-    email.downcase!
+    self.email = email.downcase
+  end
+
+  def create_activation_digest
+    self.activation_token  = User.new_token
+    self.activation_digest = User.digest activation_token
   end
 
   def get_follower_ids

@@ -1,9 +1,9 @@
-User.create!(name: "Example User",
-  email: "thuynguyennhu97@gmail.com",
-  password: "thuy123",
-  password_confirmation: "thuy123",
-  admin: true,
-  activated: true,
+User.create!(name: "PhamTatDat",
+	email: "tatdat97dhbkhn@gmail.com",
+	password: "123456",
+	password_confirmation: "123456",
+	admin: true,
+	activated: true,
   activated_at: Time.zone.now)
 
 50.times do |n|

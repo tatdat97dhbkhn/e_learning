@@ -32,4 +32,6 @@ Rails.application.routes.draw do
   resources :courses
   resources :categories
   resources :follow_users, only: %i(create destroy)
+  resources :account_activations, only: %i(edit)
+  resources :password_resets, only: %i(new create edit update)
 end
