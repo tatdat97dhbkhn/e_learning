@@ -9,6 +9,8 @@
 body {
   margin: 0;
   font-family: Arial;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
 
 section {
@@ -62,7 +64,7 @@ p {
 
 .header {
   overflow: hidden;
-  background-color: $white3;
+  background-color: $darkcyan;
   padding: 20px 10px;
   overflow: visible;
   text-align: center;
@@ -72,6 +74,7 @@ p {
   li.dropdown {
     display: inline-block;
     overflow: none;
+    min-width: 150px;
 
     .dropdown-menu {
       li a {
@@ -646,7 +649,9 @@ footer ul li {
   font-family: sans-serif;
   color: $white;
   display: inline-block;
-  font-size: 30px;
+  font-size: 20px;
+  position: fixed;
+  right: 0;
 }
 
 .clockdiv > div {
@@ -690,7 +695,8 @@ footer ul li {
   padding: 10px;
   margin: 5px 0;
   overflow: hidden;
-  background: $white2;
+  background-color: $white2;
+  border-radius: 25px;
 
   p {
     text-align: justify;

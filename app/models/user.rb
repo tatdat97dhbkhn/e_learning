@@ -8,6 +8,7 @@ class User < ApplicationRecord
       u.oauth_expires_at = Time.at auth.credentials.expires_at
       u.name = auth.info.name
       u.email = auth.info.email
+      u.avatar = URI.parse auth.info.image
       u.password = SecureRandom.urlsafe_base64
       u.save!
     end

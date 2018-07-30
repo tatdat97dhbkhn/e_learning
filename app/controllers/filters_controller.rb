@@ -4,16 +4,16 @@ class FiltersController < ApplicationController
   skip_before_action :is_admin?
 
   def listword
-    @answers = Answer.where correct: Settings.number.one
+    @answers = paginate Answer.where correct: Settings.number.one
   end
 
   def listword_category
     @category = Category.find_by id: params[:id]
-    @answers = @category.answers.where correct: true
+    @answers = paginate @category.answers.where correct: true
   end
 
   def listword_alphabet
-    @answers = Answer.where(correct: Settings.number.one).order "content ASC"
+    @answers = paginate Answer.where(correct: Settings.number.one).order "content ASC"
   end
 
   def listword_learned
@@ -40,9 +40,19 @@ class FiltersController < ApplicationController
 
     @arr = []
     @arr = @answer_true.flatten.uniq
+    @arr = Kaminari.paginate_array(@arr).page(params[:page]).
+      per Settings.data.pages
 
     @unlearned = []
     return unless @status == Settings.status_unlearn
     @unlearned.push Answer.where.not id: @arr
+    @unlearned = Kaminari.paginate_array(@unlearned.first).
+      page(params[:page]).per Settings.data.pages
+  end
+
+  private
+  
+  def paginate obj
+    obj.page(params[:page]).per_page Settings.data.pages
   end
 end

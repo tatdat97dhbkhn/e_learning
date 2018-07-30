@@ -13,6 +13,11 @@ class LessonLog < ApplicationRecord
     QuestionLog.create_question_logs
   end
 
+  def update_time
+    update_attributes saved: false,
+      created_at: Time.at(Time.now.to_i - updated_at.to_i + created_at.to_i) if saved
+  end
+
   def update_result status
     if status.eql? I18n.t("save")
       update_attributes saved: true

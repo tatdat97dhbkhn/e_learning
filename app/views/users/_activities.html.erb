@@ -17,9 +17,18 @@
       <% else %>
         <td><%= ll.lesson.name %></td>
       <% end %>
-      <td><%= Settings.max_time %> <%= t ".minutes" %></td>
-      <td><%= Time.at(ll.updated_at - ll.created_at).
-        strftime Settings.time.format %></td>
+      <td>
+        <%= Time.at(Settings.max_time).utc.strftime Settings.time.format1 %>
+      </td>
+      <td>
+        <% time1 = @lesson_logs[i].updated_at.to_i %>
+        <% time2 = @lesson_logs[i].created_at.to_i %>
+        <% time = time1 - time2 %>
+        <% if time > Settings.max_time %>
+          <% time = Settings.max_time %>
+        <% end %>
+        <%= Time.at(time).utc.strftime Settings.time.format1 %>
+      </td>
       <td><%= @results[i] %></td>
       <td><%= status.first %></td>
     </tr>
