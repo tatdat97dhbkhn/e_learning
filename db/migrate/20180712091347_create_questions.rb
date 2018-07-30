@@ -4,6 +4,7 @@ class CreateQuestions < ActiveRecord::Migration[5.2]
       t.string :meaning
       t.string :content
       t.references :category, foreign_key: true
+      t.boolean :used, default: true
 
       t.timestamps
     end

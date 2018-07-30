@@ -7,7 +7,10 @@ class Category < ApplicationRecord
   CATEGORY_ATTRS = %w(name description).freeze
 
   scope :created, ->{where created_at: :desc}
+
   validates :name, presence: true,
     length: {maximum: Settings.category.length.max_name},
     uniqueness: {case_sensitive: false}
+  validates :description,
+    length: {maximum: Settings.category.length.max_des}
 end

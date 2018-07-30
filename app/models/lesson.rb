@@ -1,6 +1,6 @@
 class Lesson < ApplicationRecord
   belongs_to :course
-  has_many :lesson_logs, dependent: :destroy
+  has_many :lesson_logs
 
   LESSON_ATTRS = %w(name description course_id image).freeze
   mount_uploader :image, ImagesUploader
@@ -8,8 +8,8 @@ class Lesson < ApplicationRecord
   validates :name, presence: true,
     length: {maximum: Settings.lesson.length.max_name},
     uniqueness: {case_sensitive: false}
-  validates :course_id,
-    presence: {message: I18n.t("not_blank")}
+  validates :description,
+    length: {maximum: Settings.lesson.length.max_des}
   validate  :image_size
 
   class << self

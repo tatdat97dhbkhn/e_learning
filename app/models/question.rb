@@ -1,12 +1,14 @@
 class Question < ApplicationRecord
   belongs_to :category
   has_many :answers, dependent: :destroy
-  has_many :question_logs, dependent: :destroy
+  has_many :question_logs
 
   QUESTION_ATTRS = %w(meaning content category_id).freeze
 
-  validates :meaning, presence: true
-  validates :content, presence: true
+  validates :meaning, presence: true,
+    length: {maximum: Settings.question.length.max_meaning}
+  validates :content, presence: true,
+    length: {maximum: Settings.question.length.max_content}
 
   scope :get_ques_by_ids, ->(ids){where id: ids}
 

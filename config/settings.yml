@@ -3,23 +3,31 @@ user:
     max_name: 50
     min_pass: 6
     max_email: 50
+answer:
+  length:
+    max_content: 50
 category:
   length:
     max_name: 50
+    max_des: 200
 course:
   length:
     max_name: 50
+    max_des: 200
 lesson:
+  page: 30
   length:
     max_name: 50
-  page: 30
+    max_des: 200
+question:
+  length:
+    max_content: 200
+    max_meaning: 200
 image:
   size: 400
   capacity: 5
 data:
   pages: 20
-question:
-  answer_default: 1
 number:
   zero: 0
   one: 1
