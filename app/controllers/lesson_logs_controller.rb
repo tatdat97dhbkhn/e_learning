@@ -22,7 +22,7 @@ class LessonLogsController < ApplicationController
   def update
     lesson_log.update_attributes spend_time: lesson_log.updated_at.to_i
     lesson_log.update_result params[:commit]
-    redirect_to profile_path
+    redirect_to root_path
   end
 
   private

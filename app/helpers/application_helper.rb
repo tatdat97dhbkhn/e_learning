@@ -32,4 +32,12 @@ module ApplicationHelper
       render "answer_fields", f: builder
     end
   end
+  
+  def decide_action
+    if Settings.action.restore.in? request.path
+      t ".restore"
+    else
+      t ".delete"
+    end
+  end
 end
