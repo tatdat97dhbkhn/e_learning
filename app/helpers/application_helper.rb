@@ -40,11 +40,8 @@ module ApplicationHelper
   end
   
   def decide_action
-    if Settings.action.restore.in? request.path
-      t ".restore"
-    else
-      t ".delete"
-    end
+    return t("restore") if Settings.action.restore.in? request.path
+    t "remove"
   end
 
   def decide_answer question_log

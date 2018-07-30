@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     get "unfollow", to: "users#unfollow"
     get "/question_logs/:id", to: "question_logs#update"
     get "/restore_questions", to: "questions#restore"
+    get "/restore_categories", to: "categories#restore"
   end
 
   resources :questions
