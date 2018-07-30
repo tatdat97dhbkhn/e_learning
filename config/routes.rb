@@ -14,12 +14,16 @@ Rails.application.routes.draw do
     post "/lesson_logs/:id", to: "lesson_logs#create"
     get "/login", to: "sessions#new"
     post "/login", to: "sessions#create"
+    get "login_google", to: redirect("/auth/google_oauth2")
+    get "auth/:provider/callback", to: "sessions#create_google"
+    get "auth/failure", to: redirect("/")
     delete "/logout", to: "sessions#destroy"
     get "follow", to: "users#follow"
     get "unfollow", to: "users#unfollow"
     get "/question_logs/:id", to: "question_logs#update"
     get "/restore_questions", to: "questions#restore"
   end
+
   resources :answers
   resources :questions
   resources :users

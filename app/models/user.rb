@@ -1,4 +1,18 @@
 class User < ApplicationRecord
+  require "securerandom"
+  def self.find_or_create_from_auth_hash auth
+    where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |u|
+      u.provider = auth.provider
+      u.uid = auth.uid
+      u.oauth_token = auth.credentials.token
+      u.oauth_expires_at = Time.at auth.credentials.expires_at
+      u.name = auth.info.name
+      u.email = auth.info.email
+      u.password = SecureRandom.urlsafe_base64
+      u.save!
+    end
+  end
+
   attr_accessor :remember_token
 
   has_many :follow_users, dependent: :destroy
@@ -7,7 +21,7 @@ class User < ApplicationRecord
   has_many :question_logs, through: :lesson_logs, dependent: :destroy
 
   before_save :downcase_email
-  
+
   USER_ATTRS = %w(name email password password_confirmation).freeze
   USER_ATTRS_EDIT = %w(avatar name email password
     password_confirmation).freeze

@@ -15,8 +15,8 @@ class ChooseCategoryController < ApplicationController
     Category.all.each do |category|
       category.courses.each do |course|
         if course.lesson_logs.count > 0 &&
-            !course.lesson_logs.current(current_user).pass_lesson.count.zero?
-          pass_courses.push Settings.number.one 
+          !course.lesson_logs.current(current_user).pass_lesson.count.zero?
+          pass_courses.push Settings.number.one
         else
           pass_courses.push Settings.number.zero
         end
