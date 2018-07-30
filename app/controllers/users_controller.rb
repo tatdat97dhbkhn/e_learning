@@ -25,9 +25,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    @lesson_logs = user.lesson_logs.order_date :desc
-    @lessons = Lesson.get_name_by_lesson_logs @lesson_logs
-    @results = LessonLog.get_results @lesson_logs
     @follow = current_user.follow_status user
   end
 

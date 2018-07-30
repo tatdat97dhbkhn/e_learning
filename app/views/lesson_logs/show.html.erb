@@ -8,8 +8,6 @@
       value="<%= @lesson_log.updated_at %>" type="hidden" />
     <input id="saved" 
       value="<%= @lesson_log.saved %>" type="hidden" />
-    <input id="spend_time" 
-      value="<%= @lesson_log.spend_time %>" type="hidden" />
     <center>
       <div id="clockdiv" class="clockdiv">
         <div>
@@ -38,55 +36,8 @@
         </div>
       </div>
     </center>
-    
-    <%= form_for :questionlog, method: :patch, html: {name: "go"} do |f| %>
-      <% i = Settings.number.zero %>
-      <% j = Settings.number.zero %>
-
-      <% @questions.each do |q| %>
-        <% next if q.answers.size < Settings.number.two || @types[i].zero? %>
-        <div>
-          <b><%= i + Settings.number.one %>. <%= q.content %></b>
-
-          <% if @types[i] == Settings.number.one %>
-            <% q.answers.size.times do %>
-              <% ql = @question_logs[j] %>
-              <li class="answer">
-                <%= radio_button_tag q.id, ql.id,
-                  (if ql.number == Settings.number.one
-                    true
-                  else
-                    false
-                  end), {class: "update-result"} %>
-                <%= label_tag "#{q.id}_#{ql.id}", ql.answer.content %>
-                <% j += Settings.number.one %>
-              </li>
-            <% end %>
-          <% else %>
-            <% q.answers.size.times do %>
-              <% ql = @question_logs[j] %>
-              <li class="answer">
-                <%= check_box_tag ql.id, ql.id,
-                  (if ql.number == Settings.number.one
-                    true
-                  else
-                    false
-                  end), {class: "update-result"} %>
-                <%= label_tag ql.id, ql.answer.content %>
-                <% j += Settings.number.one %>
-              </li>
-            <% end %>
-          <% end %>
-          <% i += Settings.number.one %>
-        </div>
-        <br/>
-      <% end %>
-      <%= f.submit t(".finish"), class: "btn btn-primary", id: "finish" %>
-      <% if !@lesson_log.saved %>
-        <%= f.submit t(".save"), class: "btn btn-primary", id: "save" %>
-      <% end %>
-    <% end %>
-  <% else %>
-    <%= render "history" %>
   <% end %>
+  <fieldset disabled>
+    <%= render "form_lesson_log" %>
+  </fieldset>
 </div>

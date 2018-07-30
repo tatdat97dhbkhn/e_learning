@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   resources :answers
   resources :questions
   resources :users
-  resources :lesson_logs, only: %i(create show update)
+  resources :lesson_logs, only: %i(create show update edit)
   resources :lessons
   resources :courses
   resources :categories

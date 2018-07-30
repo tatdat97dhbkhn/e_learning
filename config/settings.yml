@@ -34,6 +34,7 @@ number:
   two: 2
   one_float: 1.0
   enought_to_pass: 0.8
+  one_negative: -1
   four: 4
 time:
   format1: "%H:%M:%S"
@@ -52,3 +53,5 @@ class_css:
   active: "active"
 action:
   restore: "restore"
+glyphicon:
+  ok: "glyphicon glyphicon-ok"

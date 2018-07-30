@@ -18,15 +18,21 @@ class Question < ApplicationRecord
 
   class << self
     def get_questions question_logs
-      ids = question_logs.select(:question_id)
-      questions = Question.get_ques_by_ids(ids).preload(:answers)
-      answers = []
       types = []
+      pre_ques = question_logs.last
 
-      questions.each do |q|
-        types.push q.answers.select{|a| a.correct == true}.size
+      question_logs.preload(:question).each do |ql|
+        next if pre_ques == ql.question
+        pre_ques = ql.question
+        types.push pre_ques.answers.correct_ans.size
       end
-      [questions, types]
+      types
     end
+  end
+
+  def valid_question?
+    correct_ans = answers.correct_ans.size
+    return if correct_ans.zero? || correct_ans == answers.size
+    true
   end
 end

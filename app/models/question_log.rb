@@ -10,6 +10,7 @@ class QuestionLog < ApplicationRecord
       max_question = (Settings.number.zero...Settings.lesson.page)
 
       category.questions.shuffle[max_question].each do |question|
+        next unless question.valid_question?
         question.answers.shuffle.each do |answer|
           ls.question_logs.create question_id: question.id,
             answer_id: answer.id, number: Settings.number.zero
@@ -17,30 +18,30 @@ class QuestionLog < ApplicationRecord
       end
     end
   end
-
+  
   def update_result
     if question.answers.select{|a| a.correct == true}.size <
        Settings.number.two
-      update_single self
+      update_single
     else
-      update_multiple self
+      update_multiple
     end
   end
 
   private
 
-  def update_single ques_log
-    question_logs = QuestionLog.where(lesson_log_id: ques_log.lesson_log_id,
-      question_id: ques_log.question_id,
+  def update_single
+    question_logs = QuestionLog.where(lesson_log_id: lesson_log_id,
+      question_id: question_id,
       number: Settings.number.one).update number: Settings.number.zero
     ques_log.update_attributes number: Settings.number.one
   end
 
-  def update_multiple ques_log
-    ques_log.update_attributes number: if number.zero?
-                                        Settings.number.one
-                                      else
-                                        Settings.number.zero
-                                      end
+  def update_multiple
+    update_attributes number: if number.zero?
+                                Settings.number.one
+                              else
+                                Settings.number.zero
+                              end
   end
 end

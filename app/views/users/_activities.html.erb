@@ -8,17 +8,17 @@
     <th><%= t ".result" %></th>
   </tr>
   <% i = Settings.number.zero %>
-  <% @lesson_logs.each do |ql| %>
-    <% status = get_status(ql) %>
+  <% @lesson_logs.each do |ll| %>
+    <% status = get_status ll %>
     <tr class="<%= status.second %>">
-      <td><%= ql.created_at.strftime Settings.time.format %></td>
+      <td><%= ll.updated_at.strftime Settings.time.format %></td>
       <% if current_user? current_user %>
-        <td><%= link_to ql.lesson.name, url_for(ql) %></td>
+        <td><%= link_to ll.lesson.name, status_lesson_log(ll) %></td>
       <% else %>
-        <td><%= ql.lesson.name %></td>
+        <td><%= ll.lesson.name %></td>
       <% end %>
-      <td><%= Settings.max_time %> m</td>
-      <td><%= Time.at(ql.updated_at - ql.created_at).
+      <td><%= Settings.max_time %> <%= t ".minutes" %></td>
+      <td><%= Time.at(ll.updated_at - ll.created_at).
         strftime Settings.time.format %></td>
       <td><%= @results[i] %></td>
       <td><%= status.first %></td>

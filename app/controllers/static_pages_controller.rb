@@ -7,6 +7,6 @@ class StaticPagesController < ApplicationController
     @courses = Course.includes(:lessons).select :id, :name
     @lesson_logs = LessonLog.get_lessons_user(current_user).
       paginate page: params[:page], per_page: Settings.data.pages
-    @results = LessonLog.get_results @lesson_logs
+    @results = LessonLog.get_scores @lesson_logs
   end
 end

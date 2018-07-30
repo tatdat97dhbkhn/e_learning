@@ -1,0 +1,7 @@
+<%= check_box_tag question_log.id, question_log.id,
+  (if question_log.number == Settings.number.one
+    true
+  else
+    false
+  end), {class: "update-result"} %>
+<%= label_tag question_log.id, question_log.answer.content %>
