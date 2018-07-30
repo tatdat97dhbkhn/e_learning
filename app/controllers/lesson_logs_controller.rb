@@ -22,7 +22,7 @@ class LessonLogsController < ApplicationController
   end
 
   def edit
-    lesson_log.update_attributes saved: false if lesson_log.saved
+    lesson_log.update_time
     @question_logs = lesson_log.question_logs.preload :question
     @types = Question.get_questions @question_logs
   end

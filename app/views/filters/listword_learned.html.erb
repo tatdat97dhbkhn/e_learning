@@ -14,15 +14,17 @@
           <td><%= answer.question.meaning %></td>
         </tr>
       <% end %>
+      <%= paginate @arr, theme: "twitter-bootstrap-3" %>
     <% else %>
-     <% @unlearned[0].each do |unlearned| %>
-      <% if unlearned.correct %>
-        <tr>
-          <td><%= unlearned.content %></td>
-          <td><%= unlearned.question.meaning %></td>
-        </tr>
+      <% @unlearned.each do |unlearned| %>
+        <% if unlearned.correct %>
+          <tr>
+            <td><%= unlearned.content %></td>
+            <td><%= unlearned.question.meaning %></td>
+          </tr>
+        <% end %>
       <% end %>
-     <% end %>
+      <%= paginate @unlearned, theme: "twitter-bootstrap-3" %>
     <% end %>
   </tbody>
 </table>

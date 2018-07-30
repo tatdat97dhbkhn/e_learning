@@ -1,0 +1,31 @@
+<% if @lesson_log.pass.nil? %>
+  <center>
+    <div id="clockdiv" class="clockdiv">
+      <div>
+        <span class="minutes"></span>
+        <div class="smalltext">
+            <%= t ".minute" %>
+        </div>
+      </div>
+      <div>
+        <span class="seconds"></span>
+        <div class="smalltext">
+            <%= t ".second" %>
+        </div>
+      </div>
+    </div>
+  </center>
+<% end %>
+<input class="start_time" type="hidden"/>
+<input class="id_lesson" type="hidden"
+  value="<%= @lesson_log.id %>"/>
+<input class="updated_at" type="hidden"
+  value="<%= @lesson_log.updated_at %>"/>
+<input class="created_at" type="hidden"
+  value="<%= @lesson_log.created_at %>"/>
+<input class="time_total" type="hidden"
+  value="<%= Settings.max_time %>"/>
+<input class="status_save" type="hidden"
+  value="<%= @lesson_log.saved %>"/>
+<input class="status_pass" type="hidden"
+  value="<%= @lesson_log.pass %>"/>
