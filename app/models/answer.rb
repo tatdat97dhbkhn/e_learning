@@ -4,7 +4,7 @@ class Answer < ApplicationRecord
 
   scope :correct_ans, ->{where correct: true}
 
-  ANSWER_ATTRS = %w(content question_id correct).freeze
+  ANSWER_ATTRS = %w(id content correct _destroy).freeze
 
   validates :content, presence: true,
     length: {maximum: Settings.answer.length.max_content}

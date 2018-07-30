@@ -209,7 +209,8 @@ en:
     update:
       success: "Update successfull"
     destroy:
-      delete: "Deleted successfull"
+      success: "Deleted successfull"
+      danger: "Delete failed"
     edit:
       edit: "Edit question"
       category: "Category"
@@ -217,17 +218,20 @@ en:
       content: "Content"
       update: "Save change"
     index:
-      all: "All questions"
+      all: "All questions used"
       category: "Category"
       meaning: "Meaning"
       content: "Content"
-      edit: "Edit"
-      delete: "Delete"
-      sure: "Sure"
+      restore: "Restore questions"
     new:
       add: "Add question"
       chose_category: "- Choose Category -"
       category: "Category"
+    form_question:
+      question: "Question"
+      content: "Content"
+      answers: "Answers"
+      add_new: "Add a new question"
   answers:
     create:
       success: "Created successfull"

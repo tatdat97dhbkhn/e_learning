@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
-  before_action :find_question, only: [:edit, :update, :destroy]
+  before_action :find_question, only: %i(edit update destroy)
+  before_action :get_all_category, only: %i(new edit)
 
   def index
     @questions = Question.all.page(params[:page]).per_page Settings.data.pages
@@ -7,6 +8,7 @@ class QuestionsController < ApplicationController
 
   def new
     @question = Question.new
+    Settings.number.four.times {@question.answers.new}
   end
 
   def create
@@ -47,12 +49,17 @@ class QuestionsController < ApplicationController
   attr_reader :question
 
   def question_params
-    params.require(:question).permit Question::QUESTION_ATTRS
+    params.require(:question).permit Question::QUESTION_ATTRS,
+      answers_attributes: Answer::ANSWER_ATTRS
   end
 
   def find_question
     @question = Question.find_by id: params[:id]
     return if @question
     redirect_to root_path
+  end
+
+  def get_all_category
+    @categories = Category.all
   end
 end
