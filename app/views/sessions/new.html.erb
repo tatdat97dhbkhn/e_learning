@@ -16,6 +16,8 @@
       <% end %>
       
       <%= f.submit t("login"), class: "btn btn-primary" %>
+      <%= link_to image_tag("google.png", alt: "google logo"),
+        login_google_path, class: "google_logo" %>
     <% end %>
     <p><%= t "new_user" %><%= link_to t("sign-up"), signup_path %></p>
   </div>
