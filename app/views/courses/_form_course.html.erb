@@ -1,0 +1,19 @@
+<%= form_for @course, html: {multipart: true} do |f| %>
+  <%= render "shared/error_messages", object: f.object %>
+  <%= f.label :category_id %>
+  <br>
+  <%= f.select(:category_id,
+    [[ t(".chose"), 0]] + Category.all.map{ |c| [c.name, c.id] }) %>
+  <br><br>
+  
+  <%= f.label :name %>
+  <%= f.text_field :name, class: "form-control" %>
+
+  <%= f.label :description %>
+  <%= f.text_field :description, class: "form-control" %> 
+  
+  <%= f.label :image %>
+  <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png",
+    class: "form-control" %>
+  <%= f.submit yield(:submit), class: "btn btn-primary" %>
+<% end %>

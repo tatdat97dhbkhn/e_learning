@@ -1,40 +1,36 @@
 <% provide :title, t(".all") %>
 <h1><%= t ".all" %></h1>
-<%= render "layouts/menu" %>
 <div class="row">
+  <%= render "layouts/menu" %>
   <div class="col-md-8">
-    <table class="table">
-      <thead>
-        <tr class="success">
-          <th><%= t ".category" %></th>
-          <th><%= t ".course" %></th>
-          <th><%= t ".name" %></th>
-          <th><%= t ".description" %></th>
-          <th><%= t ".image" %></th>
-          <th><%= t ".edit" %></th>
-          <th><%= t ".delete" %></th>
+    <table>
+      <tr>
+        <th><%= t ".category" %></th>
+        <th><%= t ".course" %></th>
+        <th><%= t ".name" %></th>
+        <th><%= t ".description" %></th>
+        <th><%= t ".image" %></th>
+        <th><%= t ".edit" %></th>
+        <th><%= t ".delete" %></th>
+      </tr> 
+      <% @lessons.each do |lesson| %>
+        <tr>
+          <td><%= lesson.course.name %></td>
+          <td><%= lesson.course.category.name %></td>
+          <td><%= lesson.name %></td>
+          <td><%= lesson.description %></td>
+          <td class="img-medium">
+            <%= image_tag lesson.image.url if lesson.image? %>
+          </td>
+          <td>
+            <%= link_to t(".edit"), edit_lesson_path(lesson) %>
+          </td>
+          <td>
+            <%= link_to t(".delete"), lesson,
+              method: :delete, data: {confirm: t(".sure")} %>
+          </td>
         </tr>
-      </thead>
-      <tbody> 
-        <% @lessons.each do |lesson| %>
-          <tr class="info">
-            <td><%= lesson.course.name %></td>
-            <td><%= lesson.course.category.name %></td>
-            <td><%= lesson.name %></td>
-            <td><%= lesson.description %></td>
-            <td class="img-medium">
-              <%= image_tag lesson.image.url if lesson.image? %>
-            </td>
-            <td>
-              <%= link_to t(".edit"), edit_lesson_path(lesson) %>
-            </td>
-            <td>
-              <%= link_to t(".delete"), lesson,
-                method: :delete, data: {confirm: t(".sure")} %>
-            </td>
-          </tr>
-        <% end %>  
-      </tbody>
+      <% end %>
     </table>
     <%= paginate @lessons, theme: "twitter-bootstrap-3" %>
   </div>

@@ -48,7 +48,7 @@ module ApplicationHelper
   end
 
   def decide_answer question_log
-    return if finished_lesson_log question_log.lesson_log ||
+    return if finished_lesson_log(question_log.lesson_log) ||
       !question_log.answer.correct
     Settings.glyphicon.ok
   end

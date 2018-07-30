@@ -18,7 +18,7 @@ $(document).on('turbolinks:load', function() {
     $('.close-answer').hide();
     $('.add_answer').hide();
     $('.answer_content').attr('disabled','true');
-    $(':checkbox').attr('disabled','true');
+    $('.sub_answer :checkbox').attr('disabled','true');
   }
 
   $(document).on('click', '#sub-field', function(event){
