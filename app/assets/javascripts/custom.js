@@ -40,6 +40,18 @@ $(document).on('turbolinks:load', function() {
       }
     });
   }
+
+  if(!window.location.pathname.match('restore')){
+    $('.restore_column').remove();
+  }else{
+    $('.index_column').remove();
+  }
+
+  $('.act').each(function(){
+    if($(this).val().match(/delete/gi)){
+      $(this).prev().attr('data-confirm','Are you sure?');
+    }
+  });
 });
 
 $(document).ready(function(){

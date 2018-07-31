@@ -6,7 +6,7 @@ class CategoriesController < ApplicationController
   end
 
   def index
-    @categories = Category.all.page(params[:page]).per_page Settings.data.pages
+    @categories = get_using_category true
   end
 
   def edit; end
@@ -33,13 +33,12 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    if @category.destroy
-      flash[:success] = t ".delete"
-      redirect_to categories_url
-    else
-      flash[:danger] = t "danger"
-      redirect_to home_path
-    end
+    flash[:warning] = category.destroy_actions params[:do]
+    redirect_back fallback_location: root_path
+  end
+
+  def restore
+    @categories = get_using_category false
   end
 
   private
@@ -54,5 +53,9 @@ class CategoriesController < ApplicationController
     @category = Category.find_by id: params[:id]
     return if @category
     redirect_to root_path
+  end
+
+  def get_using_category flag
+    Category.using(flag).page(params[:page]).per_page Settings.data.pages
   end
 end

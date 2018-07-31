@@ -11,7 +11,6 @@ en:
   not_blank: "Category cannot be blank."
   less: "should be less than 5MB"
   contact: "Contact"
-  danger: "Create fail"
   design: "Design by"
   datthuy: "Pham Tat Dat - Nguyen Như Thuy"
   home: "Home"
@@ -31,6 +30,13 @@ en:
   log_in: "Please log in."
   image_size: "Shold be less than 5MB."
   errors1: "Email/Password do not exist!"
+  edit: "Edit"
+  restore: "Restore"
+  remove: "Remove"
+  delete: "Delete"
+  success: "Successful"
+  danger: "Can't do this action"
+  warning: "Done!"
   static_pages:
     menu:
       all_word: "All world"
@@ -131,16 +137,18 @@ en:
     edit:
       edit: "Edit category"
     index:
-      all: "All categories"
+      all: "All categories used"
       name: "Name"
       description: "Description"
-      edit: "Edit"
-      delete: "Delete"
+      restore: "Restore categories"
       sure: "Sure"
     new:
       add: "Add category"
-    form_lesson:
-      
+    show_categories:
+      add: "Add new category"
+    restore:
+      all: "All categories deleted"
+      using: "Using categories"
   courses:
     create:
       success: "Created successfull"
